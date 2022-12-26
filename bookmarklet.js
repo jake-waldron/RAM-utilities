@@ -19,7 +19,7 @@ javascript: (function () {
 
 		setTimeout(() => {
 			toast.parentNode.removeChild(toast);
-		}, 1000);
+		}, 2000);
 	}
 
 	function moveListener(event) {
