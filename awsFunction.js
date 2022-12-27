@@ -54,7 +54,7 @@ exports.handler = async (event) => {
 	const product = body.product;
 	const note = body.note;
 
-	if (!product) {
+	if (!product || product.trim() === '') {
 		return sendResponse(400, { message: 'No product provided' });
 	}
 
