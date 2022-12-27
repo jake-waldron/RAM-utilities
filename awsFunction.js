@@ -4,60 +4,70 @@ const notion = new Client({ auth: process.env.NOTION_SECRET });
 
 const databaseId = process.env.NOTION_DB;
 
+async function addProduct(product, note = '') {
+	const res = await notion.pages.create({
+		parent: { database_id: databaseId },
+		properties: {
+			Product: {
+				type: 'title',
+				title: [
+					{
+						type: 'text',
+						text: {
+							content: product,
+						},
+					},
+				],
+			},
+			Notes: {
+				type: 'rich_text',
+				rich_text: [
+					{
+						type: 'text',
+						text: {
+							content: note,
+						},
+					},
+				],
+			},
+		},
+	});
+	return res;
+}
+
+function sendResponse(statusCode, message) {
+	const response = {
+		statusCode: statusCode,
+		headers: {
+			'Access-Control-Allow-Headers': 'Content-Type',
+			'Access-Control-Allow-Origin': 'https://amp.reynoldsam.com',
+			'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+		},
+		body: JSON.stringify(message),
+	};
+	return response;
+}
+
 exports.handler = async (event) => {
 	const body = JSON.parse(event.body);
 
 	const product = body.product;
 	const note = body.note;
 
-	try {
-		// if note, add product to database with note, whether it's already in there or not
-		if (note !== undefined) {
-			const res = await notion.pages.create({
-				parent: { database_id: databaseId },
-				properties: {
-					Product: {
-						type: 'title',
-						title: [
-							{
-								type: 'text',
-								text: {
-									content: product,
-								},
-							},
-						],
-					},
-					Notes: {
-						type: 'rich_text',
-						rich_text: [
-							{
-								type: 'text',
-								text: {
-									content: note,
-								},
-							},
-						],
-					},
-				},
-			});
-			const response = {
-				statusCode: 200,
-				body: JSON.stringify({ message: 'Added to list!' }),
-			};
-			return response;
-		}
+	if (!product) {
+		return sendResponse(400, { message: 'No product provided' });
+	}
 
-		// if there isn't a note, check if product is already in list
-		// if so, return message that it's already in list
-		// if not, add it
-		const res = await notion.databases.query({
+	try {
+		// check to see if it's already in the list
+		const notionQueryResponse = await notion.databases.query({
 			database_id: databaseId,
 			filter: {
 				and: [
 					{
 						property: 'Product',
 						title: {
-							equals: product,
+							contains: product,
 						},
 					},
 					{
@@ -69,41 +79,23 @@ exports.handler = async (event) => {
 				],
 			},
 		});
-		if (res.results.length > 0) {
-			const response = {
-				statusCode: 200,
-				body: JSON.stringify({ message: 'Already in list!' }),
-			};
-			return response;
+		// if note, add product to database with note, whether it's already in there or not
+		if (note !== undefined) {
+			await addProduct(product, note);
+			return sendResponse(200, { message: 'Added to list' });
 		}
-		if (res.results.length === 0) {
-			await notion.pages.create({
-				parent: { database_id: databaseId },
-				properties: {
-					Product: {
-						type: 'title',
-						title: [
-							{
-								type: 'text',
-								text: {
-									content: product,
-								},
-							},
-						],
-					},
-				},
-			});
-			const response = {
-				statusCode: 200,
-				body: JSON.stringify({ message: 'Added to list!' }),
-			};
-			return response;
+
+		// if it's already in the list, return a 406
+		// if it's not in the list, add it and return a 200
+
+		if (notionQueryResponse.results.length > 0) {
+			return sendResponse(200, { message: 'Already in list' });
+		}
+		if (notionQueryResponse.results.length === 0) {
+			await addProduct(product);
+			return sendResponse(200, { message: 'Added to list' });
 		}
 	} catch (error) {
-		const response = {
-			statusCode: 400,
-			body: error,
-		};
-		return response;
+		return sendResponse(400, { message: 'Error adding product', error });
 	}
 };
