@@ -20,7 +20,7 @@ javascript: (function () {
 	}
 	function removeToast() {
 		Object.assign(toast.style, {
-			backgroundColor: toastMessage === 'Added to list' ? '#28a745' : 'red',
+			backgroundColor: toastMessage === 'Added to list' ? '#28a745' : '#dd3b22',
 		});
 		setTimeout(() => {
 			toast.parentNode.removeChild(toast);
@@ -34,10 +34,10 @@ javascript: (function () {
 		Object.assign(overlay.style, {
 			background: 'rgba(0, 128, 255, 0.25)',
 			outline: '1px solid rgba(0, 128, 255, 0.5)',
-			top: '' + position.top + 'px',
-			left: '' + position.left + 'px',
-			width: '' + position.width + 'px',
-			height: '' + position.height + 'px',
+			top: `${position.top}px`,
+			left: `${position.left}px`,
+			width: `${position.width}px`,
+			height: `${position.height}px`,
 		});
 	}
 
