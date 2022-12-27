@@ -1,22 +1,27 @@
 javascript: (function () {
 	const overlay = document.createElement('div');
+	const toast = document.createElement('div');
+	let toastMessage = 'Loading...';
 
-	function showToast(message) {
-		const toast = document.createElement('div');
+	function showToast() {
 		Object.assign(toast.style, {
 			position: 'fixed',
 			top: '25px',
 			right: '25px',
 			padding: '10px 20px',
 			borderRadius: '3px',
-			backgroundColor: message === 'Already in list!' ? 'red' : '#28a745',
+			backgroundColor: 'grey',
 			color: 'white',
 			fontSize: '16px',
 			zIndex: 9999,
 		});
-		toast.innerText = message;
+		toast.innerText = toastMessage;
 		document.body.append(toast);
-
+	}
+	function removeToast() {
+		Object.assign(toast.style, {
+			backgroundColor: toastMessage === 'Added to list' ? '#28a745' : 'red',
+		});
 		setTimeout(() => {
 			toast.parentNode.removeChild(toast);
 		}, 2000);
@@ -36,16 +41,29 @@ javascript: (function () {
 		});
 	}
 
-	function clickListener(event) {
+	async function clickListener(event) {
 		const element = getElement(event);
 		const text = element.textContent;
 		const prodName = text.split('(')[0];
+		showToast();
 		fetch(`https://3gbqvz7aa1.execute-api.us-east-2.amazonaws.com/addToTruck/add`, {
 			method: 'post',
-			mode: 'no-cors',
+			mode: 'cors',
 			body: JSON.stringify({ product: prodName }),
-		});
-		showToast('Added to list!');
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				toastMessage = data.message;
+			})
+			.catch((error) => {
+				toastMessage = 'Error. Try again';
+			})
+			.finally(() => {
+				toast.innerText = toastMessage;
+				removeToast();
+			});
 
 		overlay.removeEventListener('click', clickListener);
 		document.removeEventListener('mousemove', moveListener);
