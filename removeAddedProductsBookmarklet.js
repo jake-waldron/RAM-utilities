@@ -28,7 +28,6 @@ javascript: (function () {
 		}, 2000);
 	}
 
-	console.log(products);
 	showToast();
 	fetch(`https://3gbqvz7aa1.execute-api.us-east-2.amazonaws.com/addToTruck/update`, {
 		method: 'post',
@@ -40,10 +39,13 @@ javascript: (function () {
 		})
 		.then((data) => {
 			toastMessage = data.message;
-			removeToast();
-			console.log(data);
 		})
 		.catch((error) => {
+			toastMessage = 'Error';
 			console.log(error);
+		})
+		.finally(() => {
+			toast.innerText = toastMessage;
+			removeToast();
 		});
 })();
