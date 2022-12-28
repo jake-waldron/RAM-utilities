@@ -21,7 +21,7 @@ javascript: (function () {
 	}
 	function removeToast() {
 		Object.assign(toast.style, {
-			backgroundColor: toastMessage === 'Added to list' ? '#28a745' : '#dd3b22',
+			backgroundColor: toastMessage === 'List updated' ? '#28a745' : '#dd3b22',
 		});
 		setTimeout(() => {
 			toast.parentNode.removeChild(toast);
