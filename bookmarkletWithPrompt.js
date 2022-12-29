@@ -1,7 +1,7 @@
 javascript: (function () {
 	const overlay = document.createElement('div');
 	const toast = document.createElement('div');
-	const addedBy = document.querySelector('.nav-header .font-bold').innerText.split(' ')[0];
+	const addedBy = document.querySelector('.nav-header .font-bold')?.innerText.split(' ')[0];
 
 	let toastMessage = 'Loading...';
 
