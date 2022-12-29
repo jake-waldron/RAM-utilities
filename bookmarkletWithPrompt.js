@@ -43,6 +43,15 @@ javascript: (function () {
 		});
 	}
 
+	function escListener(event) {
+		if (event.key === 'Escape') {
+			document.removeEventListener('mousemove', moveListener);
+			document.removeEventListener('keydown', escListener);
+			document.removeEventListener('click', clickListener);
+			document.body.removeChild(overlay);
+		}
+	}
+
 	async function clickListener(event) {
 		const element = getElement(event);
 		const text = element.textContent;
@@ -90,6 +99,7 @@ javascript: (function () {
 		overlay.style.pointerEvents = 'auto';
 		return element;
 	}
+	document.addEventListener('keydown', escListener);
 	document.addEventListener('mousemove', moveListener);
 	overlay.addEventListener('click', clickListener);
 })();
