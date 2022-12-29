@@ -98,7 +98,7 @@ exports.handler = async (event) => {
 		// if it's not in the list, add it and return a 200
 
 		if (notionQueryResponse.results.length > 0) {
-			return sendResponse(200, { message: 'Already in list' });
+			return sendResponse(200, { message: 'Already on list' });
 		}
 		if (notionQueryResponse.results.length === 0) {
 			await addProduct(product, addedBy);
