@@ -4,7 +4,7 @@ const notion = new Client({ auth: process.env.NOTION_SECRET });
 
 const databaseId = process.env.NOTION_DB;
 
-async function addProduct(product, note = '') {
+async function addProduct(product, addedBy, note = '') {
 	const res = await notion.pages.create({
 		parent: { database_id: databaseId },
 		properties: {
@@ -27,6 +27,14 @@ async function addProduct(product, note = '') {
 						text: {
 							content: note,
 						},
+					},
+				],
+			},
+			Added_By: {
+				type: 'multi_select',
+				multi_select: [
+					{
+						name: addedBy,
 					},
 				],
 			},
@@ -53,6 +61,7 @@ exports.handler = async (event) => {
 
 	const product = body.product;
 	const note = body.note;
+	const addedBy = body.addedBy;
 
 	if (!product || product.trim() === '') {
 		return sendResponse(400, { message: 'No product provided' });
@@ -81,7 +90,7 @@ exports.handler = async (event) => {
 		});
 		// if note, add product to database with note, whether it's already in there or not
 		if (note !== undefined) {
-			await addProduct(product, note);
+			await addProduct(product, addedBy, note);
 			return sendResponse(200, { message: 'Added to list' });
 		}
 
@@ -92,7 +101,7 @@ exports.handler = async (event) => {
 			return sendResponse(200, { message: 'Already in list' });
 		}
 		if (notionQueryResponse.results.length === 0) {
-			await addProduct(product);
+			await addProduct(product, addedBy);
 			return sendResponse(200, { message: 'Added to list' });
 		}
 	} catch (error) {
