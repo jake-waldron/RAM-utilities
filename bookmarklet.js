@@ -1,6 +1,7 @@
 javascript: (function () {
 	const overlay = document.createElement('div');
 	const toast = document.createElement('div');
+	const addedBy = document.querySelector('.nav-header .font-bold').innerText.split(' ')[0];
 	let toastMessage = 'Loading...';
 
 	function showToast() {
@@ -49,7 +50,7 @@ javascript: (function () {
 		fetch(`https://3gbqvz7aa1.execute-api.us-east-2.amazonaws.com/addToTruck/add`, {
 			method: 'post',
 			mode: 'cors',
-			body: JSON.stringify({ product: prodName }),
+			body: JSON.stringify({ product: prodName, addedBy }),
 		})
 			.then((res) => {
 				return res.json();
