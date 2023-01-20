@@ -58,7 +58,6 @@ javascript: (function () {
 		if (element.tagName === 'TD') {
 			element = element.querySelector('a');
 		}
-		console.log(element);
 		const link = element.href;
 		const linkText = element.textContent;
 		element.textContent = '✅' + linkText;
