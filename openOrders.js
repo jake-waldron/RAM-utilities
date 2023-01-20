@@ -54,12 +54,15 @@ javascript: (function () {
 	}
 
 	function clickListener(event) {
-		const element = getElement(event);
+		let element = getElement(event);
+		if (element.tagName === 'TD') {
+			element = element.querySelector('a');
+		}
+		console.log(element);
 		const link = element.href;
 		const linkText = element.textContent;
 		element.textContent = '✅' + linkText;
 		links.push(link);
-		console.log(links);
 	}
 
 	function escListener(event) {
