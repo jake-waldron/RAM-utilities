@@ -5,8 +5,6 @@ const notion = new Client({ auth: process.env.NOTION_SECRET });
 
 const databaseId = process.env.NOTION_DB;
 
-const updated = [];
-
 function sendResponse(statusCode, message) {
 	const response = {
 		statusCode: statusCode,
@@ -20,6 +18,7 @@ function sendResponse(statusCode, message) {
 	return response;
 }
 
+// uses forEach because there could be multiple entries for the same product (ex. one with and without a note)
 async function checkOffProducts(products) {
 	products.forEach(async (product) => {
 		const page_id = product.id;
@@ -31,12 +30,11 @@ async function checkOffProducts(products) {
 				},
 			},
 		});
-		console.log(response);
-		updated.push(product.id);
 	});
 }
 
 // find item in database and update added checkbox to true if it exists
+// query returns an array of results, usually only one, but could be more than one if there are multiple entries for the same product
 async function findItem(text) {
 	const response = await notion.databases.query({
 		database_id: databaseId,
