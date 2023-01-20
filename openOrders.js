@@ -1,6 +1,25 @@
 javascript: (function () {
 	const overlay = document.createElement('div');
+	const instructions = document.createElement('div');
 	const links = [];
+
+	function showInstructions() {
+		Object.assign(instructions.style, {
+			width: '400px',
+			textAlign: 'center',
+			position: 'fixed',
+			bottom: '50px',
+			left: 'calc(50% - 200px)',
+			padding: '10px 20px',
+			borderRadius: '3px',
+			backgroundColor: 'hsla(0, 0%, 20%, 0.5)',
+			color: 'white',
+			fontSize: '16px',
+			zIndex: 9999,
+		});
+		instructions.innerText = 'Click on order numbers. Press enter to open.';
+		document.body.append(instructions);
+	}
 
 	function moveListener(event) {
 		const element = getElement(event);
@@ -21,7 +40,8 @@ javascript: (function () {
 			document.removeEventListener('mousemove', moveListener);
 			document.removeEventListener('keydown', escListener);
 			document.removeEventListener('click', clickListener);
-			document.body.removeChild(overlay);
+			overlay.remove();
+			instructions.remove();
 		}
 	}
 
@@ -46,7 +66,8 @@ javascript: (function () {
 		document.removeEventListener('mousemove', moveListener);
 		document.removeEventListener('keydown', enterListener);
 
-		document.body.removeChild(overlay);
+		overlay.remove();
+		instructions.remove();
 	}
 
 	Object.assign(overlay.style, {
@@ -66,6 +87,7 @@ javascript: (function () {
 		overlay.style.pointerEvents = 'auto';
 		return element;
 	}
+	showInstructions();
 	document.addEventListener('keydown', escListener);
 	document.addEventListener('mousemove', moveListener);
 	overlay.addEventListener('click', clickListener);
