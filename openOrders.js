@@ -21,55 +21,6 @@ javascript: (function () {
 		document.body.append(instructions);
 	}
 
-	function moveListener(event) {
-		const element = getElement(event);
-		if (!element) return;
-		const position = element.getBoundingClientRect();
-		Object.assign(overlay.style, {
-			background: 'rgba(0, 128, 255, 0.25)',
-			outline: '1px solid rgba(0, 128, 255, 0.5)',
-			top: `${position.top}px`,
-			left: `${position.left}px`,
-			width: `${position.width}px`,
-			height: `${position.height}px`,
-		});
-	}
-
-	function escListener(event) {
-		if (event.key === 'Escape') {
-			document.removeEventListener('mousemove', moveListener);
-			document.removeEventListener('keydown', escListener);
-			document.removeEventListener('click', clickListener);
-			overlay.remove();
-			instructions.remove();
-		}
-	}
-
-	function clickListener(event) {
-		const element = getElement(event);
-		const link = element.href;
-		const linkText = element.textContent;
-		element.textContent = '✅' + linkText;
-		links.push(link);
-		console.log(links);
-	}
-
-	function enterListener(event) {
-		if (event.key === 'Enter') {
-			openOrders();
-		}
-	}
-
-	function openOrders() {
-		links.forEach((link) => window.open(link, '_blank'));
-		overlay.removeEventListener('click', clickListener);
-		document.removeEventListener('mousemove', moveListener);
-		document.removeEventListener('keydown', enterListener);
-
-		overlay.remove();
-		instructions.remove();
-	}
-
 	Object.assign(overlay.style, {
 		position: 'fixed',
 		top: 0,
@@ -87,6 +38,56 @@ javascript: (function () {
 		overlay.style.pointerEvents = 'auto';
 		return element;
 	}
+
+	function moveListener(event) {
+		const element = getElement(event);
+		if (!element) return;
+		const position = element.getBoundingClientRect();
+		Object.assign(overlay.style, {
+			background: 'rgba(0, 128, 255, 0.25)',
+			outline: '1px solid rgba(0, 128, 255, 0.5)',
+			top: `${position.top}px`,
+			left: `${position.left}px`,
+			width: `${position.width}px`,
+			height: `${position.height}px`,
+		});
+	}
+
+	function clickListener(event) {
+		const element = getElement(event);
+		const link = element.href;
+		const linkText = element.textContent;
+		element.textContent = '✅' + linkText;
+		links.push(link);
+		console.log(links);
+	}
+
+	function escListener(event) {
+		if (event.key === 'Escape') {
+			removeEverything();
+		}
+	}
+
+	function enterListener(event) {
+		if (event.key === 'Enter') {
+			openOrders();
+		}
+	}
+
+	function openOrders() {
+		links.forEach((link) => window.open(link, '_blank'));
+		removeEverything();
+	}
+
+	function removeEverything() {
+		overlay.removeEventListener('click', clickListener);
+		document.removeEventListener('mousemove', moveListener);
+		document.removeEventListener('keydown', enterListener);
+
+		overlay.remove();
+		instructions.remove();
+	}
+
 	showInstructions();
 	document.addEventListener('keydown', escListener);
 	document.addEventListener('mousemove', moveListener);
