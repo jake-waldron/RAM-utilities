@@ -2,7 +2,7 @@ function showAlert(billingNotes, parentElement) {
 	if (billingNotes?.includes('**ALERT**')) {
 		const alertText = billingNotes.split('**ALERT**')[1];
 		const div = document.createElement('div');
-
+		div.id = 'customer-alert';
 		div.textContent = alertText;
 		Object.assign(div.style, {
 			backgroundColor: 'red',
@@ -13,7 +13,9 @@ function showAlert(billingNotes, parentElement) {
 			marginBottom: '24px',
 			textAlign: 'center',
 		});
-		parentElement.prepend(div);
+		if (!document.getElementById('customer-alert')) {
+			parentElement.prepend(div);
+		}
 	}
 }
 
