@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+	"name": "Customer Alert Message",
+	"version": "1.0",
+	"description": "Adds an alert message to customer pages",
+	"content_scripts": [
+		{
+			"js": ["scripts/content.js"],
+			"matches": [
+				"https://amp.reynoldsam.com/Customer/View*",
+				"https://ram-bam-us-web-qa.azurewebsites.net/Customer/View*"
+			]
+		}
+	]
+}
