@@ -84,11 +84,13 @@ function handlePrepayment() {
 				maxPaymentAmount = paymentNeeded;
 				amountToApply = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
+				paymentInput.value = '';
 			} else {
 				// Pay full amount
 				maxPaymentAmount = orderTotal;
 				amountToApply = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
+				paymentInput.value = '';
 			}
 		});
 
