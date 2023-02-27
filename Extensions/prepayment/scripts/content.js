@@ -35,26 +35,28 @@ function createCreditDisplay(availableCredit) {
 
 function addDontUseCreditButton() {
 	// Add checkbox toggle for not using prepayment
-	const useCreditCheckbox = document.createElement('input');
-	useCreditCheckbox.type = 'checkbox';
-	useCreditCheckbox.id = 'prepayment-checkbox';
-	useCreditCheckbox.checked = false;
+	const checkbox = document.createElement('input');
+	checkbox.type = 'checkbox';
+	checkbox.id = 'prepayment-checkbox';
+	checkbox.checked = false;
 
 	const useCreditLabel = document.createElement('label');
 	useCreditLabel.textContent = "Don't Use Available Credit";
 	useCreditLabel.htmlFor = 'prepayment-checkbox';
 	useCreditLabel.classList.add('m-l-sm');
 
-	const usePaymentContainer = document.createElement('div');
-	usePaymentContainer.classList.add('form-group', 'pull-right');
-	usePaymentContainer.appendChild(useCreditCheckbox);
-	usePaymentContainer.appendChild(useCreditLabel);
+	const checkboxContainer = document.createElement('div');
+	checkboxContainer.classList.add('form-group', 'pull-right');
+	checkboxContainer.appendChild(checkbox);
+	checkboxContainer.appendChild(useCreditLabel);
 
 	const paymentContainer = document.querySelector('.cashPanel').parentElement;
-	paymentContainer.appendChild(usePaymentContainer);
+	paymentContainer.appendChild(checkboxContainer);
 
-	return useCreditCheckbox;
+	return { checkbox, checkboxContainer };
 }
+
+function setupPaymentInputListeners() {}
 
 //TODO : Add "Don't use prepayment" button
 function handlePrepayment() {
@@ -68,9 +70,28 @@ function handlePrepayment() {
 		const creditDisplay = createCreditDisplay(availableCredit);
 		balanceDisplay.appendChild(creditDisplay);
 
-		const checkbox = addDontUseCreditButton();
+		const { checkbox, checkboxContainer } = addDontUseCreditButton();
 		let amountToApply = paymentNeeded;
 		let maxPaymentAmount = paymentNeeded;
+
+		// This mess is to get the payment type dropdown to work and hide the checkbox when cash is selected
+		let paymentType;
+		document.querySelector('#PaymentTypeSelectBox').addEventListener(
+			'click',
+			() => {
+				console.log('added listeners');
+				const options = document.querySelectorAll('div[role="option"]');
+				Array.from(options).forEach((option) => {
+					option.addEventListener('click', () => {
+						console.log('payment changed');
+						paymentType = option.textContent;
+						checkboxContainer.style.display = paymentType === 'Cash' ? 'none' : 'block';
+					});
+				}),
+					{ once: true };
+			},
+			{ once: true }
+		);
 
 		// Set default values to use credit
 		const payInFullButton = document.querySelector('#PayFullAmount');
