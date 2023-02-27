@@ -22,17 +22,23 @@ function getInitialElements() {
 	return { orderTotal, availableCredit, paymentForm, paymentInput };
 }
 
-function addCurrentCreditDisplay(availableCredit) {
-	const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
+function createBalanceDisplay(label, amount, textStyle) {
+	const balanceDisplay = document.createElement('h2');
+	balanceDisplay.textContent = `${label}: `;
+	balanceDisplay.classList.add('text-right', 'm-t', 'none');
+	const balanceAmount = document.createElement('span');
+	balanceAmount.textContent = `$${amount.toFixed(2)}`;
+	balanceAmount.classList.add(`text-${textStyle}`, 'font-bold');
+	balanceDisplay.appendChild(balanceAmount);
 
-	const creditDisplay = document.createElement('h2');
-	creditDisplay.textContent = `Current Credit: `;
-	creditDisplay.classList.add('text-right', 'm-t', 'none');
-	const creditAmount = document.createElement('span');
-	creditAmount.textContent = `$${availableCredit.toFixed(2)}`;
-	creditAmount.classList.add('text-info', 'font-bold');
-	creditDisplay.appendChild(creditAmount);
-	balanceDisplay.appendChild(creditDisplay);
+	return balanceDisplay;
+}
+
+function addToBalanceDisplay(newElements) {
+	const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
+	newElements.forEach((element) => {
+		balanceDisplay.appendChild(element);
+	});
 }
 
 function addUseCreditToggle() {
@@ -84,6 +90,27 @@ function hideIfCashSelected(element) {
 	);
 }
 
+function toggleVisibilityIfCashSelected(element, isCashDisplayValue, isNotCashDisplayValue) {
+	let paymentType;
+	document.querySelector('#PaymentTypeSelectBox').addEventListener(
+		'click',
+		() => {
+			console.log('added listeners');
+			const options = document.querySelectorAll('div[role="option"]');
+			Array.from(options).forEach((option) => {
+				option.addEventListener('click', () => {
+					console.log('payment changed');
+					paymentType = option.textContent;
+
+					element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
+				});
+			}),
+				{ once: true };
+		},
+		{ once: true }
+	);
+}
+
 //TODO : Add "Don't use prepayment" button
 function handlePrepayment() {
 	const { orderTotal, availableCredit, paymentForm, paymentInput } = getInitialElements();
@@ -91,7 +118,11 @@ function handlePrepayment() {
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
 		const paymentNeeded = orderTotal - availableCredit;
 
-		addCurrentCreditDisplay(availableCredit);
+		const currentCreditDisplay = createBalanceDisplay('Current Credit', availableCredit, 'info');
+		const amountDueDisplay = createBalanceDisplay('Amount Due', paymentNeeded, 'danger');
+		amountDueDisplay.style.display = 'none';
+
+		addToBalanceDisplay([currentCreditDisplay, amountDueDisplay]);
 
 		// Set default values to use availble credit
 		let amountToApply = paymentNeeded;
@@ -103,7 +134,10 @@ function handlePrepayment() {
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
-		hideIfCashSelected(checkboxContainer);
+		// hideIfCashSelected(checkboxContainer);
+		toggleVisibilityIfCashSelected(checkboxContainer, 'none', 'block');
+		toggleVisibilityIfCashSelected(amountDueDisplay, 'block', 'none');
+		// CHANGE TO SENDING ARRAY OF OBJECTS AND ATTACHING ALL AT ONCE INSTEAD OF CALLING TWICE
 
 		// Handle values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
