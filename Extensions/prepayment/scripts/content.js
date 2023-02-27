@@ -18,8 +18,9 @@ function getInitialElements() {
 	const paymentForm = document.querySelector('#AddPaymentForm');
 
 	const paymentInput = document.querySelector('input[id=Payment_Amount]');
+	const cashInput = document.querySelector('#Tendered_Amount');
 
-	return { orderTotal, availableCredit, paymentForm, paymentInput };
+	return { orderTotal, availableCredit, paymentForm, paymentInput, cashInput };
 }
 
 function createBalanceDisplay(label, amount, textStyle) {
@@ -55,16 +56,16 @@ function addUseCreditToggle() {
 
 	const checkboxContainer = document.createElement('div');
 	checkboxContainer.id = 'checkbox-container';
-	checkboxContainer.classList.add('form-group', 'pull-right');
+	checkboxContainer.classList.add('form-group', 'pull-right', 'checkbox');
 	checkboxContainer.appendChild(checkbox);
 	checkboxContainer.appendChild(useCreditLabel);
 
 	// const paymentContainer = document.querySelector('.cashPanel').parentElement;
 	const paymentContainer = document.querySelector('.cashPanel').nextElementSibling.querySelector('.input-group');
 	checkboxContainer.style.position = 'absolute';
-	checkboxContainer.style.left = 'calc(100% + 16px)';
+	checkboxContainer.style.left = 'calc(100% + 6px)';
 	checkboxContainer.style.width = '100%';
-	checkboxContainer.style.top = '10px';
+	// checkboxContainer.style.top = '10px';
 	paymentContainer.appendChild(checkboxContainer);
 
 	return { checkbox, checkboxContainer };
@@ -72,12 +73,15 @@ function addUseCreditToggle() {
 
 function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 	let paymentType;
+	// Setup listener for payment dropdown
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
 		'click',
 		() => {
 			console.log('added listeners');
+
 			const options = document.querySelectorAll('div[role="option"]');
 			Array.from(options).forEach((option) => {
+				// Setup listener for each option
 				option.addEventListener('click', () => {
 					console.log('payment changed');
 					paymentType = option.textContent;
@@ -97,7 +101,7 @@ function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 }
 
 function handlePrepayment() {
-	const { orderTotal, availableCredit, paymentForm, paymentInput } = getInitialElements();
+	const { orderTotal, availableCredit, paymentForm, paymentInput, cashInput } = getInitialElements();
 
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
 		const paymentNeeded = orderTotal - availableCredit;
@@ -114,6 +118,7 @@ function handlePrepayment() {
 		const payInFullButtonText = payInFullButton.querySelector('span');
 		payInFullButtonText.textContent = 'Pay Remaining Balance';
 		paymentInput.max = `${paymentNeeded}`;
+		cashInput.dataset.orderbalance = paymentNeeded;
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
@@ -125,11 +130,11 @@ function handlePrepayment() {
 
 		// Handle display toggle of elements if cash selected
 		const elementsToToggle = [
-			{
-				element: checkboxContainer,
-				isCashDisplayValue: 'none',
-				isNotCashDisplayValue: 'block',
-			},
+			// {
+			// 	element: checkboxContainer,
+			// 	isCashDisplayValue: 'none',
+			// 	isNotCashDisplayValue: 'block',
+			// },
 			{
 				element: amountDueDisplay,
 				isCashDisplayValue: 'block',
@@ -144,12 +149,14 @@ function handlePrepayment() {
 				// Use credit
 				paymentInput.max = paymentNeeded;
 				amountToApply = paymentNeeded;
+				cashInput.dataset.orderbalance = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
 				paymentInput.value = '';
 			} else {
 				// Pay full amount
 				paymentInput.max = orderTotal;
 				amountToApply = orderTotal;
+				cashInput.dataset.orderbalance = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
 				paymentInput.value = '';
 			}
@@ -164,6 +171,18 @@ function handlePrepayment() {
 // This will only be called when the add payment page loads
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.message === 'add payment loaded') {
+		// Fix spacing on change due
+		const changeDue = document.querySelector('#ChangeDueContainer');
+		changeDue.style.marginTop = '24px';
+
+		/*
+		const changeDueLabel = document.createElement('p');
+		changeDueLabel.textContent =
+			"This is based on the total order amount. You'll have to do the math yourself here. Sorry!";
+		changeDueLabel.style.fontStyle = 'italic';
+		changeDue.insertAdjacentElement('afterend', changeDueLabel);
+		*/
+
 		handlePrepayment();
 	}
 });
