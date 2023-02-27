@@ -12,13 +12,12 @@ javascript: (function () {
 		const orderBalance = document.querySelector('#orderBalance')?.value;
 		const paymentAmount = document.querySelector('#Request_UnappliedPayments_0__ApplyToOrderAmount')?.max;
 		const secondPayment = document.querySelector('#Request_UnappliedPayments_1__ApplyToOrderAmount');
-		if (orderBalance && paymentAmount) {
-			if (secondPayment || orderBalance !== paymentAmount) {
-				return window.alert('You should look at this first.');
-			}
-			document.querySelector('#ApplyPrepayment')?.click();
-			document.querySelector('#SubmitButton').click();
+
+		if (secondPayment || orderBalance !== paymentAmount) {
+			return window.alert('You should look at this first.');
 		}
+		document.querySelector('#ApplyPrepayment')?.click();
+		document.querySelector('#SubmitButton').click();
 	}
 
 	if (document.URL.startsWith('https://amp.reynoldsam.com/Order/SendInvoice')) {
