@@ -1,6 +1,4 @@
-const pattern = 'https://*/Customer/SearchItemDetail*';
-function sendMessage(requestDetails) {
-	// send message to content.js
+function sendMessage() {
 	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 		chrome.tabs.sendMessage(tabs[0].id, {
 			message: 'customer preview loaded',
@@ -9,4 +7,4 @@ function sendMessage(requestDetails) {
 }
 
 // Listens for request for customer SearchItemDetail to load, then sends message to content.js
-chrome.webRequest.onCompleted.addListener(sendMessage, { urls: [pattern] });
+chrome.webRequest.onCompleted.addListener(sendMessage, { urls: ['https://*/Customer/SearchItemDetail*'] });
