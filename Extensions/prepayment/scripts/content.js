@@ -81,7 +81,6 @@ function toggleVisibilityIfCashSelected(elementsToToggle) {
 				option.addEventListener('click', () => {
 					console.log('payment changed');
 					paymentType = option.textContent;
-
 					elementsToToggle.forEach((elementObj) => {
 						const { element, isCashDisplayValue, isNotCashDisplayValue } = elementObj;
 						element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
@@ -108,11 +107,10 @@ function handlePrepayment() {
 
 		// Set default values to use availble credit
 		let amountToApply = paymentNeeded;
-		let maxPaymentAmount = paymentNeeded;
 		const payInFullButton = document.querySelector('#PayFullAmount');
 		const payInFullButtonText = payInFullButton.querySelector('span');
 		payInFullButtonText.textContent = 'Pay Remaining Balance';
-		paymentInput.max = `${maxPaymentAmount}`;
+		paymentInput.max = `${paymentNeeded}`;
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
@@ -136,13 +134,13 @@ function handlePrepayment() {
 		checkbox.addEventListener('change', () => {
 			if (!checkbox.checked) {
 				// Use credit
-				maxPaymentAmount = paymentNeeded;
+				paymentInput.max = paymentNeeded;
 				amountToApply = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
 				paymentInput.value = '';
 			} else {
 				// Pay full amount
-				maxPaymentAmount = orderTotal;
+				paymentInput.max = orderTotal;
 				amountToApply = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
 				paymentInput.value = '';
@@ -150,7 +148,6 @@ function handlePrepayment() {
 		});
 
 		payInFullButton.addEventListener('click', () => {
-			paymentInput.max = `${maxPaymentAmount}`;
 			paymentInput.value = `${amountToApply}`;
 		});
 	}
