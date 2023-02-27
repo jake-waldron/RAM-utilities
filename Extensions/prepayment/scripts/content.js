@@ -56,7 +56,25 @@ function addDontUseCreditButton() {
 	return { checkbox, checkboxContainer };
 }
 
-function setupPaymentInputListeners() {}
+function hideIfCashSelected(element) {
+	let paymentType;
+	document.querySelector('#PaymentTypeSelectBox').addEventListener(
+		'click',
+		() => {
+			console.log('added listeners');
+			const options = document.querySelectorAll('div[role="option"]');
+			Array.from(options).forEach((option) => {
+				option.addEventListener('click', () => {
+					console.log('payment changed');
+					paymentType = option.textContent;
+					element.style.display = paymentType === 'Cash' ? 'none' : 'block';
+				});
+			}),
+				{ once: true };
+		},
+		{ once: true }
+	);
+}
 
 //TODO : Add "Don't use prepayment" button
 function handlePrepayment() {
@@ -74,24 +92,7 @@ function handlePrepayment() {
 		let amountToApply = paymentNeeded;
 		let maxPaymentAmount = paymentNeeded;
 
-		// This mess is to get the payment type dropdown to work and hide the checkbox when cash is selected
-		let paymentType;
-		document.querySelector('#PaymentTypeSelectBox').addEventListener(
-			'click',
-			() => {
-				console.log('added listeners');
-				const options = document.querySelectorAll('div[role="option"]');
-				Array.from(options).forEach((option) => {
-					option.addEventListener('click', () => {
-						console.log('payment changed');
-						paymentType = option.textContent;
-						checkboxContainer.style.display = paymentType === 'Cash' ? 'none' : 'block';
-					});
-				}),
-					{ once: true };
-			},
-			{ once: true }
-		);
+		hideIfCashSelected(checkboxContainer);
 
 		// Set default values to use credit
 		const payInFullButton = document.querySelector('#PayFullAmount');
