@@ -70,26 +70,6 @@ function addUseCreditToggle() {
 	return { checkbox, checkboxContainer };
 }
 
-function hideIfCashSelected(element) {
-	let paymentType;
-	document.querySelector('#PaymentTypeSelectBox').addEventListener(
-		'click',
-		() => {
-			// console.log('added listeners');
-			const options = document.querySelectorAll('div[role="option"]');
-			Array.from(options).forEach((option) => {
-				option.addEventListener('click', () => {
-					// console.log('payment changed');
-					paymentType = option.textContent;
-					element.style.display = paymentType === 'Cash' ? 'none' : 'block';
-				});
-			}),
-				{ once: true };
-		},
-		{ once: true }
-	);
-}
-
 function toggleVisibilityIfCashSelected(elementsToToggle) {
 	let paymentType;
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
@@ -137,9 +117,6 @@ function handlePrepayment() {
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
-		// hideIfCashSelected(checkboxContainer);
-		// toggleVisibilityIfCashSelected(checkboxContainer, 'none', 'block');
-		// toggleVisibilityIfCashSelected(amountDueDisplay, 'block', 'none');
 		const elementsToToggle = [
 			{
 				element: checkboxContainer,
