@@ -81,7 +81,9 @@ function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 				option.addEventListener('click', () => {
 					console.log('payment changed');
 					paymentType = option.textContent;
-					functionToRun();
+					if (paymentType === 'Cash') {
+						functionToRun();
+					}
 					elementsToToggle.forEach((elementObj) => {
 						const { element, isCashDisplayValue, isNotCashDisplayValue } = elementObj;
 						element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
@@ -116,7 +118,7 @@ function handlePrepayment() {
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
 
-		const resetInputValue = () => {
+		const runOnCash = () => {
 			console.log('resetting input value!');
 			paymentInput.value = '';
 		};
@@ -134,7 +136,7 @@ function handlePrepayment() {
 				isNotCashDisplayValue: 'none',
 			},
 		];
-		toggleVisibilityIfCashSelected(elementsToToggle, resetInputValue);
+		toggleVisibilityIfCashSelected(elementsToToggle, runOnCash);
 
 		// Set input values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
