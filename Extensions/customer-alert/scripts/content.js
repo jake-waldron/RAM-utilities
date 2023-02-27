@@ -13,9 +13,11 @@ function showAlert(billingNotes, parentElement) {
 			marginBottom: '24px',
 			textAlign: 'center',
 		});
-		if (!document.getElementById('customer-alert')) {
-			parentElement.prepend(div);
+		const previousAlert = document.getElementById('customer-alert');
+		if (previousAlert) {
+			previousAlert.remove();
 		}
+		parentElement.prepend(div);
 	}
 }
 
@@ -36,7 +38,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 		const previewContainer = document.querySelector('#detailPreview');
 		if (previewContainer) {
 			const billingNotes = Array.from(document.querySelectorAll('.multiline')).at(-1)?.textContent;
-
 			showAlert(billingNotes, previewContainer);
 		}
 	}
