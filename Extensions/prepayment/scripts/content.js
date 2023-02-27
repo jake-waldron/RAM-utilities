@@ -94,17 +94,16 @@ function toggleVisibilityIfCashSelected(elementsToToggle) {
 	);
 }
 
-//TODO : Add "Don't use prepayment" button
 function handlePrepayment() {
 	const { orderTotal, availableCredit, paymentForm, paymentInput } = getInitialElements();
 
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
 		const paymentNeeded = orderTotal - availableCredit;
 
+		// Display current credit and amount due(hidden unless cash payment)
 		const currentCreditDisplay = createBalanceDisplay('Current Credit', availableCredit, 'info');
 		const amountDueDisplay = createBalanceDisplay('Amount Due', paymentNeeded, 'danger');
 		amountDueDisplay.style.display = 'none';
-
 		addToBalanceDisplay([currentCreditDisplay, amountDueDisplay]);
 
 		// Set default values to use availble credit
@@ -117,6 +116,8 @@ function handlePrepayment() {
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
+
+		// Handle display toggle of elements if cash selected
 		const elementsToToggle = [
 			{
 				element: checkboxContainer,
@@ -130,9 +131,8 @@ function handlePrepayment() {
 			},
 		];
 		toggleVisibilityIfCashSelected(elementsToToggle);
-		// CHANGE TO SENDING ARRAY OF OBJECTS AND ATTACHING ALL AT ONCE INSTEAD OF CALLING TWICE
 
-		// Handle values based on using credit or paying in full
+		// Set input values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
 			if (!checkbox.checked) {
 				// Use credit
