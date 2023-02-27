@@ -48,11 +48,17 @@ function addUseCreditToggle() {
 	useCreditLabel.classList.add('m-l-sm');
 
 	const checkboxContainer = document.createElement('div');
+	checkboxContainer.id = 'checkbox-container';
 	checkboxContainer.classList.add('form-group', 'pull-right');
 	checkboxContainer.appendChild(checkbox);
 	checkboxContainer.appendChild(useCreditLabel);
 
-	const paymentContainer = document.querySelector('.cashPanel').parentElement;
+	// const paymentContainer = document.querySelector('.cashPanel').parentElement;
+	const paymentContainer = document.querySelector('.cashPanel').nextElementSibling.querySelector('.input-group');
+	checkboxContainer.style.position = 'absolute';
+	checkboxContainer.style.left = 'calc(100% + 16px)';
+	checkboxContainer.style.width = '100%';
+	checkboxContainer.style.top = '10px';
 	paymentContainer.appendChild(checkboxContainer);
 
 	return { checkbox, checkboxContainer };
