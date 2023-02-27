@@ -22,15 +22,15 @@ function getAvailableCredit() {
 	}
 }
 
-function createPrepaymentDisplay(availableCredit) {
-	const prepaymentDisplay = document.createElement('h2');
-	prepaymentDisplay.textContent = `Prepayments: `;
-	prepaymentDisplay.classList.add('text-right', 'm-t', 'none');
-	const prepaymentAmount = document.createElement('span');
-	prepaymentAmount.textContent = `$${availableCredit.toFixed(2)}`;
-	prepaymentAmount.classList.add('text-info', 'font-bold');
-	prepaymentDisplay.appendChild(prepaymentAmount);
-	return prepaymentDisplay;
+function createCreditDisplay(availableCredit) {
+	const creditDisplay = document.createElement('h2');
+	creditDisplay.textContent = `Current Credit: `;
+	creditDisplay.classList.add('text-right', 'm-t', 'none');
+	const creditAmount = document.createElement('span');
+	creditAmount.textContent = `$${availableCredit.toFixed(2)}`;
+	creditAmount.classList.add('text-info', 'font-bold');
+	creditDisplay.appendChild(creditAmount);
+	return creditDisplay;
 }
 
 //TODO : Add "Don't use prepayment" button
@@ -38,11 +38,12 @@ function handlePrepayment() {
 	const { orderTotal, availableCredit, paymentForm, paymentInput } = getInitialElements();
 
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
+		// Modal Elements
 		const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
 		const paymentNeeded = orderTotal - availableCredit;
 
-		const prepaymentDisplay = createPrepaymentDisplay(availableCredit);
-		balanceDisplay.appendChild(prepaymentDisplay);
+		const creditDisplay = createCreditDisplay(availableCredit);
+		balanceDisplay.appendChild(creditDisplay);
 
 		const payInFullButton = document.querySelector('#PayFullAmount');
 		const payInFullButtonText = payInFullButton.querySelector('span');
