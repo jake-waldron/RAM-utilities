@@ -1,13 +1,3 @@
-function getInitialElements() {
-	const orderTotal = getOrderTotal();
-	const availableCredit = getAvailableCredit();
-	const paymentForm = document.querySelector('#AddPaymentForm');
-
-	const paymentInput = document.querySelector('input[id=Payment_Amount]');
-
-	return { orderTotal, availableCredit, paymentForm, paymentInput };
-}
-
 function getOrderTotal() {
 	const totalSpan = document.querySelector('.Totals_OrderTotal');
 	const total = totalSpan.textContent.slice(1);
@@ -22,7 +12,19 @@ function getAvailableCredit() {
 	}
 }
 
-function createCreditDisplay(availableCredit) {
+function getInitialElements() {
+	const orderTotal = getOrderTotal();
+	const availableCredit = getAvailableCredit();
+	const paymentForm = document.querySelector('#AddPaymentForm');
+
+	const paymentInput = document.querySelector('input[id=Payment_Amount]');
+
+	return { orderTotal, availableCredit, paymentForm, paymentInput };
+}
+
+function addCurrentCreditDisplay(availableCredit) {
+	const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
+
 	const creditDisplay = document.createElement('h2');
 	creditDisplay.textContent = `Current Credit: `;
 	creditDisplay.classList.add('text-right', 'm-t', 'none');
@@ -30,10 +32,10 @@ function createCreditDisplay(availableCredit) {
 	creditAmount.textContent = `$${availableCredit.toFixed(2)}`;
 	creditAmount.classList.add('text-info', 'font-bold');
 	creditDisplay.appendChild(creditAmount);
-	return creditDisplay;
+	balanceDisplay.appendChild(creditDisplay);
 }
 
-function addDontUseCreditToggle() {
+function addUseCreditToggle() {
 	// Add checkbox toggle for not using prepayment
 	const checkbox = document.createElement('input');
 	checkbox.type = 'checkbox';
@@ -61,11 +63,11 @@ function hideIfCashSelected(element) {
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
 		'click',
 		() => {
-			console.log('added listeners');
+			// console.log('added listeners');
 			const options = document.querySelectorAll('div[role="option"]');
 			Array.from(options).forEach((option) => {
 				option.addEventListener('click', () => {
-					console.log('payment changed');
+					// console.log('payment changed');
 					paymentType = option.textContent;
 					element.style.display = paymentType === 'Cash' ? 'none' : 'block';
 				});
@@ -81,25 +83,23 @@ function handlePrepayment() {
 	const { orderTotal, availableCredit, paymentForm, paymentInput } = getInitialElements();
 
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
-		// Modal Elements
-		const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
 		const paymentNeeded = orderTotal - availableCredit;
 
-		const creditDisplay = createCreditDisplay(availableCredit);
-		balanceDisplay.appendChild(creditDisplay);
+		addCurrentCreditDisplay(availableCredit);
 
-		const { checkbox, checkboxContainer } = addDontUseCreditToggle();
+		// Set default values to use availble credit
 		let amountToApply = paymentNeeded;
 		let maxPaymentAmount = paymentNeeded;
-
-		hideIfCashSelected(checkboxContainer);
-
-		// Set default values to use credit
 		const payInFullButton = document.querySelector('#PayFullAmount');
 		const payInFullButtonText = payInFullButton.querySelector('span');
 		payInFullButtonText.textContent = 'Pay Remaining Balance';
 		paymentInput.max = `${maxPaymentAmount}`;
 
+		// Show toggle for not using credit / pay in full
+		const { checkbox, checkboxContainer } = addUseCreditToggle();
+		hideIfCashSelected(checkboxContainer);
+
+		// Handle values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
 			if (!checkbox.checked) {
 				// Use credit
