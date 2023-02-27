@@ -90,7 +90,7 @@ function hideIfCashSelected(element) {
 	);
 }
 
-function toggleVisibilityIfCashSelected(element, isCashDisplayValue, isNotCashDisplayValue) {
+function toggleVisibilityIfCashSelected(elementsToToggle) {
 	let paymentType;
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
 		'click',
@@ -102,7 +102,10 @@ function toggleVisibilityIfCashSelected(element, isCashDisplayValue, isNotCashDi
 					console.log('payment changed');
 					paymentType = option.textContent;
 
-					element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
+					elementsToToggle.forEach((elementObj) => {
+						const { element, isCashDisplayValue, isNotCashDisplayValue } = elementObj;
+						element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
+					});
 				});
 			}),
 				{ once: true };
@@ -135,8 +138,21 @@ function handlePrepayment() {
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
 		// hideIfCashSelected(checkboxContainer);
-		toggleVisibilityIfCashSelected(checkboxContainer, 'none', 'block');
-		toggleVisibilityIfCashSelected(amountDueDisplay, 'block', 'none');
+		// toggleVisibilityIfCashSelected(checkboxContainer, 'none', 'block');
+		// toggleVisibilityIfCashSelected(amountDueDisplay, 'block', 'none');
+		const elementsToToggle = [
+			{
+				element: checkboxContainer,
+				isCashDisplayValue: 'none',
+				isNotCashDisplayValue: 'block',
+			},
+			{
+				element: amountDueDisplay,
+				isCashDisplayValue: 'block',
+				isNotCashDisplayValue: 'none',
+			},
+		];
+		toggleVisibilityIfCashSelected(elementsToToggle);
 		// CHANGE TO SENDING ARRAY OF OBJECTS AND ATTACHING ALL AT ONCE INSTEAD OF CALLING TWICE
 
 		// Handle values based on using credit or paying in full
