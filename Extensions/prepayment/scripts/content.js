@@ -73,6 +73,7 @@ function addUseCreditToggle() {
 
 function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 	let paymentType;
+	let lastPaymentType;
 	// Setup listener for payment dropdown
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
 		'click',
@@ -84,8 +85,9 @@ function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 				// Setup listener for each option
 				option.addEventListener('click', () => {
 					console.log('payment changed');
+					lastPaymentType = paymentType;
 					paymentType = option.textContent;
-					if (paymentType === 'Cash') {
+					if (paymentType === 'Cash' || (lastPaymentType === 'Cash' && paymentType !== 'Cash')) {
 						functionToRun();
 					}
 					elementsToToggle.forEach((elementObj) => {
