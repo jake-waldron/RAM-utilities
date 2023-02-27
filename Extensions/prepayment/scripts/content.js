@@ -128,6 +128,7 @@ function handlePrepayment() {
 		const runOnCash = () => {
 			console.log('resetting input value!');
 			paymentInput.value = '';
+			document.querySelector('#ChangeDueContainer').style.display = 'none';
 		};
 
 		// Handle display toggle of elements if cash selected
