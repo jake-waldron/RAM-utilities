@@ -33,7 +33,7 @@ function createCreditDisplay(availableCredit) {
 	return creditDisplay;
 }
 
-function addDontUseCreditButton() {
+function addDontUseCreditToggle() {
 	// Add checkbox toggle for not using prepayment
 	const checkbox = document.createElement('input');
 	checkbox.type = 'checkbox';
@@ -88,7 +88,7 @@ function handlePrepayment() {
 		const creditDisplay = createCreditDisplay(availableCredit);
 		balanceDisplay.appendChild(creditDisplay);
 
-		const { checkbox, checkboxContainer } = addDontUseCreditButton();
+		const { checkbox, checkboxContainer } = addDontUseCreditToggle();
 		let amountToApply = paymentNeeded;
 		let maxPaymentAmount = paymentNeeded;
 
