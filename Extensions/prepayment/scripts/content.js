@@ -33,7 +33,7 @@ function createBalanceDisplay(label, amount, textStyle) {
 	balanceAmount.classList.add(`text-${textStyle}`, 'font-bold');
 	balanceDisplay.appendChild(balanceAmount);
 
-	return balanceDisplay;
+	return [balanceDisplay, balanceAmount];
 }
 
 function addToBalanceDisplay(newElements) {
@@ -120,9 +120,9 @@ function handlePrepayment() {
 		const paymentNeeded = orderTotal - availableCredit;
 
 		// Display current credit and amount due(hidden unless cash payment)
-		const currentCreditDisplay = createBalanceDisplay('Current Credit', availableCredit, 'info');
-		const amountDueDisplay = createBalanceDisplay('Amount Due', paymentNeeded, 'danger');
-		amountDueDisplay.style.display = 'none'; // only shown when cash payment selected
+		const [currentCreditDisplay] = createBalanceDisplay('Current Credit', availableCredit, 'info');
+		const [amountDueDisplay, amountDue] = createBalanceDisplay('Amount Due', paymentNeeded, 'danger');
+		// amountDueDisplay.style.display = 'none'; // only shown when cash payment selected
 		addToBalanceDisplay([currentCreditDisplay, amountDueDisplay]);
 
 		// Set default values to use availble credit
@@ -150,11 +150,11 @@ function handlePrepayment() {
 			// 	isCashDisplayValue: 'none',
 			// 	isNotCashDisplayValue: 'block',
 			// },
-			{
-				element: amountDueDisplay,
-				isCashDisplayValue: 'block',
-				isNotCashDisplayValue: 'none',
-			},
+			// {
+			// 	element: amountDueDisplay,
+			// 	isCashDisplayValue: 'block',
+			// 	isNotCashDisplayValue: 'none',
+			// },
 		];
 
 		onPaymentTypeChange(elementsToToggle, reset);
@@ -168,6 +168,7 @@ function handlePrepayment() {
 				amountToApply = paymentNeeded;
 				cashInput.dataset.orderbalance = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
+				amountDue.textContent = `$${paymentNeeded.toFixed(2)}`;
 				reset();
 			} else {
 				// Pay full amount
@@ -175,6 +176,7 @@ function handlePrepayment() {
 				amountToApply = orderTotal;
 				cashInput.dataset.orderbalance = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
+				amountDue.textContent = `$${orderTotal.toFixed(2)}`;
 				reset();
 			}
 		});
