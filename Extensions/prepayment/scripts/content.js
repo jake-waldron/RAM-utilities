@@ -26,7 +26,8 @@ function getInitialElements() {
 function createBalanceDisplay(label, amount, textStyle) {
 	const balanceDisplay = document.createElement('h2');
 	balanceDisplay.textContent = `${label}: `;
-	balanceDisplay.classList.add('text-right', 'm-t', 'none');
+	balanceDisplay.classList.add('text-right', 'm-t-none');
+	balanceDisplay.style.marginBottom = '8px';
 	const balanceAmount = document.createElement('span');
 	balanceAmount.textContent = `$${amount.toFixed(2)}`;
 	balanceAmount.classList.add(`text-${textStyle}`, 'font-bold');
@@ -37,9 +38,18 @@ function createBalanceDisplay(label, amount, textStyle) {
 
 function addToBalanceDisplay(newElements) {
 	const balanceDisplay = document.querySelector('#SiteModalContent .pull-right');
+	balanceDisplay.classList.remove('pull-right');
+	balanceDisplay.style.display = 'flex';
+	balanceDisplay.style.justifyContent = 'flex-end';
+
+	const newDisplays = document.createElement('div');
+	newDisplays.style.marginLeft = '16px';
+
 	newElements.forEach((element) => {
-		balanceDisplay.appendChild(element);
+		newDisplays.appendChild(element);
 	});
+
+	balanceDisplay.appendChild(newDisplays);
 }
 
 function addUseCreditToggle() {
