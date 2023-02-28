@@ -170,6 +170,7 @@ function handlePrepayment() {
 				cashInput.dataset.orderbalance = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
 				amountDue.textContent = `$${paymentNeeded.toFixed(2)}`;
+				currentCreditDisplay.style.textDecoration = 'none';
 				reset();
 			} else {
 				// Pay full amount
@@ -178,6 +179,7 @@ function handlePrepayment() {
 				cashInput.dataset.orderbalance = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
 				amountDue.textContent = `$${orderTotal.toFixed(2)}`;
+				currentCreditDisplay.style.textDecoration = 'line-through';
 				reset();
 			}
 		});
