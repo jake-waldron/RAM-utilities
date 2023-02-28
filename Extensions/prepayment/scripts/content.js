@@ -150,6 +150,7 @@ function handlePrepayment() {
 		onPaymentTypeChange(elementsToToggle, reset);
 
 		// Set input values based on using credit or paying in full
+
 		checkbox.addEventListener('change', () => {
 			if (!checkbox.checked) {
 				// Use credit
@@ -184,3 +185,22 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 		handlePrepayment();
 	}
 });
+
+// Ideally it would check if there was an open backorder and if the available credit matched that total, then not show the use credit option
+
+// TODO : Change amount due display on checkbox change
+
+// TODO: Wrap h2 with div using below technique
+// Add div around balance display container with display: flex and justify-content: end
+// 			- create new div element
+// 			- add class/styles
+// 			- add new div with h2 to new element
+// 			- use replaceChild(newChild, oldChild) to replace old h2 with div-wrapped h2
+// wrap current balance display text in div
+// add current credit and amout due in second div, add margin-left: 16px to give some spacing
+// m-t-none on current credit
+// show amount due on all payment types (it's helpful to see the amount due even if you're not paying in cash)
+
+// current 'pull-right' div -> remove class, change styles to flex and justify-end
+
+// I just have to change the pull-right styles to flex and then wrap the new displays with a div with marginleft 16px and it should work. make sure to add m-t-none to class on new displays and add bottom margin
