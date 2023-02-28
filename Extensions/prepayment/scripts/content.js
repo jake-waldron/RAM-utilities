@@ -71,7 +71,7 @@ function addUseCreditToggle() {
 	return { checkbox, checkboxContainer };
 }
 
-function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
+function handlePaymentTypeChange(elementsToToggle, runOnTypeChange) {
 	let paymentType;
 	let lastPaymentType;
 	// Setup listener for payment dropdown
@@ -88,7 +88,7 @@ function toggleVisibilityIfCashSelected(elementsToToggle, functionToRun) {
 					lastPaymentType = paymentType;
 					paymentType = option.textContent;
 					if (paymentType === 'Cash' || (lastPaymentType === 'Cash' && paymentType !== 'Cash')) {
-						functionToRun();
+						runOnTypeChange();
 					}
 					elementsToToggle.forEach((elementObj) => {
 						const { element, isCashDisplayValue, isNotCashDisplayValue } = elementObj;
@@ -125,11 +125,12 @@ function handlePrepayment() {
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
 
-		const runOnCash = () => {
+		// Reset to run on changes
+		function reset() {
 			console.log('resetting input value!');
 			paymentInput.value = '';
 			document.querySelector('#ChangeDueContainer').style.display = 'none';
-		};
+		}
 
 		// Handle display toggle of elements if cash selected
 		const elementsToToggle = [
@@ -144,7 +145,7 @@ function handlePrepayment() {
 				isNotCashDisplayValue: 'none',
 			},
 		];
-		toggleVisibilityIfCashSelected(elementsToToggle, runOnCash);
+		handlePaymentTypeChange(elementsToToggle, reset);
 
 		// Set input values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
@@ -154,14 +155,14 @@ function handlePrepayment() {
 				amountToApply = paymentNeeded;
 				cashInput.dataset.orderbalance = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
-				paymentInput.value = '';
+				reset();
 			} else {
 				// Pay full amount
 				paymentInput.max = orderTotal;
 				amountToApply = orderTotal;
 				cashInput.dataset.orderbalance = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
-				paymentInput.value = '';
+				reset();
 			}
 		});
 
@@ -177,14 +178,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 		// Fix spacing on change due
 		const changeDue = document.querySelector('#ChangeDueContainer');
 		changeDue.style.marginTop = '24px';
-
-		/*
-		const changeDueLabel = document.createElement('p');
-		changeDueLabel.textContent =
-			"This is based on the total order amount. You'll have to do the math yourself here. Sorry!";
-		changeDueLabel.style.fontStyle = 'italic';
-		changeDue.insertAdjacentElement('afterend', changeDueLabel);
-		*/
 
 		handlePrepayment();
 	}
