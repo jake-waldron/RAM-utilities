@@ -71,18 +71,20 @@ function addUseCreditToggle() {
 	return { checkbox, checkboxContainer };
 }
 
-function handlePaymentTypeChange(elementsToToggle, runOnTypeChange) {
+// Sets up listeners for payment dropdown. Toggles element visablity if cash is selected. Runs reset function if changed to/form cash
+function onPaymentTypeChange(elementsToToggle, runOnTypeChange) {
 	let paymentType;
 	let lastPaymentType;
-	// Setup listener for payment dropdown
+	// Listener for payment dropdown button
 	document.querySelector('#PaymentTypeSelectBox').addEventListener(
 		'click',
 		() => {
 			console.log('added listeners');
 
 			const options = document.querySelectorAll('div[role="option"]');
+
+			// Listeners for each option
 			Array.from(options).forEach((option) => {
-				// Setup listener for each option
 				option.addEventListener('click', () => {
 					console.log('payment changed');
 					lastPaymentType = paymentType;
@@ -95,8 +97,7 @@ function handlePaymentTypeChange(elementsToToggle, runOnTypeChange) {
 						element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
 					});
 				});
-			}),
-				{ once: true };
+			});
 		},
 		{ once: true }
 	);
@@ -111,7 +112,7 @@ function handlePrepayment() {
 		// Display current credit and amount due(hidden unless cash payment)
 		const currentCreditDisplay = createBalanceDisplay('Current Credit', availableCredit, 'info');
 		const amountDueDisplay = createBalanceDisplay('Amount Due', paymentNeeded, 'danger');
-		amountDueDisplay.style.display = 'none';
+		amountDueDisplay.style.display = 'none'; // only shown when cash payment selected
 		addToBalanceDisplay([currentCreditDisplay, amountDueDisplay]);
 
 		// Set default values to use availble credit
@@ -127,7 +128,7 @@ function handlePrepayment() {
 
 		// Reset to run on changes
 		function reset() {
-			console.log('resetting input value!');
+			// console.log('resetting input value!');
 			paymentInput.value = '';
 			document.querySelector('#ChangeDueContainer').style.display = 'none';
 		}
@@ -145,7 +146,8 @@ function handlePrepayment() {
 				isNotCashDisplayValue: 'none',
 			},
 		];
-		handlePaymentTypeChange(elementsToToggle, reset);
+
+		onPaymentTypeChange(elementsToToggle, reset);
 
 		// Set input values based on using credit or paying in full
 		checkbox.addEventListener('change', () => {
