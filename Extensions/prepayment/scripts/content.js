@@ -132,6 +132,7 @@ function handlePrepayment() {
 		payInFullButtonText.textContent = 'Pay Remaining Balance';
 		paymentInput.max = `${paymentNeeded}`;
 		cashInput.dataset.orderbalance = paymentNeeded;
+		paymentInput.value = '';
 
 		// Show toggle for not using credit / pay in full
 		const { checkbox, checkboxContainer } = addUseCreditToggle();
