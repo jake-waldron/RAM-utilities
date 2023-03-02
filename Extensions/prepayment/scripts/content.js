@@ -1,13 +1,21 @@
+function processAmount(amount) {
+	return parseFloat(amount.replace('$', '').replace(',', ''));
+}
+
+function getCurrencyString(amount) {
+	return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+}
+
 function getOrderTotal() {
 	const totalSpan = document.querySelector('.Totals_OrderTotal');
-	const total = totalSpan.textContent.slice(1);
+	const total = processAmount(totalSpan.textContent);
 	return parseFloat(total);
 }
 
 function getAvailableCredit() {
 	const availableCreditElement = document.querySelector('#AvailableCreditAmount');
 	if (availableCreditElement) {
-		const availableCredit = availableCreditElement.textContent.slice(1);
+		const availableCredit = processAmount(availableCreditElement.textContent);
 		return parseFloat(availableCredit);
 	}
 }
@@ -29,7 +37,7 @@ function createBalanceDisplay(label, amount, textStyle) {
 	balanceDisplay.classList.add('text-right', 'm-t-none');
 	balanceDisplay.style.marginBottom = '8px';
 	const balanceAmount = document.createElement('span');
-	balanceAmount.textContent = `$${amount.toFixed(2)}`;
+	balanceAmount.textContent = getCurrencyString(amount);
 	balanceAmount.classList.add(`text-${textStyle}`, 'font-bold');
 	balanceDisplay.appendChild(balanceAmount);
 
@@ -169,8 +177,9 @@ function handlePrepayment() {
 				amountToApply = paymentNeeded;
 				cashInput.dataset.orderbalance = paymentNeeded;
 				payInFullButtonText.textContent = 'Pay Remaining Balance';
-				amountDue.textContent = `$${paymentNeeded.toFixed(2)}`;
+				amountDue.textContent = getCurrencyString(paymentNeeded);
 				currentCreditDisplay.style.textDecoration = 'none';
+				// payInFullButton.classList.toggle('btn-warning');
 				reset();
 			} else {
 				// Pay full amount
@@ -178,14 +187,15 @@ function handlePrepayment() {
 				amountToApply = orderTotal;
 				cashInput.dataset.orderbalance = orderTotal;
 				payInFullButtonText.textContent = 'Pay in Full';
-				amountDue.textContent = `$${orderTotal.toFixed(2)}`;
+				amountDue.textContent = getCurrencyString(orderTotal);
 				currentCreditDisplay.style.textDecoration = 'line-through';
+				// payInFullButton.classList.toggle('btn-warning');
 				reset();
 			}
 		});
 
 		payInFullButton.addEventListener('click', () => {
-			paymentInput.value = `${amountToApply}`;
+			paymentInput.value = `${amountToApply.toFixed(2)}`;
 		});
 	}
 }
