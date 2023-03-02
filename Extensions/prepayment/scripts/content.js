@@ -147,24 +147,9 @@ function handlePrepayment() {
 
 		// Reset to run on changes
 		function reset() {
-			// console.log('resetting input value!');
 			paymentInput.value = '';
 			document.querySelector('#ChangeDueContainer').style.display = 'none';
 		}
-
-		// Handle display toggle of elements if cash selected
-		const elementsToToggle = [
-			// {
-			// 	element: checkboxContainer,
-			// 	isCashDisplayValue: 'none',
-			// 	isNotCashDisplayValue: 'block',
-			// },
-			// {
-			// 	element: amountDueDisplay,
-			// 	isCashDisplayValue: 'block',
-			// 	isNotCashDisplayValue: 'none',
-			// },
-		];
 
 		onPaymentTypeChange(elementsToToggle, reset);
 
