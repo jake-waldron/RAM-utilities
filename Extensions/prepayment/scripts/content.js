@@ -90,7 +90,7 @@ function addUseCreditToggle() {
 }
 
 // Sets up listeners for payment dropdown. Toggles element visablity if cash is selected. Runs reset function if changed to/form cash
-function onPaymentTypeChange(elementsToToggle, runOnTypeChange) {
+function onPaymentTypeChange(runOnTypeChange) {
 	let paymentType;
 	let lastPaymentType;
 	// Listener for payment dropdown button
@@ -110,10 +110,6 @@ function onPaymentTypeChange(elementsToToggle, runOnTypeChange) {
 					if (paymentType === 'Cash' || (lastPaymentType === 'Cash' && paymentType !== 'Cash')) {
 						runOnTypeChange();
 					}
-					elementsToToggle.forEach((elementObj) => {
-						const { element, isCashDisplayValue, isNotCashDisplayValue } = elementObj;
-						element.style.display = paymentType === 'Cash' ? isCashDisplayValue : isNotCashDisplayValue;
-					});
 				});
 			});
 		},
@@ -151,7 +147,7 @@ function handlePrepayment() {
 			document.querySelector('#ChangeDueContainer').style.display = 'none';
 		}
 
-		onPaymentTypeChange(elementsToToggle, reset);
+		onPaymentTypeChange(reset);
 
 		// Set input values based on using credit or paying in full
 
