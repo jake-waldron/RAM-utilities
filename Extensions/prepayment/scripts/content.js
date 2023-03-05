@@ -98,19 +98,14 @@ function onPaymentTypeChange(runOnTypeChange) {
 		'click',
 		() => {
 			// console.log('added listeners');
-
-			const options = document.querySelectorAll('div[role="option"]');
-
-			// Listeners for each option
-			Array.from(options).forEach((option) => {
-				option.addEventListener('click', () => {
-					// console.log('payment changed');
-					lastPaymentType = paymentType;
-					paymentType = option.textContent;
-					if (paymentType === 'Cash' || (lastPaymentType === 'Cash' && paymentType !== 'Cash')) {
-						runOnTypeChange();
-					}
-				});
+			const optionsList = document.querySelector('div[role="listbox"]');
+			optionsList.addEventListener('click', (e) => {
+				// console.log(`payment changed to ${e.target.textContent}`);
+				lastPaymentType = paymentType;
+				paymentType = e.target.textContent;
+				if (paymentType === 'Cash' || (lastPaymentType === 'Cash' && paymentType !== 'Cash')) {
+					runOnTypeChange();
+				}
 			});
 		},
 		{ once: true }
