@@ -220,17 +220,7 @@ export const products = [
     productPK: "160403"
   },
   {
-    partNum: "99789",
-    name: "2 HOSE ASSEMBLY - PART-A",
-    productPK: "72083"
-  },
-  {
-    partNum: "99790",
-    name: "2 HOSE ASSEMBLY - PART-B",
-    productPK: "72084"
-  },
-  {
-    partNum: "99891",
+    partNum: " 99891",
     name: "200 ML MANUAL CARTRIDGE GUN ",
     productPK: "75610"
   },
@@ -1355,12 +1345,7 @@ export const products = [
     productPK: "70815"
   },
   {
-    partNum: "83770B",
-    name: "BODY DOUBLE FAST SET 5-GAL PART-B ",
-    productPK: "70816"
-  },
-  {
-    partNum: "83771",
+    partNum: " 83771",
     name: "BODY DOUBLE FAST SET 5-GAL UNIT",
     productPK: "70817"
   },
@@ -1875,12 +1860,7 @@ export const products = [
     productPK: "80171"
   },
   {
-    partNum: "109037",
-    name: "BR REACT POLY MATTE BULK PART A & B  ",
-    productPK: "76600"
-  },
-  {
-    partNum: "109007",
+    partNum: " 109007",
     name: "BR REACT POLY MATTE SEAL KIT ",
     productPK: "76570"
   },
@@ -2275,27 +2255,7 @@ export const products = [
     productPK: "70251"
   },
   {
-    partNum: "08640B",
-    name: "BRK 2090 4-OZ JAR PART-B ",
-    productPK: "72130"
-  },
-  {
-    partNum: "08650B",
-    name: "BRK 2090 8-OZ JAR PART-B ",
-    productPK: "72132"
-  },
-  {
-    partNum: "08640A",
-    name: "BRK 2090 PINT PART-A ",
-    productPK: "72129"
-  },
-  {
-    partNum: "08650A",
-    name: "BRK 2090 QUART PART-A ",
-    productPK: "72131"
-  },
-  {
-    partNum: "08421",
+    partNum: " 08421",
     name: "BRK PASTE TUBE UNIT ",
     productPK: "72149"
   },
@@ -3005,42 +2965,7 @@ export const products = [
     productPK: "69878"
   },
   {
-    partNum: "108360B",
-    name: "CLEAR FLEX 50 EU 1-GAL PART-B ",
-    productPK: "78146"
-  },
-  {
-    partNum: "108361",
-    name: "CLEAR FLEX 50 EU 1-GAL UNIT ",
-    productPK: "78154"
-  },
-  {
-    partNum: "108370B",
-    name: "CLEAR FLEX 50 EU 5-GAL PART-B ",
-    productPK: "78147"
-  },
-  {
-    partNum: "108371",
-    name: "CLEAR FLEX 50 EU 5-GAL UNIT (1A:2B)",
-    productPK: "78155"
-  },
-  {
-    partNum: "108380B",
-    name: "CLEAR FLEX 50 EU 55-GAL PART-B ",
-    productPK: "78148"
-  },
-  {
-    partNum: "108381",
-    name: "CLEAR FLEX 50 EU 55-GAL UNIT (30A:55B)",
-    productPK: "78156"
-  },
-  {
-    partNum: "108351",
-    name: "CLEAR FLEX 50 EU TRIAL SIZE ",
-    productPK: "78144"
-  },
-  {
-    partNum: "64751",
+    partNum: " 64751",
     name: "CLEAR FLEX 50 TRIAL SIZE ",
     productPK: "69936"
   },
@@ -3060,52 +2985,7 @@ export const products = [
     productPK: "70115"
   },
   {
-    partNum: "108460B",
-    name: "CLEAR FLEX 95 EU 1-GAL PART-B ",
-    productPK: "78150"
-  },
-  {
-    partNum: "108461",
-    name: "CLEAR FLEX 95 EU 1-GAL UNIT  ",
-    productPK: "78159"
-  },
-  {
-    partNum: "108470B",
-    name: "CLEAR FLEX 95 EU 5-GAL PART-B ",
-    productPK: "78151"
-  },
-  {
-    partNum: "108471",
-    name: "CLEAR FLEX 95 EU 5-GAL UNIT (1A:2B) ",
-    productPK: "78160"
-  },
-  {
-    partNum: "108480B",
-    name: "CLEAR FLEX 95 EU 55-GAL PART-B ",
-    productPK: "78152"
-  },
-  {
-    partNum: "108481",
-    name: "CLEAR FLEX 95 EU 55-GAL UNIT (30A:55B) ",
-    productPK: "78161"
-  },
-  {
-    partNum: "108451",
-    name: "CLEAR FLEX 95 EU TRIAL SIZE ",
-    productPK: "78157"
-  },
-  {
-    partNum: "65740A",
-    name: "CLEAR FLEX 95 PINT PART-A ",
-    productPK: "72586"
-  },
-  {
-    partNum: "65750B",
-    name: "CLEAR FLEX 95 QUART PART-B ",
-    productPK: "70056"
-  },
-  {
-    partNum: "65751",
+    partNum: " 65751",
     name: "CLEAR FLEX 95 TRIAL SIZE ",
     productPK: "70057"
   },
@@ -3345,232 +3225,62 @@ export const products = [
     productPK: "69566"
   },
   {
-    partNum: "106060B",
-    name: "CRYSTAL CLEAR 200 EU 1-GAL PART-B  ",
-    productPK: "77945"
-  },
-  {
-    partNum: "106061",
-    name: "CRYSTAL CLEAR 200 EU 1-GAL UNIT ",
-    productPK: "77948"
-  },
-  {
-    partNum: "106070B",
-    name: "CRYSTAL CLEAR 200 EU 5-GAL PART-B ",
-    productPK: "77946"
-  },
-  {
-    partNum: "106071",
-    name: "CRYSTAL CLEAR 200 EU 5-GAL UNIT ",
-    productPK: "77949"
-  },
-  {
-    partNum: "106080B",
-    name: "CRYSTAL CLEAR 200 EU 55-GAL PART-B  ",
-    productPK: "77947"
-  },
-  {
-    partNum: "106041",
-    name: "CRYSTAL CLEAR 200 EU TRIAL SIZE ",
-    productPK: "77981"
-  },
-  {
-    partNum: "48041",
+    partNum: " 48041",
     name: "CRYSTAL CLEAR 200 TRIAL SIZE ",
     productPK: "69731"
   },
   {
-    partNum: "48360B",
-    name: "CRYSTAL CLEAR 202 1-GAL PART-B ",
-    productPK: "70015"
-  },
-  {
-    partNum: "48361",
+    partNum: " 48361",
     name: "CRYSTAL CLEAR 202 1-GAL UNIT ",
     productPK: "70016"
   },
   {
-    partNum: "48370B",
-    name: "CRYSTAL CLEAR 202 5-GAL PART-B ",
-    productPK: "70017"
-  },
-  {
-    partNum: "48371",
+    partNum: " 48371",
     name: "CRYSTAL CLEAR 202 5-GAL UNIT ",
     productPK: "70018"
   },
   {
-    partNum: "48380B",
-    name: "CRYSTAL CLEAR 202 55-GAL PART-B ",
-    productPK: "70019"
-  },
-  {
-    partNum: "106260B",
-    name: "CRYSTAL CLEAR 202 EU 1-GAL PART-B ",
-    productPK: "77967"
-  },
-  {
-    partNum: "106261",
-    name: "CRYSTAL CLEAR 202 EU 1-GAL UNIT ",
-    productPK: "77971"
-  },
-  {
-    partNum: "106270B",
-    name: "CRYSTAL CLEAR 202 EU 5-GAL PART-B ",
-    productPK: "77968"
-  },
-  {
-    partNum: "106271",
-    name: "CRYSTAL CLEAR 202 EU 5-GAL UNIT ",
-    productPK: "77972"
-  },
-  {
-    partNum: "106280B",
-    name: "CRYSTAL CLEAR 202 EU 55-GAL PART-B ",
-    productPK: "77969"
-  },
-  {
-    partNum: "106241",
-    name: "CRYSTAL CLEAR 202 EU TRIAL SIZE ",
-    productPK: "77970"
-  },
-  {
-    partNum: "48341",
+    partNum: " 48341",
     name: "CRYSTAL CLEAR 202 TRIAL SIZE ",
     productPK: "70014"
   },
   {
-    partNum: "48160B",
-    name: "CRYSTAL CLEAR 204 1-GAL PART-B ",
-    productPK: "70036"
-  },
-  {
-    partNum: "48161",
+    partNum: " 48161",
     name: "CRYSTAL CLEAR 204 1-GAL UNIT ",
     productPK: "70037"
   },
   {
-    partNum: "48170B",
-    name: "CRYSTAL CLEAR 204 5-GAL PART-B ",
-    productPK: "69940"
-  },
-  {
-    partNum: "48171",
+    partNum: " 48171",
     name: "CRYSTAL CLEAR 204 5-GAL UNIT ",
     productPK: "69941"
   },
   {
-    partNum: "48180B",
-    name: "CRYSTAL CLEAR 204 55-GAL  PART-B ",
-    productPK: "70040"
-  },
-  {
-    partNum: "107260B",
-    name: "CRYSTAL CLEAR 204 EU 1-GAL PART-B ",
-    productPK: "78060"
-  },
-  {
-    partNum: "107261",
-    name: "CRYSTAL CLEAR 204 EU 1-GAL UNIT ",
-    productPK: "78072"
-  },
-  {
-    partNum: "107270B",
-    name: "CRYSTAL CLEAR 204 EU 5-GAL PART-B ",
-    productPK: "78061"
-  },
-  {
-    partNum: "107271",
-    name: "CRYSTAL CLEAR 204 EU 5-GAL UNIT ",
-    productPK: "78073"
-  },
-  {
-    partNum: "107280B",
-    name: "CRYSTAL CLEAR 204 EU 55-GAL  PART-B ",
-    productPK: "78062"
-  },
-  {
-    partNum: "107241",
-    name: "CRYSTAL CLEAR 204 EU TRIAL SIZE ",
-    productPK: "78070"
-  },
-  {
-    partNum: "48141",
+    partNum: " 48141",
     name: "CRYSTAL CLEAR 204 TRIAL SIZE ",
     productPK: "70039"
   },
   {
-    partNum: "45160B",
-    name: "CRYSTAL CLEAR 206 1-GAL PART-B",
-    productPK: "70424"
-  },
-  {
-    partNum: "45161",
+    partNum: " 45161",
     name: "CRYSTAL CLEAR 206 1-GAL UNIT ",
     productPK: "70425"
   },
   {
-    partNum: "45170B",
-    name: "CRYSTAL CLEAR 206 5-GAL PART-B ",
-    productPK: "70328"
-  },
-  {
-    partNum: "45171",
+    partNum: " 45171",
     name: "CRYSTAL CLEAR 206 5-GAL UNIT ",
     productPK: "70329"
   },
   {
-    partNum: "45180B",
-    name: "CRYSTAL CLEAR 206 55-GAL PART-B ",
-    productPK: "70352"
-  },
-  {
-    partNum: "107360B",
-    name: "CRYSTAL CLEAR 206 EU 1-GAL PART-B ",
-    productPK: "78063"
-  },
-  {
-    partNum: "107361",
-    name: "CRYSTAL CLEAR 206 EU 1-GAL UNIT ",
-    productPK: "78075"
-  },
-  {
-    partNum: "107370B",
-    name: "CRYSTAL CLEAR 206 EU 5-GAL PART-B ",
-    productPK: "78064"
-  },
-  {
-    partNum: "107371",
-    name: "CRYSTAL CLEAR 206 EU 5-GAL UNIT ",
-    productPK: "78076"
-  },
-  {
-    partNum: "44860B",
-    name: "CRYSTAL CLEAR 220 1-GAL PART-B ",
-    productPK: "70452"
-  },
-  {
-    partNum: "44861",
+    partNum: " 44861",
     name: "CRYSTAL CLEAR 220 1-GAL UNIT ",
     productPK: "70453"
   },
   {
-    partNum: "44870B",
-    name: "CRYSTAL CLEAR 220 5-GAL PART-B ",
-    productPK: "70450"
-  },
-  {
-    partNum: "44871",
+    partNum: " 44871",
     name: "CRYSTAL CLEAR 220 5-GAL UNIT ",
     productPK: "70451"
   },
   {
-    partNum: "44880B",
-    name: "CRYSTAL CLEAR 220 55-GAL PART-B ",
-    productPK: "70475"
-  },
-  {
-    partNum: "44841",
+    partNum: " 44841",
     name: "CRYSTAL CLEAR 220 TRIAL SIZE ",
     productPK: "70472"
   },
@@ -3580,17 +3290,7 @@ export const products = [
     productPK: "71106"
   },
   {
-    partNum: "108970B",
-    name: "CRYSTAL CLEAR 222 MERCURY FREE  5-GAL PART-B ",
-    productPK: "247952"
-  },
-  {
-    partNum: "108960B",
-    name: "CRYSTAL CLEAR 222 MERCURY FREE 1-GAL PART-B ",
-    productPK: "78234"
-  },
-  {
-    partNum: "108961",
+    partNum: " 108961",
     name: "CRYSTAL CLEAR 222 MERCURY FREE 1-GAL UNIT ",
     productPK: "78235"
   },
@@ -3730,12 +3430,7 @@ export const products = [
     productPK: "78016"
   },
   {
-    partNum: "Part #",
-    name: "name",
-    productPK: "ProductPK"
-  },
-  {
-    partNum: "KD7000",
+    partNum: " KD7000",
     name: "DIGITAL GRAM SCALE 15 # CAPACITY",
     productPK: "71565"
   },
@@ -3760,12 +3455,7 @@ export const products = [
     productPK: "76281"
   },
   {
-    partNum: "82500A",
-    name: "DRAGON SKIN 10 55-GAL PART-A (NO LINER) ",
-    productPK: "76492"
-  },
-  {
-    partNum: "39161",
+    partNum: " 39161",
     name: "DRAGON SKIN 10 AF 1-GAL UNIT ",
     productPK: "80249"
   },
@@ -3780,12 +3470,7 @@ export const products = [
     productPK: "76503"
   },
   {
-    partNum: "82360B",
-    name: "DRAGON SKIN 10 FAST 1-GAL PART-B ",
-    productPK: "70515"
-  },
-  {
-    partNum: "82361",
+    partNum: " 82361",
     name: "DRAGON SKIN 10 FAST 1-GAL UNIT",
     productPK: "70516"
   },
@@ -3795,32 +3480,17 @@ export const products = [
     productPK: "70810"
   },
   {
-    partNum: "82370B",
-    name: "DRAGON SKIN 10 FAST 5-GAL PART-B",
-    productPK: "70517"
-  },
-  {
-    partNum: "82371",
+    partNum: " 82371",
     name: "DRAGON SKIN 10 FAST 5-GAL UNIT ",
     productPK: "70518"
   },
   {
-    partNum: "82380B",
-    name: "DRAGON SKIN 10 FAST 55-GAL PART-B",
-    productPK: "70519"
-  },
-  {
-    partNum: "82322",
+    partNum: " 82322",
     name: "DRAGON SKIN 10 FAST CS:8 X 400 ML CART",
     productPK: "70811"
   },
   {
-    partNum: "82340B",
-    name: "DRAGON SKIN 10 FAST PINT PART-B ",
-    productPK: "70512"
-  },
-  {
-    partNum: "82341",
+    partNum: " 82341",
     name: "DRAGON SKIN 10 FAST PINT UNIT ",
     productPK: "70513"
   },
@@ -3855,67 +3525,32 @@ export const products = [
     productPK: "76442"
   },
   {
-    partNum: "80280B",
-    name: "DRAGON SKIN 10 SLOW (NO LINER) 55-GAL PART-B",
-    productPK: "69841"
-  },
-  {
-    partNum: "80260B",
-    name: "DRAGON SKIN 10 SLOW 1-GAL PART-B",
-    productPK: "69832"
-  },
-  {
-    partNum: "80261",
+    partNum: " 80261",
     name: "DRAGON SKIN 10 SLOW 1-GAL UNIT",
     productPK: "69833"
   },
   {
-    partNum: "80270B",
-    name: "DRAGON SKIN 10 SLOW 5-GAL PART-B",
-    productPK: "69838"
-  },
-  {
-    partNum: "80271",
+    partNum: " 80271",
     name: "DRAGON SKIN 10 SLOW 5-GAL UNIT ",
     productPK: "69839"
   },
   {
-    partNum: "80240B",
-    name: "DRAGON SKIN 10 SLOW PINT PART-B ",
-    productPK: "69844"
-  },
-  {
-    partNum: "80241",
+    partNum: " 80241",
     name: "DRAGON SKIN 10 SLOW PINT UNIT",
     productPK: "69845"
   },
   {
-    partNum: "54760B",
-    name: "DRAGON SKIN 10 VERY FAST 1-GAL PART-B ",
-    productPK: "75499"
-  },
-  {
-    partNum: "54761",
+    partNum: " 54761",
     name: "DRAGON SKIN 10 VERY FAST 1-GAL UNIT ",
     productPK: "75500"
   },
   {
-    partNum: "54770B",
-    name: "DRAGON SKIN 10 VERY FAST 5-GAL PART-B ",
-    productPK: "75501"
-  },
-  {
-    partNum: "54771",
+    partNum: " 54771",
     name: "DRAGON SKIN 10 VERY FAST 5-GAL UNIT ",
     productPK: "75502"
   },
   {
-    partNum: "54780B",
-    name: "DRAGON SKIN 10 VERY FAST 55-GAL PART-B ",
-    productPK: "75503"
-  },
-  {
-    partNum: "54741",
+    partNum: " 54741",
     name: "DRAGON SKIN 10 VERY FAST PINT UNIT ",
     productPK: "75497"
   },
@@ -4360,32 +3995,17 @@ export const products = [
     productPK: "73969"
   },
   {
-    partNum: "126360B",
-    name: "ECOFLEX 00-20 FAST 1-GAL PART-B ",
-    productPK: "233917"
-  },
-  {
-    partNum: "126361",
+    partNum: " 126361",
     name: "ECOFLEX 00-20 FAST 1-GAL UNIT ",
     productPK: "233918"
   },
   {
-    partNum: "126370B",
-    name: "ECOFLEX 00-20 FAST 5-GAL PART-B ",
-    productPK: "233915"
-  },
-  {
-    partNum: "126371",
+    partNum: " 126371",
     name: "ECOFLEX 00-20 FAST 5-GAL UNIT ",
     productPK: "233916"
   },
   {
-    partNum: "126380B",
-    name: "ECOFLEX 00-20 FAST 55-GAL PART-B ",
-    productPK: "233914"
-  },
-  {
-    partNum: "126341",
+    partNum: " 126341",
     name: "ECOFLEX 00-20 FAST PINT UNIT ",
     productPK: "233920"
   },
@@ -4925,241 +4545,6 @@ export const products = [
     productPK: "69516"
   },
   {
-    partNum: "76960B",
-    name: "EPOXY ONE H-9101 1-GAL PART-B ",
-    productPK: "76354"
-  },
-  {
-    partNum: "76930B",
-    name: "EPOXY ONE H-9101 PINT PART-B ",
-    productPK: "78495"
-  },
-  {
-    partNum: "76940B",
-    name: "EPOXY ONE H-9101 QUART PART-B ",
-    productPK: "76391"
-  },
-  {
-    partNum: "76760B",
-    name: "EPOXY ONE H-9106 1-GAL PART-B ",
-    productPK: "76352"
-  },
-  {
-    partNum: "76730B",
-    name: "EPOXY ONE H-9106 PINT PART-B ",
-    productPK: "77857"
-  },
-  {
-    partNum: "76740B",
-    name: "EPOXY ONE H-9106 QUART PART-B ",
-    productPK: "77856"
-  },
-  {
-    partNum: "108540B",
-    name: "EPOXY ONE H-9106-20 QUART PART-B ",
-    productPK: "78183"
-  },
-  {
-    partNum: "76650B",
-    name: "EPOXY ONE H-9150 1/2-GAL PART-B ",
-    productPK: "76370"
-  },
-  {
-    partNum: "76660B",
-    name: "EPOXY ONE H-9150 2.5-GAL PART-B ",
-    productPK: "76334"
-  },
-  {
-    partNum: "76630B",
-    name: "EPOXY ONE H-9150 PINT PART-B ",
-    productPK: "78494"
-  },
-  {
-    partNum: "107670B",
-    name: "EPOXY ONE H-9234 1-GAL PART-B ",
-    productPK: "78083"
-  },
-  {
-    partNum: "77060B",
-    name: "EPOXY ONE H-9302 1-GAL PART-B ",
-    productPK: "76356"
-  },
-  {
-    partNum: "77050B",
-    name: "EPOXY ONE H-9302 2.5-GAL PART-B ",
-    productPK: "77807"
-  },
-  {
-    partNum: "77030B",
-    name: "EPOXY ONE H-9302 PINT PART-B ",
-    productPK: "77809"
-  },
-  {
-    partNum: "77040B",
-    name: "EPOXY ONE H-9302 QUART PART-B ",
-    productPK: "77808"
-  },
-  {
-    partNum: "103150B",
-    name: "EPOXY ONE H-9386 1/2-GAL PART-B ",
-    productPK: "78320"
-  },
-  {
-    partNum: "103160B",
-    name: "EPOXY ONE H-9386 2.5-GAL PART-B ",
-    productPK: "78262"
-  },
-  {
-    partNum: "103170B",
-    name: "EPOXY ONE H-9386 6-GAL PART-B ",
-    productPK: "77802"
-  },
-  {
-    partNum: "103260B",
-    name: "EPOXY ONE H-9386-99 2.5-GAL PART-B ",
-    productPK: "78263"
-  },
-  {
-    partNum: "103280B",
-    name: "EPOXY ONE H-9386-99 30-GAL PART-B ",
-    productPK: "78594"
-  },
-  {
-    partNum: "103270B",
-    name: "EPOXY ONE H-9386-99 6-GAL PART-B ",
-    productPK: "77803"
-  },
-  {
-    partNum: "76660A",
-    name: "EPOXY ONE R-1301 1-GAL PART-A ",
-    productPK: "76332"
-  },
-  {
-    partNum: "76670A",
-    name: "EPOXY ONE R-1301 5-GAL PART-A ",
-    productPK: "76333"
-  },
-  {
-    partNum: "76640A",
-    name: "EPOXY ONE R-1301 QUART PART-A ",
-    productPK: "78488"
-  },
-  {
-    partNum: "77060A",
-    name: "EPOXY ONE R-1302 ALUMINUM 1-GAL PART-A ",
-    productPK: "76355"
-  },
-  {
-    partNum: "77070A",
-    name: "EPOXY ONE R-1302 ALUMINUM 5-GAL PART-A ",
-    productPK: "77798"
-  },
-  {
-    partNum: "77040A",
-    name: "EPOXY ONE R-1302 ALUMINUM QUART PART-A ",
-    productPK: "78489"
-  },
-  {
-    partNum: "105070A",
-    name: "EPOXY ONE R-1302 WHITE 5-GAL PART-A ",
-    productPK: "77824"
-  },
-  {
-    partNum: "119842",
-    name: "EPOXY ONE R-1306/H-9305 CS:6 QUART KIT ",
-    productPK: "204986"
-  },
-  {
-    partNum: "119841",
-    name: "EPOXY ONE R-1306/H-9305 QUART KIT ",
-    productPK: "178249"
-  },
-  {
-    partNum: "76960A",
-    name: "EPOXY ONE R-2200 1-GAL PART-A ",
-    productPK: "76353"
-  },
-  {
-    partNum: "76970A",
-    name: "EPOXY ONE R-2200 5-GAL PART-A ",
-    productPK: "76392"
-  },
-  {
-    partNum: "76940A",
-    name: "EPOXY ONE R-2200 QUART PART-A ",
-    productPK: "78490"
-  },
-  {
-    partNum: "76760A",
-    name: "EPOXY ONE R-2250 1-GAL PART-A ",
-    productPK: "76351"
-  },
-  {
-    partNum: "76770A",
-    name: "EPOXY ONE R-2250 5-GAL PART-A ",
-    productPK: "76335"
-  },
-  {
-    partNum: "76740A",
-    name: "EPOXY ONE R-2250 QUART PART-A ",
-    productPK: "77855"
-  },
-  {
-    partNum: "77260A",
-    name: "EPOXY ONE R-3212 1-GAL PART-A ",
-    productPK: "76472"
-  },
-  {
-    partNum: "77270A",
-    name: "EPOXY ONE R-3212 5-GAL PART-A ",
-    productPK: "76473"
-  },
-  {
-    partNum: "77280A",
-    name: "EPOXY ONE R-3212 55-GAL PART -A ",
-    productPK: "77799"
-  },
-  {
-    partNum: "77240A",
-    name: "EPOXY ONE R-3212 QUART PART-A ",
-    productPK: "76471"
-  },
-  {
-    partNum: "77160A",
-    name: "EPOXY ONE R-3250 1-GAL PART-A ",
-    productPK: "76421"
-  },
-  {
-    partNum: "77170A",
-    name: "EPOXY ONE R-3250 5-GAL PART-A ",
-    productPK: "76420"
-  },
-  {
-    partNum: "77140A",
-    name: "EPOXY ONE R-3250 QUART PART-A ",
-    productPK: "76423"
-  },
-  {
-    partNum: "107570A",
-    name: "EPOXY ONE R-3350 5-GAL PART-A ",
-    productPK: "78082"
-  },
-  {
-    partNum: "103360A",
-    name: "EPOXY ONE R-3400 1-GAL PART-A ",
-    productPK: "77805"
-  },
-  {
-    partNum: "103370A",
-    name: "EPOXY ONE R-3400 5-GAL PART-A ",
-    productPK: "77804"
-  },
-  {
-    partNum: "103340A",
-    name: "EPOXY ONE R-3400 QUART PART-A ",
-    productPK: "77806"
-  },
-  {
     partNum: "92860A",
     name: "EPOXY RESIN EEW/190 1-GAL ",
     productPK: "69671"
@@ -5175,27 +4560,12 @@ export const products = [
     productPK: "73998"
   },
   {
-    partNum: "15960A",
-    name: "EPSILON 1-GAL PART-A ",
-    productPK: "73501"
-  },
-  {
-    partNum: "15961",
+    partNum: " 15961",
     name: "EPSILON 1-GAL UNIT ",
     productPK: "74056"
   },
   {
-    partNum: "15970A",
-    name: "EPSILON 5-GAL PART-A ",
-    productPK: "73995"
-  },
-  {
-    partNum: "15980A",
-    name: "EPSILON 55-GAL PART-A ",
-    productPK: "76003"
-  },
-  {
-    partNum: "76861",
+    partNum: " 76861",
     name: "EPSILON PRO 1-GAL UNIT ",
     productPK: "76341"
   },
@@ -5210,12 +4580,7 @@ export const products = [
     productPK: "76339"
   },
   {
-    partNum: "15940A",
-    name: "EPSILON QUART PART-A ",
-    productPK: "73991"
-  },
-  {
-    partNum: "15941",
+    partNum: " 15941",
     name: "EPSILON TRIAL SIZE ",
     productPK: "74054"
   },
@@ -5820,96 +5185,6 @@ export const products = [
     productPK: "76509"
   },
   {
-    partNum: "59040A",
-    name: "FMC BONDING PRIMER",
-    productPK: " PINT "
-  },
-  {
-    partNum: "51570A",
-    name: "FMC-200 5-GAL PART-A ",
-    productPK: "69571"
-  },
-  {
-    partNum: "51571",
-    name: "FMC-200 5-GAL W 2 QUARTS STD. ",
-    productPK: "69572"
-  },
-  {
-    partNum: "51580A",
-    name: "FMC-200 55-GAL PART-A ",
-    productPK: "69573"
-  },
-  {
-    partNum: "51581",
-    name: "FMC-200 55-GAL W 5-GAL STD.",
-    productPK: "69574"
-  },
-  {
-    partNum: "52170A",
-    name: "FMC-201 5-GAL PART-A ",
-    productPK: "69575"
-  },
-  {
-    partNum: "52171",
-    name: "FMC-201 5-GAL W 2 QUARTS STD. ",
-    productPK: "69576"
-  },
-  {
-    partNum: "52180A",
-    name: "FMC-201 55-GAL PART-A ",
-    productPK: "69577"
-  },
-  {
-    partNum: "52181",
-    name: "FMC-201 55-GAL W 5-GAL STD.",
-    productPK: "69578"
-  },
-  {
-    partNum: "52670A",
-    name: "FMC-205 5-GAL PART-A ",
-    productPK: "69579"
-  },
-  {
-    partNum: "52671",
-    name: "FMC-205 5-GAL W 2 QUARTS STD ",
-    productPK: "69712"
-  },
-  {
-    partNum: "52680A",
-    name: "FMC-205 55-GAL PART-A ",
-    productPK: "69580"
-  },
-  {
-    partNum: "52681",
-    name: "FMC-205 55-GAL W 5-GAL STD.",
-    productPK: "69581"
-  },
-  {
-    partNum: "53380A",
-    name: "FMC-405 55-GAL PART-A ",
-    productPK: "73981"
-  },
-  {
-    partNum: "58040B",
-    name: "FMC-B STANDARD CURE 5-GAL ",
-    productPK: "69583"
-  },
-  {
-    partNum: "58032",
-    name: "FMC-B STANDARD CURE CS:2 QUARTS ",
-    productPK: "73395"
-  },
-  {
-    partNum: "58033",
-    name: "FMC-B STANDARD CURE CS:5 QUARTS ",
-    productPK: "74007"
-  },
-  {
-    partNum: "58030B",
-    name: "FMC-B STANDARD CURE QUART  DO NOT SELL",
-    productPK: "69582"
-  },
-  {
     partNum: "47161",
     name: "FOAM-IT! 10 1-GAL UNIT ",
     productPK: "70824"
@@ -5925,32 +5200,17 @@ export const products = [
     productPK: "70820"
   },
   {
-    partNum: "42260B",
-    name: "FOAM-IT! 10 SLOW 1-GAL PART-B ",
-    productPK: "71895"
-  },
-  {
-    partNum: "42261",
+    partNum: " 42261",
     name: "FOAM-IT! 10 SLOW 1-GAL UNIT ",
     productPK: "71915"
   },
   {
-    partNum: "42270B",
-    name: "FOAM-IT! 10 SLOW 5-GAL PART-B ",
-    productPK: "71896"
-  },
-  {
-    partNum: "42271",
+    partNum: " 42271",
     name: "FOAM-IT! 10 SLOW 5-GAL UNIT ",
     productPK: "71916"
   },
   {
-    partNum: "42280B",
-    name: "FOAM-IT! 10 SLOW 55-GAL PART-B ",
-    productPK: "71844"
-  },
-  {
-    partNum: "42241",
+    partNum: " 42241",
     name: "FOAM-IT! 10 SLOW PINT UNIT ",
     productPK: "71914"
   },
@@ -6010,22 +5270,12 @@ export const products = [
     productPK: "75885"
   },
   {
-    partNum: "59360B",
-    name: "FOAM-IT! 4 BLACK 1-GAL PART B ",
-    productPK: "233696"
-  },
-  {
-    partNum: "59361",
+    partNum: " 59361",
     name: "FOAM-IT! 4 BLACK 1-GAL UNIT ",
     productPK: "76008"
   },
   {
-    partNum: "59370B",
-    name: "FOAM-IT! 4 BLACK 5-GAL PART-B ",
-    productPK: "75930"
-  },
-  {
-    partNum: "59371",
+    partNum: " 59371",
     name: "FOAM-IT! 4 BLACK 5-GAL UNIT ",
     productPK: "75934"
   },
@@ -6065,12 +5315,7 @@ export const products = [
     productPK: "71321"
   },
   {
-    partNum: "41640B",
-    name: "FOAM-IT! 8 PINT PART-B ",
-    productPK: "71314"
-  },
-  {
-    partNum: "41642",
+    partNum: " 41642",
     name: "FOAM-IT! 8 TRIAL SIZE ",
     productPK: "71315"
   },
@@ -6140,12 +5385,7 @@ export const products = [
     productPK: "75260"
   },
   {
-    partNum: "37110A",
-    name: "FORTON VF-774 EU TOTE ",
-    productPK: "75341"
-  },
-  {
-    partNum: "37190A",
+    partNum: " 37190A",
     name: "FORTON VF-774 TOTE ",
     productPK: "75270"
   },
@@ -6160,12 +5400,7 @@ export const products = [
     productPK: "75267"
   },
   {
-    partNum: "37790A",
-    name: "FORTON VF-812 EU TOTE ",
-    productPK: "75272"
-  },
-  {
-    partNum: "04561",
+    partNum: " 04561",
     name: "FREE FORM AIR 1-GAL UNIT ",
     productPK: "73210"
   },
@@ -6180,22 +5415,12 @@ export const products = [
     productPK: "232296"
   },
   {
-    partNum: "125370B",
-    name: "FREE FORM AIR FAST 5-GAL PART-B ",
-    productPK: "232297"
-  },
-  {
-    partNum: "125371",
+    partNum: " 125371",
     name: "FREE FORM AIR FAST 5-GAL UNIT ",
     productPK: "232298"
   },
   {
-    partNum: "125340B",
-    name: "FREE FORM AIR FAST QUART PART-B ",
-    productPK: "232122"
-  },
-  {
-    partNum: "125341",
+    partNum: " 125341",
     name: "FREE FORM AIR FAST TRIAL SIZE ",
     productPK: "232123"
   },
@@ -7290,17 +6515,7 @@ export const products = [
     productPK: " HANDS & TEETH - M. VINIELLO"
   },
   {
-    partNum: "SWSCA-77",
-    name: "HOW TO MAKE A MASK - WEARABLE DYNAMIC ART PART 1 - B. MITCHELL",
-    productPK: "75803"
-  },
-  {
-    partNum: "SWSCA-78",
-    name: "HOW TO MAKE A MASK - WEARABLE DYNAMIC ART PART 2 - B. MITCHELL",
-    productPK: "75804"
-  },
-  {
-    partNum: "SWSCA-97",
+    partNum: " SWSCA-97",
     name: "HOW TO MAKE A MOLD - MOLD MAKING TIPS FROM A MASTER",
     productPK: "76167"
   },
@@ -7970,17 +7185,7 @@ export const products = [
     productPK: "165022"
   },
   {
-    partNum: "120344A",
-    name: "KX FLEX 90 55-GAL PART-A ",
-    productPK: "177970"
-  },
-  {
-    partNum: "120345B",
-    name: "KX FLEX 90 55-GAL PART-B ",
-    productPK: "177971"
-  },
-  {
-    partNum: "120312",
+    partNum: " 120312",
     name: "KX FLEX 90 PINT UNIT ",
     productPK: "165016"
   },
@@ -9020,52 +8225,22 @@ export const products = [
     productPK: "70289"
   },
   {
-    partNum: "27960A",
-    name: "MOLD MAX-25 1-GAL PART-A ",
-    productPK: "72254"
-  },
-  {
-    partNum: "29161",
+    partNum: " 29161",
     name: "MOLD MAX-25 1-GAL UNIT ",
     productPK: "72267"
   },
   {
-    partNum: "29180B",
-    name: "MOLD MAX-25 3.5-GAL PART-B ",
-    productPK: "72258"
-  },
-  {
-    partNum: "27970A",
-    name: "MOLD MAX-25 5-GAL PART-A ",
-    productPK: "72251"
-  },
-  {
-    partNum: "29171",
+    partNum: " 29171",
     name: "MOLD MAX-25 5-GAL UNIT ",
     productPK: "72268"
   },
   {
-    partNum: "27980A",
-    name: "MOLD MAX-25 55-GAL PART-A ",
-    productPK: "72252"
-  },
-  {
-    partNum: "29181",
+    partNum: " 29181",
     name: "MOLD MAX-25 55-GAL UNIT (55A:3.5B) ",
     productPK: "72270"
   },
   {
-    partNum: "29160B",
-    name: "MOLD MAX-25 PINT PART-B ",
-    productPK: "72255"
-  },
-  {
-    partNum: "29170B",
-    name: "MOLD MAX-25 QUART PART-B ",
-    productPK: "72256"
-  },
-  {
-    partNum: "29141",
+    partNum: " 29141",
     name: "MOLD MAX-25 TRIAL SIZE ",
     productPK: "72269"
   },
@@ -9120,12 +8295,7 @@ export const products = [
     productPK: "70752"
   },
   {
-    partNum: "83640A",
-    name: "MOLD MAX-30 QUART PART-A ",
-    productPK: "71121"
-  },
-  {
-    partNum: "83641",
+    partNum: " 83641",
     name: "MOLD MAX-30 TRIAL SIZE ",
     productPK: "70749"
   },
@@ -9225,32 +8395,17 @@ export const products = [
     productPK: "75465"
   },
   {
-    partNum: "22560B",
-    name: "MOLD STAR 16 FAST 1-GAL PART-B ",
-    productPK: "73014"
-  },
-  {
-    partNum: "22561",
+    partNum: " 22561",
     name: "MOLD STAR 16 FAST 1-GAL UNIT ",
     productPK: "73019"
   },
   {
-    partNum: "22570B",
-    name: "MOLD STAR 16 FAST 5-GAL PART-B ",
-    productPK: "73016"
-  },
-  {
-    partNum: "22571",
+    partNum: " 22571",
     name: "MOLD STAR 16 FAST 5-GAL UNIT ",
     productPK: "73020"
   },
   {
-    partNum: "22580B",
-    name: "MOLD STAR 16 FAST 55-GAL PART-B ",
-    productPK: "73151"
-  },
-  {
-    partNum: "22541",
+    partNum: " 22541",
     name: "MOLD STAR 16 FAST PINT UNIT ",
     productPK: "73017"
   },
@@ -9285,32 +8440,17 @@ export const products = [
     productPK: "75840"
   },
   {
-    partNum: "22760B",
-    name: "MOLD STAR 30 1-GAL PART-B ",
-    productPK: "73031"
-  },
-  {
-    partNum: "22761",
+    partNum: " 22761",
     name: "MOLD STAR 30 1-GAL UNIT ",
     productPK: "73042"
   },
   {
-    partNum: "22770B",
-    name: "MOLD STAR 30 5-GAL PART-B ",
-    productPK: "73033"
-  },
-  {
-    partNum: "22771",
+    partNum: " 22771",
     name: "MOLD STAR 30 5-GAL UNIT ",
     productPK: "73043"
   },
   {
-    partNum: "22780B",
-    name: "MOLD STAR 30 55-GAL PART-B ",
-    productPK: "73035"
-  },
-  {
-    partNum: "22741",
+    partNum: " 22741",
     name: "MOLD STAR 30 PINT UNIT ",
     productPK: "73039"
   },
@@ -9830,12 +8970,7 @@ export const products = [
     productPK: "70460"
   },
   {
-    partNum: "82240A",
-    name: "OOMOO 25 PINT PART-A ",
-    productPK: "70455"
-  },
-  {
-    partNum: "82241",
+    partNum: " 82241",
     name: "OOMOO 25 PINT UNIT ",
     productPK: "70456"
   },
@@ -9930,17 +9065,7 @@ export const products = [
     productPK: "69505"
   },
   {
-    partNum: "21370A",
-    name: "PC-3 NEUTRAL 5-GAL  PART-A ",
-    productPK: "72120"
-  },
-  {
-    partNum: "20340A",
-    name: "PC-3 PINT PART-A ",
-    productPK: "69504"
-  },
-  {
-    partNum: "20342",
+    partNum: " 20342",
     name: "PC-3 PINT UNIT ",
     productPK: "70747"
   },
@@ -9950,12 +9075,7 @@ export const products = [
     productPK: "72852"
   },
   {
-    partNum: "25050B",
-    name: "PC-B QUART (FOR PC-3) PART-B  ",
-    productPK: "69509"
-  },
-  {
-    partNum: "74046",
+    partNum: " 74046",
     name: "PERMA-LEASE 010 PRIMER 1-GAL ",
     productPK: "69739"
   },
@@ -10040,17 +9160,7 @@ export const products = [
     productPK: "72567"
   },
   {
-    partNum: "48472",
-    name: "PLASTI-PASTE PART-A CS:2 X 1-GAL ",
-    productPK: "73399"
-  },
-  {
-    partNum: "48450B",
-    name: "PLASTI-PASTE QUART PART-B ",
-    productPK: "71345"
-  },
-  {
-    partNum: "48451",
+    partNum: " 48451",
     name: "PLASTI-PASTE TRIAL SIZE ",
     productPK: "71346"
   },
@@ -10070,102 +9180,37 @@ export const products = [
     productPK: "71067"
   },
   {
-    partNum: "64060A",
-    name: "PMC-121-30 1-GAL PART-A ",
-    productPK: "69681"
-  },
-  {
-    partNum: "64070A",
-    name: "PMC-121-30 5-GAL  PART-A  ",
-    productPK: "69682"
-  },
-  {
-    partNum: "64080A",
-    name: "PMC-121-30 55-GAL PART-A ",
-    productPK: "69706"
-  },
-  {
-    partNum: "64260B",
-    name: "PMC-121-30 DRY 1-GAL PART-B ",
-    productPK: "69689"
-  },
-  {
-    partNum: "64261",
+    partNum: " 64261",
     name: "PMC-121-30 DRY 1-GAL UNIT",
     productPK: "69690"
   },
   {
-    partNum: "64270B",
-    name: "PMC-121-30 DRY 5-GAL PART-B ",
-    productPK: "69691"
-  },
-  {
-    partNum: "64271",
+    partNum: " 64271",
     name: "PMC-121-30 DRY 5-GAL UNIT",
     productPK: "69692"
   },
   {
-    partNum: "64280B",
-    name: "PMC-121-30 DRY 55-GAL  PART-B",
-    productPK: "69693"
-  },
-  {
-    partNum: "64240B",
-    name: "PMC-121-30 DRY PINT PART-B  ",
-    productPK: "69848"
-  },
-  {
-    partNum: "64241",
+    partNum: " 64241",
     name: "PMC-121-30 DRY PINT UNIT ",
     productPK: "69849"
   },
   {
-    partNum: "64040A",
-    name: "PMC-121-30 PINT PART-A ",
-    productPK: "69705"
-  },
-  {
-    partNum: "64160B",
-    name: "PMC-121-30 WET 1-GAL PART-B ",
-    productPK: "69683"
-  },
-  {
-    partNum: "64161",
+    partNum: " 64161",
     name: "PMC-121-30 WET 1-GAL UNIT ",
     productPK: "69684"
   },
   {
-    partNum: "64170B",
-    name: "PMC-121-30 WET 5-GAL PART-B ",
-    productPK: "69685"
-  },
-  {
-    partNum: "64171",
+    partNum: " 64171",
     name: "PMC-121-30 WET 5-GAL UNIT ",
     productPK: "69686"
   },
   {
-    partNum: "64180B",
-    name: "PMC-121-30 WET 55-GAL PART-B ",
-    productPK: "69687"
-  },
-  {
-    partNum: "64140B",
-    name: "PMC-121-30 WET PINT PART-B ",
-    productPK: "69727"
-  },
-  {
-    partNum: "64141",
+    partNum: " 64141",
     name: "PMC-121-30 WET PINT UNIT ",
     productPK: "69728"
   },
   {
-    partNum: "63680A",
-    name: "PMC-121-50 55-GAL  PART-A ",
-    productPK: "69631"
-  },
-  {
-    partNum: "63681",
+    partNum: " 63681",
     name: "PMC-121-50 55-GAL UNIT (1A:11B) ",
     productPK: "69632"
   },
@@ -10185,12 +9230,7 @@ export const products = [
     productPK: "69624"
   },
   {
-    partNum: "62560B",
-    name: "PMC-724 1-GAL PART-D ",
-    productPK: "69611"
-  },
-  {
-    partNum: "62471",
+    partNum: " 62471",
     name: "PMC-724 5-GAL UNIT (1/2 GAL-A/5 GAL-B)  ",
     productPK: "69603"
   },
@@ -10220,12 +9260,7 @@ export const products = [
     productPK: "69642"
   },
   {
-    partNum: "64440B",
-    name: "PMC-744 PINT  PART-B ",
-    productPK: "69829"
-  },
-  {
-    partNum: "64441",
+    partNum: " 64441",
     name: "PMC-744 TRIAL SIZE ",
     productPK: "70111"
   },
@@ -10240,12 +9275,7 @@ export const products = [
     productPK: "69648"
   },
   {
-    partNum: "64690B",
-    name: "PMC-746 55-GAL PART-B",
-    productPK: "70160"
-  },
-  {
-    partNum: "64681",
+    partNum: " 64681",
     name: "PMC-746 55-GAL UNIT (55A:30B) ",
     productPK: "69651"
   },
@@ -10265,17 +9295,7 @@ export const products = [
     productPK: "249116"
   },
   {
-    partNum: "64640B",
-    name: "PMC-746 PINT  PART-B ",
-    productPK: "69868"
-  },
-  {
-    partNum: "64650A",
-    name: "PMC-746 PINT PART-A ",
-    productPK: "69870"
-  },
-  {
-    partNum: "64641",
+    partNum: " 64641",
     name: "PMC-746 TRIAL SIZE ",
     productPK: "69869"
   },
@@ -10315,12 +9335,7 @@ export const products = [
     productPK: "69591"
   },
   {
-    partNum: "60990B",
-    name: "PMC-780 DRY 55-GAL PART-B ",
-    productPK: "69892"
-  },
-  {
-    partNum: "60981",
+    partNum: " 60981",
     name: "PMC-780 DRY 55-GAL UNIT (55A:30B-DRY) ",
     productPK: "69594"
   },
@@ -10330,37 +9345,17 @@ export const products = [
     productPK: "71483"
   },
   {
-    partNum: "60940B",
-    name: "PMC-780 DRY PINT PART-B ",
-    productPK: "69866"
-  },
-  {
-    partNum: "60941",
+    partNum: " 60941",
     name: "PMC-780 DRY TRIAL SIZE ",
     productPK: "69867"
   },
   {
-    partNum: "61560B",
-    name: "PMC-780 WET 1-GAL PART-B ",
-    productPK: "70283"
-  },
-  {
-    partNum: "61561",
+    partNum: " 61561",
     name: "PMC-780 WET 1-GAL UNIT ",
     productPK: "70298"
   },
   {
-    partNum: "61580B",
-    name: "PMC-780 WET 30-GAL PART-B ",
-    productPK: "70286"
-  },
-  {
-    partNum: "61570B",
-    name: "PMC-780 WET 5-GAL PART-B ",
-    productPK: "70284"
-  },
-  {
-    partNum: "61571",
+    partNum: " 61571",
     name: "PMC-780 WET 5-GAL UNIT (2A:1B-WET) ",
     productPK: "70299"
   },
@@ -10370,12 +9365,7 @@ export const products = [
     productPK: "70300"
   },
   {
-    partNum: "61540B",
-    name: "PMC-780 WET PINT PART-B ",
-    productPK: "70285"
-  },
-  {
-    partNum: "61541",
+    partNum: " 61541",
     name: "PMC-780 WET TRIAL SIZE ",
     productPK: "70297"
   },
@@ -10390,27 +9380,12 @@ export const products = [
     productPK: "69915"
   },
   {
-    partNum: "67920B",
-    name: "PMC-790 55-GAL PART-B ",
-    productPK: "71944"
-  },
-  {
-    partNum: "67981",
+    partNum: " 67981",
     name: "PMC-790 55-GAL UNIT (55A:30B ) ",
     productPK: "69918"
   },
   {
-    partNum: "67950A",
-    name: "PMC-790 PINT PART-A ",
-    productPK: "69907"
-  },
-  {
-    partNum: "67940B",
-    name: "PMC-790 PINT PART-B ",
-    productPK: "69908"
-  },
-  {
-    partNum: "67941",
+    partNum: " 67941",
     name: "PMC-790 TRIAL SIZE ",
     productPK: "69909"
   },
@@ -10450,22 +9425,12 @@ export const products = [
     productPK: "71968"
   },
   {
-    partNum: "82720B",
-    name: "POYO PUTTY 4-OZ PART-B ",
-    productPK: "70725"
-  },
-  {
-    partNum: "82761",
+    partNum: " 82761",
     name: "POYO PUTTY-40 1-GAL KIT ",
     productPK: "70603"
   },
   {
-    partNum: "82760A",
-    name: "POYO PUTTY-40 1-GAL PART-A ",
-    productPK: "70602"
-  },
-  {
-    partNum: "82741",
+    partNum: " 82741",
     name: "POYO PUTTY-40 1-QUART KIT ",
     productPK: "70601"
   },
@@ -10475,12 +9440,7 @@ export const products = [
     productPK: "70626"
   },
   {
-    partNum: "82740A",
-    name: "POYO PUTTY-40 QUART PART-A ",
-    productPK: "70600"
-  },
-  {
-    partNum: "11299",
+    partNum: " 11299",
     name: "PRESSURE POT GASKET FOR SILVER 5-GAL TANK ",
     productPK: "72863"
   },
@@ -11015,47 +9975,17 @@ export const products = [
     productPK: "73470"
   },
   {
-    partNum: "68660A",
-    name: "REOFLEX 20 1-GAL PART-A ",
-    productPK: "70650"
-  },
-  {
-    partNum: "68670A",
-    name: "REOFLEX 20 5-GAL PART-A ",
-    productPK: "70648"
-  },
-  {
-    partNum: "68680A",
-    name: "REOFLEX 20 55-GAL PART-A ",
-    productPK: "70651"
-  },
-  {
-    partNum: "68560B",
-    name: "REOFLEX 20 DRY 1-GAL PART-B ",
-    productPK: "70655"
-  },
-  {
-    partNum: "68561",
+    partNum: " 68561",
     name: "REOFLEX 20 DRY 1-GAL UNIT ",
     productPK: "70656"
   },
   {
-    partNum: "68570B",
-    name: "REOFLEX 20 DRY 5-GAL PART-B ",
-    productPK: "70657"
-  },
-  {
-    partNum: "68571",
+    partNum: " 68571",
     name: "REOFLEX 20 DRY 5-GAL UNIT ",
     productPK: "70658"
   },
   {
-    partNum: "68580B",
-    name: "REOFLEX 20 DRY 55-GAL PART-B ",
-    productPK: "70659"
-  },
-  {
-    partNum: "68541",
+    partNum: " 68541",
     name: "REOFLEX 20 DRY PINT UNIT ",
     productPK: "70653"
   },
@@ -11090,12 +10020,7 @@ export const products = [
     productPK: "70029"
   },
   {
-    partNum: "65440B",
-    name: "REOFLEX 40 DRY PINT PART-B ",
-    productPK: "70025"
-  },
-  {
-    partNum: "65441",
+    partNum: " 65441",
     name: "REOFLEX 40 DRY PINT UNIT ",
     productPK: "70030"
   },
@@ -11105,12 +10030,7 @@ export const products = [
     productPK: "71980"
   },
   {
-    partNum: "66370B",
-    name: "REOFLEX 40 WET 5-GAL PART-B",
-    productPK: "70335"
-  },
-  {
-    partNum: "66371",
+    partNum: " 66371",
     name: "REOFLEX 40 WET 5-GAL UNIT ",
     productPK: "70333"
   },
@@ -11130,47 +10050,17 @@ export const products = [
     productPK: "70583"
   },
   {
-    partNum: "66560A",
-    name: "REOFLEX 60 1-GAL PART-A ",
-    productPK: "70617"
-  },
-  {
-    partNum: "66570A",
-    name: "REOFLEX 60 5-GAL PART-A",
-    productPK: "70616"
-  },
-  {
-    partNum: "66580A",
-    name: "REOFLEX 60 55-GAL PART-A ",
-    productPK: "70618"
-  },
-  {
-    partNum: "63360B",
-    name: "REOFLEX 60 DRY 1-GAL PART-B ",
-    productPK: "70621"
-  },
-  {
-    partNum: "63361",
+    partNum: " 63361",
     name: "REOFLEX 60 DRY 1-GAL UNIT ",
     productPK: "70622"
   },
   {
-    partNum: "63370B",
-    name: "REOFLEX 60 DRY 5-GAL PART-B",
-    productPK: "70612"
-  },
-  {
-    partNum: "63371",
+    partNum: " 63371",
     name: "REOFLEX 60 DRY 5-GAL UNIT",
     productPK: "70613"
   },
   {
-    partNum: "63380B",
-    name: "REOFLEX 60 DRY 55-GAL PART-B 79-217 ",
-    productPK: "70609"
-  },
-  {
-    partNum: "63341",
+    partNum: " 63341",
     name: "REOFLEX 60 DRY PINT UNIT ",
     productPK: "70624"
   },
@@ -11280,12 +10170,7 @@ export const products = [
     productPK: "70076"
   },
   {
-    partNum: "72960A",
-    name: "RIGID URETHANE 106-43 1-GAL PART-A ",
-    productPK: "76006"
-  },
-  {
-    partNum: "72961",
+    partNum: " 72961",
     name: "RIGID URETHANE 106-43 1-GAL UNIT ",
     productPK: "76013"
   },
@@ -11495,22 +10380,12 @@ export const products = [
     productPK: "71337"
   },
   {
-    partNum: "41960B",
-    name: "SHELL SHOCK SLOW 1-GAL PART-B",
-    productPK: "71379"
-  },
-  {
-    partNum: "41961",
+    partNum: " 41961",
     name: "SHELL SHOCK SLOW 1-GAL UNIT ",
     productPK: "71380"
   },
   {
-    partNum: "41970B",
-    name: "SHELL SHOCK SLOW 5-GAL PART-B ",
-    productPK: "71381"
-  },
-  {
-    partNum: "41971",
+    partNum: " 41971",
     name: "SHELL SHOCK SLOW 5-GAL UNIT ",
     productPK: "71382"
   },
@@ -11535,12 +10410,7 @@ export const products = [
     productPK: "80274"
   },
   {
-    partNum: "112680A",
-    name: "SI-TAC TEXTILE ADHESIVE 55-GAL PART-A ",
-    productPK: "78690"
-  },
-  {
-    partNum: "95340",
+    partNum: " 95340",
     name: "SIL-POXY 1/2-OZ TUBE ",
     productPK: "71370"
   },
@@ -12060,12 +10930,7 @@ export const products = [
     productPK: "71095"
   },
   {
-    partNum: "88240A",
-    name: "SKIN TITE PINT PART-A ",
-    productPK: "71084"
-  },
-  {
-    partNum: "88241",
+    partNum: " 88241",
     name: "SKIN TITE TRIAL SIZE ",
     productPK: "71086"
   },
@@ -12140,12 +11005,7 @@ export const products = [
     productPK: "70526"
   },
   {
-    partNum: "44340B",
-    name: "SMASH! PLASTIC PINT PART-B ",
-    productPK: "70521"
-  },
-  {
-    partNum: "44341",
+    partNum: " 44341",
     name: "SMASH! PLASTIC TRIAL SIZE",
     productPK: "70522"
   },
@@ -12170,32 +11030,17 @@ export const products = [
     productPK: "69828"
   },
   {
-    partNum: "49660B",
-    name: "SMOOTH-CAST 300Q 1-GAL PART-B  ",
-    productPK: "70136"
-  },
-  {
-    partNum: "49661",
+    partNum: " 49661",
     name: "SMOOTH-CAST 300Q 1-GAL UNIT ",
     productPK: "70137"
   },
   {
-    partNum: "49670B",
-    name: "SMOOTH-CAST 300Q 5-GAL PART-B ",
-    productPK: "70156"
-  },
-  {
-    partNum: "49671",
+    partNum: " 49671",
     name: "SMOOTH-CAST 300Q 5-GAL UNIT ",
     productPK: "70157"
   },
   {
-    partNum: "49680B",
-    name: "SMOOTH-CAST 300Q 55-GAL PART-B ",
-    productPK: "70158"
-  },
-  {
-    partNum: "49641",
+    partNum: " 49641",
     name: "SMOOTH-CAST 300Q PINT UNIT ",
     productPK: "70139"
   },
@@ -12285,37 +11130,7 @@ export const products = [
     productPK: "70090"
   },
   {
-    partNum: "106460A",
-    name: "SMOOTH-CAST 325 EU 1-GAL PART-A ",
-    productPK: "77987"
-  },
-  {
-    partNum: "106461",
-    name: "SMOOTH-CAST 325 EU 1-GAL UNIT ",
-    productPK: "77993"
-  },
-  {
-    partNum: "106470A",
-    name: "SMOOTH-CAST 325 EU 5-GAL PART-A ",
-    productPK: "78017"
-  },
-  {
-    partNum: "106471",
-    name: "SMOOTH-CAST 325 EU 5-GAL UNIT ",
-    productPK: "77994"
-  },
-  {
-    partNum: "106441",
-    name: "SMOOTH-CAST 325 EU PINT UNIT ",
-    productPK: "77991"
-  },
-  {
-    partNum: "48840A",
-    name: "SMOOTH-CAST 325 PINT PART-A ",
-    productPK: "70093"
-  },
-  {
-    partNum: "48841",
+    partNum: " 48841",
     name: "SMOOTH-CAST 325 PINT UNIT ",
     productPK: "70095"
   },
@@ -12330,22 +11145,7 @@ export const products = [
     productPK: "70368"
   },
   {
-    partNum: "106961",
-    name: "SMOOTH-CAST 326 EU 1-GAL UNIT ",
-    productPK: "78029"
-  },
-  {
-    partNum: "106971",
-    name: "SMOOTH-CAST 326 EU 5-GAL UNIT ",
-    productPK: "78030"
-  },
-  {
-    partNum: "106941",
-    name: "SMOOTH-CAST 326 EU PINT UNIT ",
-    productPK: "78027"
-  },
-  {
-    partNum: "45041",
+    partNum: " 45041",
     name: "SMOOTH-CAST 326 PINT UNIT ",
     productPK: "70363"
   },
@@ -12360,22 +11160,7 @@ export const products = [
     productPK: "70408"
   },
   {
-    partNum: "107061",
-    name: "SMOOTH-CAST 327 EU 1-GAL UNIT ",
-    productPK: "78040"
-  },
-  {
-    partNum: "107071",
-    name: "SMOOTH-CAST 327 EU 5-GAL UNIT ",
-    productPK: "78041"
-  },
-  {
-    partNum: "107041",
-    name: "SMOOTH-CAST 327 EU PINT UNIT ",
-    productPK: "78031"
-  },
-  {
-    partNum: "44941",
+    partNum: " 44941",
     name: "SMOOTH-CAST 327 PINT UNIT ",
     productPK: "70402"
   },
@@ -12420,12 +11205,7 @@ export const products = [
     productPK: "70736"
   },
   {
-    partNum: "44140B",
-    name: "SMOOTH-CAST 45D PINT PART-B ",
-    productPK: "70727"
-  },
-  {
-    partNum: "44141",
+    partNum: " 44141",
     name: "SMOOTH-CAST 45D PINT UNIT ",
     productPK: "70728"
   },
@@ -12475,12 +11255,7 @@ export const products = [
     productPK: "72069"
   },
   {
-    partNum: "42870B",
-    name: "SMOOTH-CAST 61D BLK 5-GAL PART-B ",
-    productPK: "71846"
-  },
-  {
-    partNum: "40641",
+    partNum: " 40641",
     name: "SMOOTH-CAST 61D PINT UNIT ",
     productPK: "70833"
   },
@@ -12545,32 +11320,17 @@ export const products = [
     productPK: "71910"
   },
   {
-    partNum: "50860B",
-    name: "SMOOTH-CAST ONYX SLOW 1-GAL PART-B ",
-    productPK: "72970"
-  },
-  {
-    partNum: "50861",
+    partNum: " 50861",
     name: "SMOOTH-CAST ONYX SLOW 1-GAL UNIT ",
     productPK: "72975"
   },
   {
-    partNum: "50870B",
-    name: "SMOOTH-CAST ONYX SLOW 5-GAL PART-B ",
-    productPK: "72971"
-  },
-  {
-    partNum: "50871",
+    partNum: " 50871",
     name: "SMOOTH-CAST ONYX SLOW 5-GAL UNIT ",
     productPK: "72976"
   },
   {
-    partNum: "50880B",
-    name: "SMOOTH-CAST ONYX SLOW 55-GAL PART-B ",
-    productPK: "72972"
-  },
-  {
-    partNum: "50841",
+    partNum: " 50841",
     name: "SMOOTH-CAST ONYX SLOW PINT UNIT ",
     productPK: "72973"
   },
@@ -13155,12 +11915,7 @@ export const products = [
     productPK: "71924"
   },
   {
-    partNum: "27740B",
-    name: "SORTA-CLEAR 18 4-OZ PART-B ",
-    productPK: "71869"
-  },
-  {
-    partNum: "27771",
+    partNum: " 27771",
     name: "SORTA-CLEAR 18 5-GAL UNIT ",
     productPK: "71925"
   },
@@ -13620,17 +12375,7 @@ export const products = [
     productPK: "70127"
   },
   {
-    partNum: "49540B",
-    name: "TASK 21 PINT PART-B ",
-    productPK: "70132"
-  },
-  {
-    partNum: "49550A",
-    name: "TASK 21 QUART PART-A ",
-    productPK: "70131"
-  },
-  {
-    partNum: "49541",
+    partNum: " 49541",
     name: "TASK 21 TRIAL SIZE ",
     productPK: "70133"
   },
@@ -13735,21 +12480,6 @@ export const products = [
     productPK: "70389"
   },
   {
-    partNum: "107161",
-    name: "TASK 9 EU 1-GAL UNIT ",
-    productPK: "78043"
-  },
-  {
-    partNum: "107171",
-    name: "TASK 9 EU 5-GAL UNIT ",
-    productPK: "78068"
-  },
-  {
-    partNum: "107141",
-    name: "TASK 9 EU PINT UNIT ",
-    productPK: "78066"
-  },
-  {
     partNum: "45841",
     name: "TASK 9 PINT UNIT ",
     productPK: "70383"
@@ -13780,16 +12510,6 @@ export const products = [
     productPK: "78223"
   },
   {
-    partNum: "106570A",
-    name: "TEMPO 25 5-GAL PART-A ",
-    productPK: "78001"
-  },
-  {
-    partNum: "106580A",
-    name: "TEMPO 25 55-GAL PART-A ",
-    productPK: "78213"
-  },
-  {
     partNum: "106581",
     name: "TEMPO 25 55-GAL UNIT (55A:6.5B) ",
     productPK: "78222"
@@ -13803,16 +12523,6 @@ export const products = [
     partNum: "84981",
     name: "TEMPO 30 55-GAL UNIT (55A:6.5B) ",
     productPK: "71066"
-  },
-  {
-    partNum: "29870B",
-    name: "TEMPO FAST 1/2-GAL PART-B ",
-    productPK: "74094"
-  },
-  {
-    partNum: "29970B",
-    name: "TEMPO VERY FAST 1/2-GAL PART-B ",
-    productPK: "74095"
   },
   {
     partNum: "DG1-X",
