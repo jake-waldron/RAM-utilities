@@ -22,8 +22,6 @@ const searchBars = [
 ]
 
 window.addEventListener("load", () => {
-  console.log("content script loaded")
-  console.log(window.location.pathname)
   const findBars = searchBars.map((searchBar) => {
     if (window.location.pathname === searchBar.pathname) {
       return {
@@ -33,35 +31,29 @@ window.addEventListener("load", () => {
     }
   })
   const searchBar = findBars.find((bar) => bar?.searchBar)
-  const parentElement = searchBar?.parentElement
-  if (parentElement) {
-    const button = document.createElement("button")
-    Object.assign(button.style, {
-      display: "inline-block",
-      height: "34px",
-      width: "max-content",
-      background: "#1ab394",
-      color: "white",
-      border: "0",
-      padding: "4px 8px"
-    })
-    button.innerText = "Jake's Better Search"
-    button.style.display = "inline-block"
-    button.addEventListener("click", async (e) => {
-      e.preventDefault()
-      console.log("clicked")
-      showModal(searchBar.searchBar)
-    })
-    parentElement.prepend(button)
+  if (searchBar) {
+    // const parentElement = searchBar?.parentElement
+    createAndAttachButton(searchBar)
   }
-  // searchBars.map((searchBar) => {
-  //   if (window.location.pathname.includes(searchBar.pathname)) {
-  //     const input = document.querySelector(searchBar.selector)
-  //     if (input) {
-  //       console.log("theres an input here!")
-  //     }
-  //   }
-  // })
-
-  // document.body.style.background = "pink"
 })
+
+function createAndAttachButton(searchBar) {
+  const button = document.createElement("button")
+  Object.assign(button.style, {
+    display: "inline-block",
+    height: "34px",
+    width: "max-content",
+    background: "#1ab394",
+    color: "white",
+    border: "0",
+    padding: "4px 8px"
+  })
+  button.innerText = "Jake's Better Search"
+  button.style.display = "inline-block"
+  button.addEventListener("click", async (e) => {
+    e.preventDefault()
+    console.log("clicked")
+    showModal(searchBar.searchBar)
+  })
+  searchBar.parentElement.prepend(button)
+}
