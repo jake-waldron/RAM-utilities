@@ -1,4 +1,5 @@
 import type { PlasmoCSConfig } from "plasmo"
+import { showModal } from "../utils/modal"
 
 export const config: PlasmoCSConfig = {
   matches: [
@@ -46,9 +47,10 @@ window.addEventListener("load", () => {
     })
     button.innerText = "Jake's Better Search"
     button.style.display = "inline-block"
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", async (e) => {
       e.preventDefault()
       console.log("clicked")
+      showModal(searchBar.searchBar)
     })
     parentElement.prepend(button)
   }
