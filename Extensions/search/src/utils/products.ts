@@ -12856,32 +12856,32 @@ export const products = [
   },
   {
     partNum: "124360",
-    name: "URE-FIL 17 FINE ALUMINUM PELLETS (400 MICRON) ",
+    name: "URE-FIL 17 10#",
     productPK: "208325"
   },
   {
     partNum: "124370",
-    name: "URE-FIL 17 FINE ALUMINUM PELLETS (400 MICRON) ",
+    name: "URE-FIL 17 25#",
     productPK: "208326"
   },
   {
     partNum: "124350",
-    name: "URE-FIL 17 FINE ALUMINUM PELLETS (400 MICRON) ",
+    name: "URE-FIL 17 4#",
     productPK: "208324"
   },
   {
     partNum: "124460",
-    name: "URE-FIL 19 LARGE ALUMINUM PELLETS (1200 MICRON) ",
+    name: "URE-FIL 19 10#",
     productPK: "208328"
   },
   {
     partNum: "124470",
-    name: "URE-FIL 19 LARGE ALUMINUM PELLETS (1200 MICRON) ",
+    name: "URE-FIL 19 25#",
     productPK: "208329"
   },
   {
     partNum: "124450",
-    name: "URE-FIL 19 LARGE ALUMINUM PELLETS (1200 MICRON) ",
+    name: "URE-FIL 19 4#",
     productPK: "208327"
   },
   {
