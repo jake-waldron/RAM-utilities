@@ -67,3 +67,7 @@ function createAndAttachButton(searchBar: SearchBar) {
   })
   searchBar.parentElement.prepend(button)
 }
+
+// TDOD:
+// - Add tabbing to the modal
+// - Add tests to check filtering logic
