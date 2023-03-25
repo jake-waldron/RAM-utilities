@@ -14,6 +14,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.2
   react: 18.2.0
   react-dom: 18.2.0
+  romans: ^2.0.8
   tailwindcss: ^3.2.6
   typescript: 4.9.4
 
@@ -22,6 +23,7 @@ dependencies:
   plasmo: 0.65.0_gjpyg5imi5mt2gbvkmn3a4dr7m
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  romans: 2.0.8
 
 devDependencies:
   '@plasmohq/prettier-plugin-sort-imports': 3.6.1_prettier@2.8.3
@@ -4762,6 +4764,10 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /romans/2.0.8:
+    resolution: {integrity: sha512-bEF8h1R7JCY1oYhydhC2i+TkV1Teq+BIfbicZZLIcVBJnZweYN8TwBb+9N8zhCmxFswcJzfLP7CH4pTxXYfCYQ==}
     dev: false
 
   /run-async/2.4.1:

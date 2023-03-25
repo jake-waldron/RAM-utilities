@@ -67,7 +67,7 @@ export function showModal(searchBar) {
 
   // Search the database of product names using fuse.js.
   // const productNames = ["er205", "er400", "product3"] // Replace with your own database
-  const fuse = new Fuse(products, { keys: ["name"] })
+  const fuse = new Fuse(products, { keys: ["name"], threshold: 0.3 })
 
   // Display a list of matching product names in the modal.
   const dropdownMenu = document.createElement("ul")
@@ -83,6 +83,7 @@ export function showModal(searchBar) {
   // Define a debounced fuzzy search function that executes when the user stops typing.
   const debouncedFuzzySearch = debounce(() => {
     const searchResults = fuse.search(searchInput.value)
+
     dropdownMenu.innerHTML = ""
 
     searchResults.slice(0, 10).forEach((result) => {
