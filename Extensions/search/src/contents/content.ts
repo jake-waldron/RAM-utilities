@@ -8,7 +8,18 @@ export const config: PlasmoCSConfig = {
   ]
 }
 
-const searchBars = [
+type AvailableBars = {
+  selector: string
+  pathname: string
+  parent: string
+}
+
+type SearchBar = {
+  searchBar: Element
+  parentElement: Element
+}
+
+const searchBars: AvailableBars[] = [
   {
     selector: '#ProductSearchGrid_TextBox input[type="text"]',
     pathname: "/Product",
@@ -22,7 +33,7 @@ const searchBars = [
 ]
 
 window.addEventListener("load", () => {
-  const findBars = searchBars.map((searchBar) => {
+  const checkForBars = searchBars.map((searchBar) => {
     if (window.location.pathname === searchBar.pathname) {
       return {
         searchBar: document.querySelector(searchBar.selector),
@@ -30,14 +41,13 @@ window.addEventListener("load", () => {
       }
     }
   })
-  const searchBar = findBars.find((bar) => bar?.searchBar)
+  const searchBar: SearchBar = checkForBars.find((bar) => bar?.searchBar)
   if (searchBar) {
-    // const parentElement = searchBar?.parentElement
     createAndAttachButton(searchBar)
   }
 })
 
-function createAndAttachButton(searchBar) {
+function createAndAttachButton(searchBar: SearchBar) {
   const button = document.createElement("button")
   Object.assign(button.style, {
     display: "inline-block",
