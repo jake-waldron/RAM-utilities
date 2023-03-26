@@ -35,7 +35,7 @@ export function showModal(searchBar) {
 
   // Define a debounced fuzzy search function that executes when the user stops typing.
   const debouncedFuzzySearch = debounce(() => {
-    const searchResults = fuse.search(modalSearchInput.value)
+    const searchResults = fuse.search(modalSearchInput.value).slice(0, 10)
     const filteredResults = filterResults(searchResults)
     const checkForScoreGaps = checkForGaps(filteredResults)
     const sortedResults = sortBySize(checkForScoreGaps)
@@ -150,6 +150,7 @@ function checkForGaps(results) {
   if (scores.length <= 1 || results.length <= 3) {
     return results
   }
+  if (scores.at(-1) - scores[0] < 0.05) return results
   let returnedResults = []
   // there's still something weird here I think
   scores.forEach((score, index) => {
@@ -159,7 +160,7 @@ function checkForGaps(results) {
       returnedResults.push(...results.filter((result) => result.score < score))
     }
   })
-  return returnedResults
+  return Array.from(new Set(returnedResults))
 }
 
 function getScores(results: FuseResults[]) {
