@@ -21,17 +21,19 @@ function sort(arrayToSort) {
 
 function sortArray(arr): Product[] {
   const order = {
-    "PINT UNIT": 0,
-    "TRIAL SIZE": 0,
-    "1-GAL": 1,
-    "5-GAL": 2,
+    "2-OZ": 0,
+    "4-OZ": 1,
+    PINT: 2,
+    TRIAL: 3,
+    "1-GAL": 4,
+    "5-GAL": 5,
     "5-GAL PART": 99,
-    UNKNOWN: 3
+    UNKNOWN: 6
   }
 
   let newOrder = {}
   arr.forEach((entry: Product) => {
-    const sizeRegex = /\b(PINT UNIT|TRIAL SIZE|1-GAL|5-GAL|5-GAL PART)\b/
+    const sizeRegex = /\b(2-OZ|4-OZ|PINT|TRIAL|1-GAL|5-GAL|5-GAL PART)\b/
     const size = entry.name.match(sizeRegex)
     const sizeName = size ? size[1] : "UNKNOWN"
     let orderIndex = order[sizeName]
