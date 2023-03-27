@@ -11,6 +11,7 @@ export const config: PlasmoCSConfig = {
 type AvailableBars = {
   selector: string
   pathname: string
+  searchRegex: RegExp
   parent: string
 }
 
@@ -23,28 +24,41 @@ const searchBars: AvailableBars[] = [
   {
     selector: '#ProductSearchGrid_TextBox input[type="text"]',
     pathname: "/Product",
+    searchRegex: /.*$/,
     parent: ".dx-texteditor-container:has(.dx-texteditor-input-container)"
   },
   {
     selector: "#OrderNewLineItemSearchBox_I",
     pathname: "/Order/Create",
+    searchRegex: /.*$/,
     parent: "tr:has(#OrderNewLineItemSearchBox_B-100)"
   }
 ]
 
-window.addEventListener("load", () => {
-  const checkForBars = searchBars.map((searchBar) => {
-    if (window.location.pathname === searchBar.pathname) {
-      return {
-        searchBar: document.querySelector(searchBar.selector),
-        parentElement: document.querySelector(searchBar.parent)
-      }
-    }
-  })
-  const searchBar: SearchBar = checkForBars.find((bar) => bar?.searchBar)
-  if (searchBar) {
-    createAndAttachButton(searchBar)
+const addItemBars: AvailableBars[] = [
+  {
+    selector: "#PurchaseOrderNewLineItemSearchBox_I",
+    pathname: "/PurchaseOrder/View",
+    searchRegex: /\?purchaseOrderPK=([^&]*)&activeTab=lineItems/,
+    parent: "tr:has(#PurchaseOrderNewLineItemSearchBox_I)"
   }
+]
+
+function listenTest() {
+  console.log("adding items!")
+}
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "add items") {
+    listenTest()
+    findBarAndAddButton(addItemBars)
+  }
+})
+
+window.addEventListener("load", () => {
+  console.log(window.location.href)
+
+  findBarAndAddButton(searchBars)
 })
 
 function createAndAttachButton(searchBar: SearchBar) {
@@ -58,14 +72,22 @@ function createAndAttachButton(searchBar: SearchBar) {
     border: "0",
     padding: "4px 8px"
   })
+  button.id = "jake-search-button"
   button.innerText = "Quick Search"
   button.style.display = "inline-block"
   button.addEventListener("click", async (e) => {
     e.preventDefault()
     console.log("clicked")
+    try {
+      await fetch(`${process.env.API}/wake-up`)
+    } catch (error) {
+      console.error(error)
+    }
     showModal(searchBar.searchBar)
   })
-  searchBar.parentElement.prepend(button)
+  if (!document.querySelector("#jake-search-button")) {
+    searchBar.parentElement.prepend(button)
+  }
 }
 
 // TDOD:
@@ -73,3 +95,27 @@ function createAndAttachButton(searchBar: SearchBar) {
 // - See if there's a way to re-trigger search when category is changed on product page
 // - Add tabbing to the modal
 // - Add tests to check filtering logic
+
+function checkForBars(searchBars) {
+  const checkForBars = searchBars.map((searchBar) => {
+    if (
+      window.location.pathname === searchBar.pathname &&
+      searchBar.searchRegex.test(window.location.search)
+    ) {
+      console.log("found one!")
+      return {
+        searchBar: document.querySelector(searchBar.selector),
+        parentElement: document.querySelector(searchBar.parent)
+      }
+    }
+  })
+  return checkForBars
+}
+
+function findBarAndAddButton(listOfBars) {
+  const foundBars = checkForBars(listOfBars)
+  const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
+  if (searchBar) {
+    createAndAttachButton(searchBar)
+  }
+}
