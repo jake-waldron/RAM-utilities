@@ -84,7 +84,12 @@ function createAndAttachButton(searchBar: SearchBar) {
     } catch (error) {
       console.error(error)
     }
-    showModal(searchBar.searchBar)
+    if (
+      !document.querySelector("#jake-modal") &&
+      !document.querySelector("#jake-modal-backdrop")
+    ) {
+      showModal(searchBar.searchBar)
+    }
   })
   if (!document.querySelector("#jake-search-button")) {
     searchBar.parentElement.prepend(button)

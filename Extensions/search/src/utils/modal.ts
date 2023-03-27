@@ -103,6 +103,7 @@ function createModal() {
     zIndex: "999",
     padding: "10px"
   })
+  modal.id = "jake-modal"
   const backdrop = document.createElement("div")
   Object.assign(backdrop.style, {
     position: "fixed",
@@ -113,6 +114,7 @@ function createModal() {
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     zIndex: "999"
   })
+  backdrop.id = "jake-modal-backdrop"
   const modalSearchInput = document.createElement("input")
   modalSearchInput.setAttribute("type", "text")
   modalSearchInput.setAttribute("placeholder", "Enter search term")
