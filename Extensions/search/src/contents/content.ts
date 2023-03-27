@@ -58,7 +58,7 @@ function createAndAttachButton(searchBar: SearchBar) {
     border: "0",
     padding: "4px 8px"
   })
-  button.innerText = "Jake's Better Search"
+  button.innerText = "Quick Search"
   button.style.display = "inline-block"
   button.addEventListener("click", async (e) => {
     e.preventDefault()
