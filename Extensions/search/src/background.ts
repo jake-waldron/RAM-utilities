@@ -9,5 +9,5 @@ function sendMessage() {
 }
 
 chrome.webRequest.onCompleted.addListener(sendMessage, {
-  urls: ["https://*/PurchaseOrder/AddLineItemsView*"]
+  urls: ["https://*/*/AddLineItemsView*"]
 })

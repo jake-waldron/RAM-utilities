@@ -41,6 +41,12 @@ const addItemBars: AvailableBars[] = [
     pathname: "/PurchaseOrder/View",
     searchRegex: /\?purchaseOrderPK=([^&]*)&activeTab=lineItems/,
     parent: "tr:has(#PurchaseOrderNewLineItemSearchBox_I)"
+  },
+  {
+    selector: "#OrderNewLineItemSearchBox_I",
+    pathname: "/Order/View",
+    searchRegex: /\?orderPK=([^&]*)&showInvoice=False&activeTab=lineItems/,
+    parent: "tr:has(#OrderNewLineItemSearchBox_I)"
   }
 ]
 
@@ -48,6 +54,8 @@ function listenTest() {
   console.log("adding items!")
 }
 
+// Add button to Add Items bars
+// handles differently because we have to wait for the request to be made before the bar is on the page
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === "add items") {
     listenTest()
@@ -55,6 +63,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 })
 
+// Handles normal search bars that load with the page
 window.addEventListener("load", () => {
   console.log(window.location.href)
 
