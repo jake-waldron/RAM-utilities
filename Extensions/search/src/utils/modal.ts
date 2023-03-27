@@ -1,26 +1,6 @@
-import Fuse from "fuse.js/dist/fuse.basic.esm.min.js"
-
-import { products } from "../utils/products"
-import { sortBySize } from "../utils/sort"
-
-type FuseResults = {
-  item: {
-    name: string
-    partNum: string
-  }
-  score: number
-}
-
 // Add an event listener to the search bar to capture the input event.
 export function showModal(searchBar) {
   const { modal, backdrop, modalSearchInput } = createModal()
-
-  // Search the database of product names using fuse.js.
-  const fuse = new Fuse(products, {
-    keys: ["name"],
-    threshold: 0.3,
-    includeScore: true
-  })
 
   // Display a list of matching product names in the modal.
   const dropdownMenu = document.createElement("ul")
@@ -34,23 +14,39 @@ export function showModal(searchBar) {
   modal.appendChild(dropdownMenu)
 
   // Define a debounced fuzzy search function that executes when the user stops typing.
-  const debouncedFuzzySearch = debounce(() => {
-    const searchResults = fuse.search(modalSearchInput.value).slice(0, 10)
-    const filteredResults = filterResults(searchResults)
-    const checkForScoreGaps = checkForGaps(filteredResults)
-    const sortedResults = sortBySize(checkForScoreGaps)
+  const debouncedFuzzySearch = debounce(async () => {
     dropdownMenu.innerHTML = ""
-
-    sortedResults.slice(0, 6).forEach((result) => {
-      const listItem = document.createElement("li")
-      Object.assign(listItem.style, {
-        padding: "5px",
-        cursor: "pointer"
-      })
-      listItem.textContent = result.name
-      dropdownMenu.appendChild(listItem)
+    const loadingDisplay = document.createElement("li")
+    loadingDisplay.textContent = "Loading..."
+    Object.assign(loadingDisplay.style, {
+      padding: "5px",
+      cursor: "pointer",
+      textAlign: "center"
     })
-    // add listener to each option here so it can easily set the value of the input
+    dropdownMenu.appendChild(loadingDisplay)
+    try {
+      const data = await fetch(
+        `http://127.0.0.1:3000/api/search?q=${modalSearchInput.value}`
+      )
+
+      const results = await data.json()
+      const { products } = results.data
+
+      dropdownMenu.innerHTML = ""
+
+      products.slice(0, 6).forEach((result) => {
+        const listItem = document.createElement("li")
+        Object.assign(listItem.style, {
+          padding: "5px",
+          cursor: "pointer"
+        })
+        listItem.textContent = result.name
+        listItem.dataset.partNum = result.partNum
+        dropdownMenu.appendChild(listItem)
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }, 500)
 
   // Add an event listener to the search input to capture the input event.
@@ -61,10 +57,7 @@ export function showModal(searchBar) {
     // Populate the original search bar with the selected product name.
     searchBar.focus()
     const eventTarget = event.target as HTMLElement
-    const selectedProduct = products.find(
-      (product) => product.name === eventTarget.textContent
-    )
-    searchBar.value = selectedProduct.partNum
+    searchBar.value = eventTarget.dataset.partNum
     remove(modal, backdrop)
     searchBar.focus()
     searchBar.dispatchEvent(new KeyboardEvent("keydown", { key: "Space" }))
@@ -124,59 +117,6 @@ function createModal() {
 
 function remove(...args) {
   args.forEach((arg) => arg.remove())
-}
-
-// filter results by score, return only the result items
-function filterResults(results: FuseResults[]) {
-  const scores = getScores(results)
-  if (results.some((result) => result.score <= 0.1)) {
-    return filteredResults(results.filter((result) => result.score <= 0.1))
-  }
-  if (results.some((result) => result.score <= 0.4)) {
-    return filteredResults(results.filter((result) => result.score <= 0.4))
-  }
-  if (scores[1] > 0.5 && scores[1] - scores[0] > 0.02) {
-    return filteredResults(
-      results.filter((result) => result.score === scores[0])
-    )
-  }
-
-  return filteredResults(results)
-}
-
-function checkForGaps(results) {
-  const scores = getScores(results)
-  if (scores.at(-1) <= 0.1) return results
-  if (scores.length <= 1 || results.length <= 3) {
-    return results
-  }
-  if (scores.at(-1) - scores[0] < 0.05) return results
-  let returnedResults = []
-  // there's still something weird here I think
-  scores.forEach((score, index) => {
-    if (index === 0) return
-    const gap = score - scores[index - 1]
-    if (gap > 0.04) {
-      returnedResults.push(...results.filter((result) => result.score < score))
-    }
-  })
-  return Array.from(new Set(returnedResults))
-}
-
-function getScores(results: FuseResults[]) {
-  return Array.from(new Set(results.map((result) => result.score))).sort(
-    (a, b) => a - b
-  )
-}
-
-function filteredResults(results) {
-  return results.map((result) => {
-    return {
-      name: result.item.name,
-      partNum: result.item.partNum,
-      score: result.score
-    }
-  })
 }
 
 function debounce(func, wait) {
