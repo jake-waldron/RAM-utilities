@@ -100,7 +100,7 @@ function createModal() {
     backgroundColor: "#fff",
     borderRadius: "5px",
     boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
-    zIndex: "999",
+    zIndex: "99999",
     padding: "10px"
   })
   modal.id = "jake-modal"
@@ -112,7 +112,7 @@ function createModal() {
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.3)",
-    zIndex: "999"
+    zIndex: "99998"
   })
   backdrop.id = "jake-modal-backdrop"
   const modalSearchInput = document.createElement("input")
