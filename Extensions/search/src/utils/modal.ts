@@ -30,9 +30,21 @@ export function showModal(searchBar) {
       )
 
       const results = await data.json()
-      const { products } = results.data
+      const { products, error } = results.data
 
       dropdownMenu.innerHTML = ""
+
+      if (error) {
+        const errorItem = document.createElement("li")
+        errorItem.textContent = error
+        Object.assign(errorItem.style, {
+          padding: "5px",
+          cursor: "pointer",
+          textAlign: "center",
+          color: "red"
+        })
+        return dropdownMenu.appendChild(errorItem)
+      }
 
       products.slice(0, 6).forEach((result) => {
         const listItem = document.createElement("li")
@@ -110,6 +122,7 @@ function createModal() {
     width: "100%",
     padding: "5px"
   })
+  modalSearchInput.placeholder = "Enter product name..."
   modal.appendChild(modalSearchInput)
 
   backdrop.addEventListener("click", () => {
