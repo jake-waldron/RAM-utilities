@@ -50,23 +50,16 @@ const addItemBars: AvailableBars[] = [
   }
 ]
 
-function listenTest() {
-  console.log("adding items!")
-}
-
 // Add button to Add Items bars
 // handles differently because we have to wait for the request to be made before the bar is on the page
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === "add items") {
-    listenTest()
     findBarAndAddButton(addItemBars)
   }
 })
 
 // Handles normal search bars that load with the page
 window.addEventListener("load", () => {
-  console.log(window.location.href)
-
   findBarAndAddButton(searchBars)
 })
 
@@ -86,7 +79,6 @@ function createAndAttachButton(searchBar: SearchBar) {
   button.style.display = "inline-block"
   button.addEventListener("click", async (e) => {
     e.preventDefault()
-    console.log("clicked")
     try {
       await fetch(`${process.env.API}/wake-up`)
     } catch (error) {
@@ -111,7 +103,6 @@ function checkForBars(searchBars) {
       window.location.pathname === searchBar.pathname &&
       searchBar.searchRegex.test(window.location.search)
     ) {
-      console.log("found one!")
       return {
         searchBar: document.querySelector(searchBar.selector),
         parentElement: document.querySelector(searchBar.parent)
