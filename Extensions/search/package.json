@@ -31,7 +31,8 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/"
+      "https://amp.reynoldsam.com/*",
+      "https://ram-bam-us-web-qa.azurewebsites.net/*"
     ],
     "permissions": [
       "webRequest",
