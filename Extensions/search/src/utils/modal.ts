@@ -26,7 +26,7 @@ export function showModal(searchBar) {
     dropdownMenu.appendChild(loadingDisplay)
     try {
       const data = await fetch(
-        `https://reynolds-advanced-utilities.vercel.app/api/search?q=${modalSearchInput.value}`
+        `${process.env.API}/search?q=${modalSearchInput.value}`
       )
 
       const results = await data.json()
