@@ -69,5 +69,7 @@ function createAndAttachButton(searchBar: SearchBar) {
 }
 
 // TDOD:
+// - Figure out how to trigger search on product page without using keyboard
+// - See if there's a way to re-trigger search when category is changed on product page
 // - Add tabbing to the modal
 // - Add tests to check filtering logic
