@@ -80,7 +80,7 @@ function createAndAttachButton(searchBar: SearchBar) {
   button.addEventListener("click", async (e) => {
     e.preventDefault()
     try {
-      await fetch(`${process.env.API}/wake-up`)
+      fetch(`${process.env.API}/wake-up`)
     } catch (error) {
       console.error(error)
     }
