@@ -40,6 +40,14 @@ export function showModal(searchBar) {
           padding: "5px",
           cursor: "pointer"
         })
+        listItem.onmouseenter = () => {
+          listItem.style.backgroundColor = "#1ab394"
+          listItem.style.color = "#fff"
+        }
+        listItem.onmouseleave = () => {
+          listItem.style.backgroundColor = "#fff"
+          listItem.style.color = "#000"
+        }
         listItem.textContent = result.name
         listItem.dataset.partNum = result.partNum
         dropdownMenu.appendChild(listItem)
