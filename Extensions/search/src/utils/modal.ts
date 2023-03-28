@@ -39,54 +39,51 @@ export function showModal(searchBar) {
         return resultsDisplay.appendChild(errorItem)
       }
 
-      if (searchTerm !== "") {
-        if (products.length === 0) {
-          // If there are no results, display a message in the modal.
-          const noResults = document.createElement("li")
-          noResults.textContent = "No results found."
-          Object.assign(noResults.style, {
-            padding: "5px",
-            textAlign: "center"
-          })
-          resultsDisplay.appendChild(noResults)
-          // Add a button to the modal that allows the user to request a product.
-          const requestItem = createRequestProductContainer({
-            searchTerm,
-            products
-          })
-          if (!document.querySelector("#request-container")) {
-            return resultsDisplay.appendChild(requestItem)
-          }
-        }
+      if (searchTerm === "") return clearResults(resultsDisplay)
 
-        // If there are results, display them in the modal.
-        const resultListItems = products.slice(0, 6).map((result) => {
-          return createResultListItem(result)
+      if (products.length === 0) {
+        // If there are no results, display a message in the modal.
+        const noResults = document.createElement("li")
+        noResults.textContent = "No results found."
+        Object.assign(noResults.style, {
+          padding: "5px",
+          textAlign: "center"
         })
-
-        resultListItems.forEach((item) => {
-          resultsDisplay.appendChild(item)
-          item.addEventListener("click", (event) => {
-            // Populate the original search bar with the selected product name.
-            searchBar.focus()
-            const eventTarget = event.target as HTMLElement
-            searchBar.value = eventTarget.dataset.partNum
-            remove(modal, backdrop)
-            searchBar.focus()
-          })
-        })
-
-        // Add a button to the modal that allows the user to report an issue.
-        const requestItem = createReportIssueContainter({
+        resultsDisplay.appendChild(noResults)
+        // Add a button to the modal that allows the user to request a product.
+        const requestItem = createRequestProductContainer({
           searchTerm,
-          products,
-          clearResults: () => (resultsDisplay.innerHTML = "")
+          products
         })
         if (!document.querySelector("#request-container")) {
-          modal.appendChild(requestItem)
+          return resultsDisplay.appendChild(requestItem)
         }
       }
-      // add reportContainer
+
+      // If there are results, display them in the modal.
+      const resultListItems = products.slice(0, 6).map((result) => {
+        return createResultListItem(result)
+      })
+
+      resultListItems.forEach((item) => {
+        resultsDisplay.appendChild(item)
+        item.addEventListener("click", (event) => {
+          // Remove modal / backdrop and populate the original search bar with the selected product name.
+          searchBar.value = item.dataset.partNum
+          remove(modal, backdrop)
+          searchBar.focus()
+        })
+      })
+
+      // Add a button to the modal that allows the user to report an issue.
+      const requestItem = createReportIssueContainter({
+        searchTerm,
+        products,
+        clearResults: () => (resultsDisplay.innerHTML = "")
+      })
+      if (!document.querySelector("#request-container")) {
+        modal.appendChild(requestItem)
+      }
     } catch (error) {
       console.error(error)
     }
