@@ -1,4 +1,5 @@
 import {
+  createErrorContainer,
   createReportIssueContainter,
   createRequestProductContainer
 } from "./request"
@@ -23,20 +24,14 @@ export function showModal(searchBar) {
     try {
       const data = await fetch(`${process.env.API}/search?q=${searchTerm}`)
 
-      const results = await data.json()
-      const { products, error } = results.data
+      const apiResponse = await data.json()
+
+      const { products, error } = apiResponse.data
 
       clearResults(resultsDisplay)
 
       if (error) {
-        const errorItem = document.createElement("li")
-        errorItem.textContent = error
-        Object.assign(errorItem.style, {
-          padding: "5px",
-          textAlign: "center",
-          color: "red"
-        })
-        return resultsDisplay.appendChild(errorItem)
+        throw new Error(`Error: ${error.message}` + error, apiResponse)
       }
 
       if (searchTerm === "") return clearResults(resultsDisplay)
@@ -53,7 +48,7 @@ export function showModal(searchBar) {
         // Add a button to the modal that allows the user to request a product.
         const requestItem = createRequestProductContainer({
           searchTerm,
-          products
+          apiResponse
         })
         if (!document.querySelector("#request-container")) {
           return resultsDisplay.appendChild(requestItem)
@@ -69,16 +64,16 @@ export function showModal(searchBar) {
         resultsDisplay.appendChild(item)
         item.addEventListener("click", (event) => {
           // Remove modal / backdrop and populate the original search bar with the selected product name.
+          searchBar.focus()
           searchBar.value = item.dataset.partNum
           remove(modal, backdrop)
-          searchBar.focus()
         })
       })
 
       // Add a button to the modal that allows the user to report an issue.
       const requestItem = createReportIssueContainter({
         searchTerm,
-        products,
+        apiResponse,
         clearResults: () => (resultsDisplay.innerHTML = "")
       })
       if (!document.querySelector("#request-container")) {
@@ -86,6 +81,25 @@ export function showModal(searchBar) {
       }
     } catch (error) {
       console.error(error)
+      clearResults(resultsDisplay)
+      const errorItem = document.createElement("li")
+      errorItem.textContent =
+        process.env.NODE_ENV === "development"
+          ? error
+          : "Sorry, something went wrong. Please try again later."
+      Object.assign(errorItem.style, {
+        padding: "5px",
+        textAlign: "center",
+        color: "red"
+      })
+      resultsDisplay.appendChild(errorItem)
+      const reportError = createErrorContainer({
+        searchTerm,
+        error
+      })
+      if (!document.querySelector("#request-container")) {
+        modal.appendChild(reportError)
+      }
     }
   }, 500)
 

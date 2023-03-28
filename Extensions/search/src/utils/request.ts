@@ -35,12 +35,30 @@ function createRequestContainer(buttonText, runOnClick) {
   return requestContainer
 }
 
-export function createRequestProductContainer({ searchTerm, products }) {
+export function createErrorContainer({ searchTerm, error }) {
+  function onClick() {
+    const apiResponse = {
+      message: error.message,
+      stack: error.stack
+    } as Error
+    const emailOptions = {
+      request: "Error",
+      searchTerm: searchTerm,
+      apiResponse
+    }
+    sendEmail(emailOptions)
+
+    return
+  }
+  return createRequestContainer("Report Error", onClick)
+}
+
+export function createRequestProductContainer({ searchTerm, apiResponse }) {
   function onClick() {
     const emailOptions = {
       request: "Request product",
       searchTerm: searchTerm,
-      products
+      apiResponse
     }
     sendEmail(emailOptions)
 
@@ -51,7 +69,7 @@ export function createRequestProductContainer({ searchTerm, products }) {
 
 export function createReportIssueContainter({
   searchTerm,
-  products,
+  apiResponse,
   clearResults
 }) {
   function onClick() {
@@ -109,7 +127,7 @@ export function createReportIssueContainter({
       const emailOptions = {
         request,
         searchTerm,
-        products
+        apiResponse
       }
       sendEmail(emailOptions)
     })
@@ -207,15 +225,15 @@ function createButton(buttonText): HTMLButtonElement {
 function sendEmail({
   request,
   searchTerm,
-  products
+  apiResponse
 }: {
   request: string
   searchTerm: string
-  products: ProductResults[]
+  apiResponse: ProductResults[] | Error
 }) {
   window.open(
     `mailto:jakewaldron+ram@gmail.com?subject=Search - "${searchTerm}"&body=Issue: ${request}%0d%0a%0d%0aSearched for: "${searchTerm}"%0d%0a%0d%0aAPI Response:%0d%0a${JSON.stringify(
-      products
+      apiResponse
     )}`
   )
   _requestContainer.textContent = "Email sent!"
