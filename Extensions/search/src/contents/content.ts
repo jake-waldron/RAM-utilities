@@ -63,6 +63,35 @@ window.addEventListener("load", () => {
   findBarAndAddButton(searchBars)
 })
 
+// TDOD:
+// - Figure out how to trigger search on product page without using keyboard
+// - See if there's a way to re-trigger search when category is changed on product page
+// - Add tabbing to the modal
+// - Add tests to check filtering logic
+
+function findBarAndAddButton(listOfBars: AvailableBars[]) {
+  const foundBars = checkForBars(listOfBars)
+  const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
+  if (searchBar) {
+    createAndAttachButton(searchBar)
+  }
+}
+
+function checkForBars(searchBars) {
+  const checkForBars = searchBars.map((searchBar) => {
+    if (
+      window.location.pathname === searchBar.pathname &&
+      searchBar.searchRegex.test(window.location.search)
+    ) {
+      return {
+        searchBar: document.querySelector(searchBar.selector),
+        parentElement: document.querySelector(searchBar.parent)
+      }
+    }
+  })
+  return checkForBars
+}
+
 function createAndAttachButton(searchBar: SearchBar) {
   const button = document.createElement("button")
   Object.assign(button.style, {
@@ -93,34 +122,5 @@ function createAndAttachButton(searchBar: SearchBar) {
   })
   if (!document.querySelector("#jake-search-button")) {
     searchBar.parentElement.prepend(button)
-  }
-}
-
-// TDOD:
-// - Figure out how to trigger search on product page without using keyboard
-// - See if there's a way to re-trigger search when category is changed on product page
-// - Add tabbing to the modal
-// - Add tests to check filtering logic
-
-function checkForBars(searchBars) {
-  const checkForBars = searchBars.map((searchBar) => {
-    if (
-      window.location.pathname === searchBar.pathname &&
-      searchBar.searchRegex.test(window.location.search)
-    ) {
-      return {
-        searchBar: document.querySelector(searchBar.selector),
-        parentElement: document.querySelector(searchBar.parent)
-      }
-    }
-  })
-  return checkForBars
-}
-
-function findBarAndAddButton(listOfBars) {
-  const foundBars = checkForBars(listOfBars)
-  const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
-  if (searchBar) {
-    createAndAttachButton(searchBar)
   }
 }
