@@ -74,8 +74,8 @@ function findBarAndAddButton(listOfBars: AvailableBars[]) {
   const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
   if (searchBar) {
     // createAndAttachButton(searchBar)
-    const searchButton = new SearchButton()
-    searchButton.attachButtonTo(searchBar.parentElement)
+    const searchButton = new SearchButton(searchBar)
+    searchButton.attachButtonTo()
   }
 }
 
@@ -129,9 +129,13 @@ function createAndAttachButton(searchBar: SearchBar) {
 
 class SearchButton {
   button: HTMLButtonElement
-  searchBar: SearchBar
+  searchBar: HTMLInputElement
+  parentElement: HTMLElement
 
-  constructor() {
+  constructor(searchBar: SearchBar) {
+    this.searchBar = searchBar.searchBar
+    this.parentElement = searchBar.parentElement
+
     this.button = document.createElement("button")
     Object.assign(this.button.style, {
       display: "inline-block",
@@ -161,7 +165,7 @@ class SearchButton {
     })
   }
 
-  attachButtonTo(parentElement: HTMLElement) {
-    parentElement.prepend(this.button)
+  attachButtonTo() {
+    this.parentElement.prepend(this.button)
   }
 }
