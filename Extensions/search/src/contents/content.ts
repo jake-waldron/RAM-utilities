@@ -166,6 +166,8 @@ class SearchButton {
   }
 
   attachButtonTo() {
-    this.parentElement.prepend(this.button)
+    if (!document.querySelector("#jake-search-button")) {
+      this.parentElement.prepend(this.button)
+    }
   }
 }
