@@ -138,7 +138,6 @@ function createModal() {
   modal.appendChild(modalSearchInput)
 
   backdrop.addEventListener("click", () => {
-    console.log("backdrop clicked")
     remove(modal, backdrop)
   })
   window.addEventListener("keydown", (event) => {
