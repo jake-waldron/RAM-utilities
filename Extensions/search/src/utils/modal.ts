@@ -1,7 +1,7 @@
 import {
   createReportIssueContainter,
   createRequestProductContainer
-} from "./report"
+} from "./request"
 
 import { AMP_GREEN, FONT_COLOR } from "./constants"
 
