@@ -16,8 +16,8 @@ type AvailableBars = {
 }
 
 type SearchBar = {
-  searchBar: Element
-  parentElement: Element
+  searchBar: HTMLInputElement
+  parentElement: HTMLElement
 }
 
 const searchBars: AvailableBars[] = [
@@ -73,7 +73,9 @@ function findBarAndAddButton(listOfBars: AvailableBars[]) {
   const foundBars = checkForBars(listOfBars)
   const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
   if (searchBar) {
-    createAndAttachButton(searchBar)
+    // createAndAttachButton(searchBar)
+    const searchButton = new SearchButton()
+    searchButton.attachButtonTo(searchBar.parentElement)
   }
 }
 
@@ -122,5 +124,44 @@ function createAndAttachButton(searchBar: SearchBar) {
   })
   if (!document.querySelector("#jake-search-button")) {
     searchBar.parentElement.prepend(button)
+  }
+}
+
+class SearchButton {
+  button: HTMLButtonElement
+  searchBar: SearchBar
+
+  constructor() {
+    this.button = document.createElement("button")
+    Object.assign(this.button.style, {
+      display: "inline-block",
+      height: "34px",
+      width: "max-content",
+      background: "#1ab394",
+      color: "white",
+      border: "0",
+      padding: "4px 8px"
+    })
+    this.button.id = "jake-search-button"
+    this.button.innerText = "Quick Search"
+    this.button.style.display = "inline-block"
+    this.button.addEventListener("click", async (e) => {
+      e.preventDefault()
+      try {
+        fetch(`${process.env.API}/wake-up`)
+      } catch (error) {
+        console.error(error)
+      }
+      if (
+        !document.querySelector("#jake-modal") &&
+        !document.querySelector("#jake-modal-backdrop")
+      ) {
+        showModal(this.searchBar)
+      }
+    })
+  }
+
+  attachButtonTo(parentElement: HTMLElement) {
+    parentElement.prepend(this.button)
   }
 }
