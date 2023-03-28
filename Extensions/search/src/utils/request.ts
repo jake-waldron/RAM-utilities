@@ -222,7 +222,7 @@ function createButton(buttonText): HTMLButtonElement {
   return button
 }
 
-function sendEmail({
+async function sendEmail({
   request,
   searchTerm,
   apiResponse
@@ -236,5 +236,8 @@ function sendEmail({
       apiResponse
     )}`
   )
-  _requestContainer.textContent = "Email sent!"
+  _requestContainer.textContent = "Generating message..."
+  setTimeout(() => {
+    _requestContainer.textContent = "Email sent!"
+  }, 500)
 }
