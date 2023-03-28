@@ -35,8 +35,8 @@ export default function createReportContainer({
     // so just send an email with the search term
     if (requestArray.length === 1) {
       const emailOptions = {
-        subject: `Search - ${requestArray[0]}`,
-        body: `Search Term: ${searchTerm}`,
+        request: requestArray[0],
+        searchTerm: searchTerm,
         products
       }
 
@@ -80,20 +80,20 @@ export default function createReportContainer({
 
       form.addEventListener("submit", (event) => {
         event.preventDefault()
-        let reason = Array.from(optionDiv.querySelectorAll("input")).find(
+        let request = Array.from(optionDiv.querySelectorAll("input")).find(
           (option: HTMLInputElement) => option.checked
         ).value
-        if (reason === "Other") {
+        if (request === "Other") {
           const otherInput: HTMLInputElement =
             document.querySelector("#other-input")
-          reason = `Other - ${otherInput.value}`
+          request = `Other - ${otherInput.value}`
           if (otherInput.value === "") {
             return otherInput.focus()
           }
         }
         const emailOptions = {
-          subject: `Search - ${reason}`,
-          body: `Search Term: "${searchTerm}"`,
+          request,
+          searchTerm,
           products
         }
         sendEmail(emailOptions)
@@ -194,16 +194,16 @@ function createButton(buttonText): HTMLButtonElement {
 }
 
 function sendEmail({
-  subject,
-  body,
+  request,
+  searchTerm,
   products
 }: {
-  subject: string
-  body: string
+  request: string
+  searchTerm: string
   products: ProductResults[]
 }) {
   window.open(
-    `mailto:jakewaldron+ram@gmail.com?subject=${subject}&body=${body}%0d%0a%0d%0aAPI Response:%0d%0a${JSON.stringify(
+    `mailto:jakewaldron+ram@gmail.com?subject=Search - "${searchTerm}"&body=Request: ${request}%0d%0a%0d%0aSearched for: "${searchTerm}"%0d%0a%0d%0aAPI Response:%0d%0a${JSON.stringify(
       products
     )}`
   )
