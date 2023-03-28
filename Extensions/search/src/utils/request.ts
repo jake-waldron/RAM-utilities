@@ -237,7 +237,11 @@ async function sendEmail({
     )}`
   )
   _requestContainer.textContent = "Generating message..."
-  setTimeout(() => {
+  function displayEmailSent() {
     _requestContainer.textContent = "Email sent!"
+    window.removeEventListener("focus", displayEmailSent)
+  }
+  setTimeout(() => {
+    window.addEventListener("focus", displayEmailSent)
   }, 500)
 }
