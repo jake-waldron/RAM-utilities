@@ -1,4 +1,7 @@
-import createReportContainer from "./report"
+import {
+  createReportIssueContainter,
+  createRequestProductContainer
+} from "./report"
 
 import { AMP_GREEN, FONT_COLOR } from "./constants"
 
@@ -47,13 +50,11 @@ export function showModal(searchBar) {
           })
           resultsDisplay.appendChild(noResults)
           // Add a button to the modal that allows the user to request a product.
-          const requestItem = createReportContainer({
-            buttonText: "Request product",
-            requestArray: ["Request product"],
+          const requestItem = createRequestProductContainer({
             searchTerm,
             products
           })
-          if (!document.querySelector("#report-container")) {
+          if (!document.querySelector("#request-container")) {
             return resultsDisplay.appendChild(requestItem)
           }
         }
@@ -76,19 +77,12 @@ export function showModal(searchBar) {
         })
 
         // Add a button to the modal that allows the user to report an issue.
-        const requestItem = createReportContainer({
-          buttonText: "Report Issue",
-          requestArray: [
-            "Too many results",
-            "Not enough results",
-            "Unfocused results",
-            "Other"
-          ],
+        const requestItem = createReportIssueContainter({
           searchTerm,
           products,
-          runBefore: () => (resultsDisplay.innerHTML = "")
+          clearResults: () => (resultsDisplay.innerHTML = "")
         })
-        if (!document.querySelector("#report-container")) {
+        if (!document.querySelector("#request-container")) {
           modal.appendChild(requestItem)
         }
       }
@@ -220,7 +214,7 @@ function createResultsDisplay(): HTMLUListElement {
 
 function clearResults(resultsDisplay: HTMLUListElement) {
   resultsDisplay.innerHTML = ""
-  const resultsContainer = document.querySelector("#report-container")
+  const resultsContainer = document.querySelector("#request-container")
   if (resultsContainer) {
     remove(resultsContainer)
   }

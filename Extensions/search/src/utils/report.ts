@@ -14,98 +14,107 @@ type ProductResults = {
   score: number
 }
 
-export default function createReportContainer({
-  buttonText,
-  requestArray,
-  searchTerm,
-  products,
-  runBefore
-}: Props) {
+let _requestContainer
+
+function createRequestContainer(buttonText, runOnClick) {
   // create the container
-  const reportContainer = createContainer()
+  const requestContainer = createContainer()
 
   // create the button
-  const reportBtn = createButton(buttonText)
-  if (!document.getElementById("report-btn")) {
-    reportContainer.appendChild(reportBtn)
+  const requestButton = createButton(buttonText)
+  if (!document.getElementById("request-button")) {
+    requestContainer.appendChild(requestButton)
   }
 
-  reportBtn.addEventListener("click", () => {
-    // if there is only one request, it means the user is requesting to add an item
-    // so just send an email with the search term
-    if (requestArray.length === 1) {
-      const emailOptions = {
-        request: requestArray[0],
-        searchTerm: searchTerm,
-        products
-      }
+  requestButton.addEventListener("click", () => {
+    runOnClick()
 
-      sendEmail(emailOptions)
-      return
-    }
-
-    // if there are multiple requests, it means the user is reporting an issue
-    if (requestArray.length >= 2) {
-      // create form and attach, then add button
-      runBefore()
-      const form = createForm()
-
-      const optionDiv = document.createElement("div")
-      Object.assign(optionDiv.style, {
-        display: "flex",
-        flexDirection: requestArray.length === 2 ? "row" : "column",
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center"
-      })
-      const formOptions = addFormOptions(requestArray)
-      formOptions.forEach((option) => optionDiv.appendChild(option))
-
-      form.appendChild(optionDiv)
-      const sendBtn = document.createElement("button")
-      sendBtn.type = "submit"
-      sendBtn.textContent = "Send"
-      Object.assign(sendBtn.style, {
-        backgroundColor: AMP_GREEN,
-        width: "100px",
-        height: "30px",
-        borderRadius: "5px",
-        color: "white",
-        border: "none",
-        marginTop: "8px"
-      })
-
-      form.appendChild(sendBtn)
-      reportContainer.appendChild(form)
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault()
-        let request = Array.from(optionDiv.querySelectorAll("input")).find(
-          (option: HTMLInputElement) => option.checked
-        ).value
-        if (request === "Other") {
-          const otherInput: HTMLInputElement =
-            document.querySelector("#other-input")
-          request = `Other - ${otherInput.value}`
-          if (otherInput.value === "") {
-            return otherInput.focus()
-          }
-        }
-        const emailOptions = {
-          request,
-          searchTerm,
-          products
-        }
-        sendEmail(emailOptions)
-        // return
-
-        reportContainer.textContent = "Email sent!"
-      })
-    }
-    reportBtn.remove()
+    requestButton.remove()
   })
 
-  return reportContainer
+  return requestContainer
+}
+
+export function createRequestProductContainer({ searchTerm, products }) {
+  function onClick() {
+    const emailOptions = {
+      request: "Request product",
+      searchTerm: searchTerm,
+      products
+    }
+    sendEmail(emailOptions)
+
+    return
+  }
+  return createRequestContainer("Request product", onClick)
+}
+
+export function createReportIssueContainter({
+  searchTerm,
+  products,
+  clearResults
+}) {
+  function onClick() {
+    clearResults()
+    const requestArray = [
+      "Too many results",
+      "Not enough results",
+      "Unfocused results",
+      "Other"
+    ]
+
+    const form = createForm()
+
+    const optionDiv = document.createElement("div")
+    Object.assign(optionDiv.style, {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      justifyContent: "center",
+      alignItems: "center"
+    })
+    const formOptions = addFormOptions(requestArray)
+    formOptions.forEach((option) => optionDiv.appendChild(option))
+
+    form.appendChild(optionDiv)
+    const sendBtn = document.createElement("button")
+    sendBtn.type = "submit"
+    sendBtn.textContent = "Send"
+    Object.assign(sendBtn.style, {
+      backgroundColor: AMP_GREEN,
+      width: "100px",
+      height: "30px",
+      borderRadius: "5px",
+      color: "white",
+      border: "none",
+      marginTop: "8px"
+    })
+
+    form.appendChild(sendBtn)
+    _requestContainer.appendChild(form)
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault()
+      let request = Array.from(optionDiv.querySelectorAll("input")).find(
+        (option: HTMLInputElement) => option.checked
+      ).value
+      if (request === "Other") {
+        const otherInput: HTMLInputElement =
+          document.querySelector("#other-input")
+        request = `Other - ${otherInput.value}`
+        if (otherInput.value === "") {
+          return otherInput.focus()
+        }
+      }
+      const emailOptions = {
+        request,
+        searchTerm,
+        products
+      }
+      sendEmail(emailOptions)
+    })
+  }
+  return createRequestContainer("Report issue", onClick)
 }
 
 function createForm(): HTMLFormElement {
@@ -167,22 +176,24 @@ function addFormOptions(requestArray) {
 }
 
 function createContainer(): HTMLDivElement {
-  const reportContainer = document.createElement("div")
-  reportContainer.id = "report-container"
-  Object.assign(reportContainer.style, {
+  const requestContainer = document.createElement("div")
+  requestContainer.id = "request-container"
+  Object.assign(requestContainer.style, {
     padding: "4px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center"
   })
-  return reportContainer
+  _requestContainer = requestContainer
+
+  return requestContainer
 }
 
 function createButton(buttonText): HTMLButtonElement {
   const button = document.createElement("button")
   button.textContent = buttonText
-  button.id = "report-btn"
+  button.id = "request-button"
   Object.assign(button.style, {
     border: "none",
     backgroundColor: "inherit",
@@ -203,8 +214,9 @@ function sendEmail({
   products: ProductResults[]
 }) {
   window.open(
-    `mailto:jakewaldron+ram@gmail.com?subject=Search - "${searchTerm}"&body=Request: ${request}%0d%0a%0d%0aSearched for: "${searchTerm}"%0d%0a%0d%0aAPI Response:%0d%0a${JSON.stringify(
+    `mailto:jakewaldron+ram@gmail.com?subject=Search - "${searchTerm}"&body=Issue: ${request}%0d%0a%0d%0aSearched for: "${searchTerm}"%0d%0a%0d%0aAPI Response:%0d%0a${JSON.stringify(
       products
     )}`
   )
+  _requestContainer.textContent = "Email sent!"
 }
