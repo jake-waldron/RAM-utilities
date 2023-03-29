@@ -1,11 +1,19 @@
 import type { PlasmoCSConfig } from "plasmo"
+import cssText from "data-text:../styles.css"
 import { showModal } from "../utils/modal"
+import React from "react"
 
 export const config: PlasmoCSConfig = {
   matches: [
     "https://amp.reynoldsam.com/*",
     "https://ram-bam-us-web-qa.azurewebsites.net/*"
   ]
+}
+
+export const getStyle = () => {
+  const style = document.createElement("style")
+  style.textContent = cssText
+  return style
 }
 
 type AvailableBars = {
@@ -50,16 +58,73 @@ const addItemBars: AvailableBars[] = [
   }
 ]
 
+let isSearchPage = null
+// const isSearchPage = [...searchBars, ...addItemBars].find((bar) => {
+//   return (
+//     window.location.pathname === bar.pathname &&
+//     bar.searchRegex.test(window.location.search)
+//   )
+// })
+
+console.log(isSearchPage)
+
+export default function Overlay() {
+  const [show, setShow] = React.useState(false)
+  const buttonRef = React.useRef<HTMLButtonElement>(null)
+
+  React.useEffect(() => {
+    if (!isSearchPage) return console.log("NOT SEARCH PAGE, DOING NOTHING!")
+    buttonRef.current = document.querySelector("#jake-search-button")
+    const checkInterval = setInterval(() => {
+      if (!buttonRef.current) {
+        console.log("checking for button")
+        buttonRef.current = document.body.querySelector("#jake-search-button")
+      }
+      if (buttonRef.current) {
+        clearInterval(checkInterval)
+        buttonRef.current?.addEventListener("click", () => setShow(true))
+      }
+    }, 200)
+  }, [isSearchPage])
+
+  return (
+    show && (
+      <div
+        id="jake-quick-search"
+        className="flex h-screen w-screen items-center justify-center bg-gray-800/25"
+        onClick={() => setShow(false)}>
+        <div className="rounded-xl bg-white p-4 text-3xl text-slate-400 hover:bg-sky-200 hover:text-white">
+          {/* ADD MODAL COMPONENT HERE */}
+          <h1>Overlay</h1>
+        </div>
+      </div>
+    )
+  )
+}
+
+// TESTING REACT
 // Add button to Add Items bars
 // handles differently because we have to wait for the request to be made before the bar is on the page
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === "add items") {
+    isSearchPage = [...searchBars, ...addItemBars].find((bar) => {
+      return (
+        window.location.pathname === bar.pathname &&
+        bar.searchRegex.test(window.location.search)
+      )
+    })
     findBarAndAddButton(addItemBars)
   }
 })
 
 // Handles normal search bars that load with the page
 window.addEventListener("load", () => {
+  isSearchPage = [...searchBars, ...addItemBars].find((bar) => {
+    return (
+      window.location.pathname === bar.pathname &&
+      bar.searchRegex.test(window.location.search)
+    )
+  })
   findBarAndAddButton(searchBars)
 })
 
@@ -149,20 +214,20 @@ class SearchButton {
     this.button.id = "jake-search-button"
     this.button.innerText = "Quick Search"
     this.button.style.display = "inline-block"
-    this.button.addEventListener("click", async (e) => {
-      e.preventDefault()
-      try {
-        fetch(`${process.env.API}/wake-up`)
-      } catch (error) {
-        console.error(error)
-      }
-      if (
-        !document.querySelector("#jake-modal") &&
-        !document.querySelector("#jake-modal-backdrop")
-      ) {
-        showModal(this.searchBar)
-      }
-    })
+    // this.button.addEventListener("click", async (e) => {
+    //   e.preventDefault()
+    //   try {
+    //     fetch(`${process.env.API}/wake-up`)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    //   if (
+    //     !document.querySelector("#jake-modal") &&
+    //     !document.querySelector("#jake-modal-backdrop")
+    //   ) {
+    //     showModal(this.searchBar)
+    //   }
+    // })
   }
 
   attachButtonTo() {
