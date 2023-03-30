@@ -5,7 +5,6 @@ import React from "react"
 import { createRoot } from "react-dom/client"
 
 import Button from "../components/Button"
-import useStore from "../store"
 import Modal from "../components/Modal"
 
 export const config: PlasmoCSConfig = {
@@ -187,7 +186,7 @@ class SearchButton {
         !document.querySelector("#jake-modal-backdrop")
       ) {
         // showModal(this.searchBar)
-        setState({ showModal: true })
+        // setState({ showModal: true })
       }
     })
   }
