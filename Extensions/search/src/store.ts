@@ -1,6 +1,11 @@
 import { create } from "zustand"
 
-const useStore = create((set) => ({
+type State = {
+  showModal: boolean
+  toggle: () => void
+}
+
+const useStore = create<State>((set) => ({
   showModal: false,
   toggle: () => set((state) => ({ showModal: !state.showModal }))
 }))
