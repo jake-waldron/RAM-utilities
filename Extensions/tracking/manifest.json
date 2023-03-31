@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "Drop Ship Tracking",
+	"version": "1.0",
+	"description": "Automatically adds tracking numbers to drop ship orders",
+	"content_scripts": [
+		{
+			"js": ["scripts/content.js"],
+			"matches": [
+				"https://amp.reynoldsam.com/Order/SendInvoice*",
+				"https://ram-bam-us-web-qa.azurewebsites.net/Order/SendInvoice*"
+			]
+		}
+	],
+	"host_permissions": ["https://amp.reynoldsam.com/*", "https://ram-bam-us-web-qa.azurewebsites.net/*"]
+}
