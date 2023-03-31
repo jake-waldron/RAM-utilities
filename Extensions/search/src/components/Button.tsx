@@ -4,6 +4,7 @@ import React from "react"
 import "../styles.css"
 import { useSetup } from "@hooks/useSetup"
 
+/** Button element that gets added to the AMP page. Takes the product search bar as an argument to get value from / set value of after searching for product */
 function Button({ searchBar }: { searchBar: HTMLInputElement }) {
   const { toggleModal } = useSetup(searchBar)
 
