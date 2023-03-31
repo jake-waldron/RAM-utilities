@@ -2,12 +2,20 @@ import { create } from "zustand"
 
 type State = {
   showModal: boolean
-  toggle: () => void
+  searchBarRef: React.MutableRefObject<HTMLInputElement> | null
+  toggleModal: () => void
+  setSearchBarRef: (
+    searchBar: React.MutableRefObject<HTMLInputElement> | null
+  ) => void
 }
 
 const useStore = create<State>((set) => ({
   showModal: false,
-  toggle: () => set((state) => ({ showModal: !state.showModal }))
+  searchBarRef: null,
+  toggleModal: () => set((state) => ({ showModal: !state.showModal })),
+  setSearchBarRef: (
+    searchBar: React.MutableRefObject<HTMLInputElement> | null
+  ) => set(() => ({ searchBarRef: searchBar }))
 }))
 
 export default useStore

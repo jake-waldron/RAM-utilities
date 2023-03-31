@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client"
 
 import Button from "../components/Button"
 import Modal from "../components/Modal"
+import useStore from "@/store"
 
 export const config: PlasmoCSConfig = {
   matches: [
@@ -63,11 +64,9 @@ const addItemBars: AvailableBars[] = [
 ]
 
 export default function ReactContainer() {
-  return (
-    <>
-      <Modal />
-    </>
-  )
+  const { showModal } = useStore()
+  // Creates a container for the modal to appear in
+  return <>{showModal && <Modal />}</>
 }
 
 // TESTING REACT
@@ -100,7 +99,7 @@ function findBarAndAddButton(listOfBars: AvailableBars[]) {
     searchBar.parentElement.prepend(domNode)
     const root = createRoot(domNode)
     console.log("adding button!")
-    root.render(<Button />)
+    root.render(<Button searchBar={searchBar.searchBar} />)
   }
 }
 

@@ -2,21 +2,21 @@ import useStore from "../store"
 import React from "react"
 
 import "../styles.css"
+import { useSetup } from "@hooks/useSetup"
 
-function Button() {
-  const state = useStore()
-  console.log(state, "state in button")
+function Button({ searchBar }: { searchBar: HTMLInputElement }) {
+  const { toggleModal } = useSetup(searchBar)
+
   return (
     <button
       onClick={() => {
         console.log("clicked react button in separate component")
-        state.toggle()
+        toggleModal()
       }}
       className="h-full bg-AMP_GREEN px-4 text-white "
       id="REACT-TEST">
       Quick Search
     </button>
-    // <div className="h-20 w-72 bg-emerald-500">TEST</div>
   )
 }
 

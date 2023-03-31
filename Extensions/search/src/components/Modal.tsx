@@ -1,21 +1,97 @@
 import useStore from "../store"
-import React from "react"
+import React, { ReactNode } from "react"
 
 export default function Modal() {
   const state = useStore()
-  console.log("overlay loaded")
+
+  const [searchTerm, setSearchTerm] = React.useState("")
+  const [results, setResults] = React.useState([])
+
+  React.useEffect(() => {
+    if (state.searchBarRef) {
+      setSearchTerm(state.searchBarRef.current?.value || "")
+    }
+  }, [state.showModal])
+
+  React.useEffect(() => {
+    async function getResults() {
+      const data = await fetch(`${process.env.API}/search?q=${searchTerm}`)
+
+      const apiResponse = await data.json()
+
+      const { products, error } = apiResponse.data
+      console.log(products)
+      setResults(products)
+    }
+    const debounce = setTimeout(() => {
+      if (!searchTerm) return setResults([])
+      if (searchTerm) {
+        getResults()
+      }
+    }, 500)
+
+    return () => clearTimeout(debounce)
+  }, [searchTerm])
+
+  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
+    // e.preventDefault()
+    if (e.target === e.currentTarget) {
+      state.toggleModal()
+    }
+  }
+
+  function handleSelect(partNum: string) {
+    if (partNum === "") return
+    state.searchBarRef.current.value = partNum
+    state.searchBarRef.current.focus()
+    state.toggleModal()
+  }
 
   return (
-    state.showModal && (
-      <div
-        id="jake-quick-search"
-        className="fixed flex h-screen w-screen items-center justify-center bg-gray-800/25"
-        onClick={() => state.toggle()}>
-        <div className="rounded-xl bg-white p-4 text-3xl text-slate-400 hover:bg-sky-200 hover:text-white">
+    <>
+      <ModalBackdrop closeModal={closeModal}>
+        <div className="z-10 flex flex-col rounded-xl bg-white p-4 text-3xl text-slate-400  ">
           {/* ADD MODAL COMPONENT HERE */}
-          <h1>Modal</h1>
+          <input
+            type="text"
+            value={searchTerm || ""}
+            placeholder="Search for product..."
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <hr />
+          {results && (
+            <ul>
+              {results.map((result) => (
+                <li key={result.partNum}>
+                  <p onClick={() => handleSelect(result.partNum)}>
+                    {result.name}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+          {results.length === 0 && (
+            <p className="text-center">No results found</p>
+          )}
         </div>
-      </div>
-    )
+      </ModalBackdrop>
+    </>
+  )
+}
+
+function ModalBackdrop({
+  children,
+  closeModal
+}: {
+  children: ReactNode
+  closeModal: (e: React.MouseEvent) => void
+}) {
+  return (
+    <div
+      id="modal-backdrop"
+      className="fixed z-0 flex h-screen w-screen items-center justify-center bg-gray-800/25"
+      onClick={closeModal}>
+      {children}
+    </div>
   )
 }
