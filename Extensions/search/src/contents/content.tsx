@@ -3,6 +3,7 @@ import cssText from "data-text:../styles.css"
 import { showModal } from "../utils/modal"
 import React from "react"
 import { createRoot } from "react-dom/client"
+import { QueryClient, QueryClientProvider } from "react-query"
 
 import Button from "../components/Button"
 import Modal from "../components/Modal"
@@ -20,6 +21,8 @@ export const getStyle = () => {
   style.textContent = cssText
   return style
 }
+
+const queryClient = new QueryClient()
 
 type AvailableBars = {
   selector: string
@@ -66,7 +69,11 @@ const addItemBars: AvailableBars[] = [
 export default function ReactContainer() {
   const { showModal } = useStore()
   // Creates a container for the modal to appear in
-  return <>{showModal && <Modal />}</>
+  return (
+    <QueryClientProvider client={queryClient}>
+      {showModal && <Modal />}
+    </QueryClientProvider>
+  )
 }
 
 // TESTING REACT
