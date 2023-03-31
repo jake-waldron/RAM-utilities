@@ -35,34 +35,68 @@ export default function Modal() {
     return () => clearTimeout(debounce)
   }, [inputValue])
 
+  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.target === e.currentTarget) {
+      toggleModal()
+    }
+  }
+
   return (
     <>
-      <ModalBackdrop>
-        <div className="z-10 flex flex-col rounded-xl bg-white p-4 text-3xl text-slate-400  ">
-          {/* ADD MODAL COMPONENT HERE */}
-          <input
-            type="text"
+      <ModalBackdrop closeModal={closeModal}>
+        <ModalBox>
+          <ModalInput
             value={inputValue || ""}
-            placeholder="Search for product..."
             onChange={(e) => setInputValue(e.target.value)}
+            className="mb-4 block w-full border-2 p-1 focus:outline-AMP_GREEN"
           />
-          <hr />
           {searchTerm !== "" && <Results queryData={queryData} />}
-        </div>
+        </ModalBox>
       </ModalBackdrop>
     </>
   )
 }
 
-function ModalBackdrop({ children }: { children: ReactNode }) {
-  const { toggleModal } = useStore()
+function ModalBackdrop({
+  children,
+  closeModal
+}: {
+  children: ReactNode
+  closeModal: (e: React.MouseEvent<HTMLDivElement>) => void
+}) {
   return (
     <div
       id="modal-backdrop"
       className="fixed z-0 flex h-screen w-screen items-center justify-center bg-gray-800/25"
-      onClick={() => toggleModal()}>
+      onClick={closeModal}>
       {children}
     </div>
+  )
+}
+
+function ModalBox({ children }: { children: ReactNode }) {
+  return (
+    <div className="z-10 flex w-[400px] flex-col rounded-xl bg-white p-4 text-2xl text-FONT_COLOR shadow-2xl  ">
+      {children}
+    </div>
+  )
+}
+
+type ModalInputProps = {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  value?: string
+  className?: string
+}
+
+function ModalInput(props: ModalInputProps) {
+  const { onChange, ...delegated } = props
+  return (
+    <input
+      type="text"
+      placeholder="Search for product..."
+      onChange={onChange}
+      {...delegated}
+    />
   )
 }
 
@@ -78,20 +112,28 @@ function Results({ queryData }) {
     toggleModal()
   }
 
-  if (isLoading) return <p className="text-center">Loading...</p>
+  if (isLoading) return <p className="text-center">Searching...</p>
   if (isError) return <p className="text-center">Error: {error.message}</p>
 
   const { products } = data.data
 
   return products.length > 0 ? (
+    <ProductList products={products} handleSelect={handleSelect} />
+  ) : (
+    <p className="text-center">No products found</p>
+  )
+}
+
+function ProductList({ products, handleSelect }) {
+  return (
     <ul>
       {products.map((result) => (
-        <li key={result.partNum}>
+        <li
+          key={result.partNum}
+          className="cursor-pointer p-2 hover:bg-AMP_GREEN hover:text-white">
           <p onClick={() => handleSelect(result.partNum)}>{result.name}</p>
         </li>
       ))}
     </ul>
-  ) : (
-    <p className="text-center">No results found</p>
   )
 }
