@@ -35,15 +35,9 @@ export default function Modal() {
     return () => clearTimeout(debounce)
   }, [inputValue])
 
-  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
-    if (e.target === e.currentTarget) {
-      toggleModal()
-    }
-  }
-
   return (
     <>
-      <ModalBackdrop closeModal={closeModal}>
+      <ModalBackdrop>
         <ModalBox>
           <ModalInput
             value={inputValue || ""}
@@ -57,13 +51,29 @@ export default function Modal() {
   )
 }
 
-function ModalBackdrop({
-  children,
-  closeModal
-}: {
-  children: ReactNode
-  closeModal: (e: React.MouseEvent<HTMLDivElement>) => void
-}) {
+function ModalBackdrop({ children }: { children: ReactNode }) {
+  const { toggleModal } = useStore()
+  const windowRef = React.useRef(window)
+
+  React.useEffect(() => {
+    function handleKeyPress(e) {
+      if (e.key === "Escape") {
+        toggleModal()
+      }
+    }
+    windowRef.current.addEventListener("keydown", handleKeyPress)
+
+    return () => {
+      windowRef.current.removeEventListener("keydown", handleKeyPress)
+    }
+  }, [])
+
+  function closeModal(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.target === e.currentTarget) {
+      toggleModal()
+    }
+  }
+
   return (
     <div
       id="modal-backdrop"
@@ -89,10 +99,17 @@ type ModalInputProps = {
 }
 
 function ModalInput(props: ModalInputProps) {
+  const inputRef = React.useRef<HTMLInputElement>(null)
   const { onChange, ...delegated } = props
+
+  React.useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
+
   return (
     <input
       type="text"
+      ref={inputRef}
       placeholder="Search for product..."
       onChange={onChange}
       {...delegated}
