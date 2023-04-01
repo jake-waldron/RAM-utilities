@@ -20,21 +20,78 @@ const multipleEmails = billingEmails.length > 1 || shippingEmails.length > 1;
 if (multipleEmails) {
 	const editButton = document.querySelector('#EditHiddenHeaderInfo');
 	editButton.click();
-	let billToEmails = document.querySelector('#Order_BillToEmail');
-	let shipToEmails = document.querySelector('#Order_ShipToEmail');
+	const billToEmails = document.querySelector('#Order_BillToEmail');
+	const shipToEmails = document.querySelector('#Order_ShipToEmail');
 
-	const emailDisplays = Array.from(document.querySelectorAll('.bootstrap-multiemail'));
-	emailDisplays.forEach((emailDisplay) => {
-		emailDisplay.innerHTML = '';
-	});
+	// const initialValues = {
+	// 	billToEmails: billToEmails.value,
+	// 	shipToEmails: shipToEmails.value,
+	// };
 
-	const [billToDisplay, shipToDisplay] = emailDisplays;
+	const [billToDisplay, shipToDisplay] = Array.from(document.querySelectorAll('.bootstrap-multiemail'));
 
-	const billToEmailForm = createEmailCheckboxForm('billing', billToEmails, billToDisplay);
-	const shipToEmailForm = createEmailCheckboxForm('shipping', shipToEmails, shipToDisplay);
+	const billing = {
+		initialValues: billToEmails.value,
+		display: billToDisplay,
+		emailInput: billToEmails,
+		type: 'billing',
+	};
 
-	billToDisplay.appendChild(billToEmailForm);
-	shipToDisplay.appendChild(shipToEmailForm);
+	const shipping = {
+		initialValues: shipToEmails.value,
+		display: shipToDisplay,
+		emailInput: shipToEmails,
+		type: 'shipping',
+	};
+
+	setupEmailEdit(billing);
+	setupEmailEdit(shipping);
+
+	function setupEmailEdit({ initialValues, display, emailInput, type }) {
+		const button = document.createElement('button');
+		button.textContent = 'Edit Emails';
+		button.classList.add('btn');
+		button.classList.add('btn-primary');
+		button.classList.add('btn-xs');
+		button.style.margin = '0 8px 0 8px';
+
+		display.insertAdjacentElement('beforebegin', button);
+		button.addEventListener('click', (e) => {
+			e.preventDefault();
+			clearAndAddForm(type, display, emailInput);
+
+			const resetButton = document.createElement('button');
+			resetButton.id = `reset${type}`;
+			resetButton.textContent = 'Reset Emails';
+			resetButton.classList.add('btn');
+			resetButton.classList.add('btn-warning');
+			resetButton.classList.add('btn-xs');
+			resetButton.style.margin = '0 0 0 8px';
+
+			if (!document.querySelector(`#reset${type}`)) {
+				button.insertAdjacentElement('afterend', resetButton);
+			}
+
+			resetButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				display.innerHTML = '';
+				emailInput.value = initialValues;
+				const emails = initialValues.split(',');
+				emails.forEach((email) => {
+					addTag(email, display);
+				});
+				resetButton.remove();
+			});
+		});
+	}
+}
+
+function clearAndAddForm(type, display, billToEmails) {
+	display.innerHTML = '';
+
+	const emailForm = createEmailCheckboxForm(type, billToEmails, display);
+
+	display.appendChild(emailForm);
 }
 
 function createEmailCheckboxForm(type, emailInput, display) {
@@ -62,6 +119,9 @@ function createEmailCheckboxForm(type, emailInput, display) {
 		form.appendChild(optionDiv);
 	});
 	const submitButton = document.createElement('button');
+	submitButton.classList.add('btn');
+	submitButton.classList.add('btn-primary');
+	submitButton.classList.add('btn-sm');
 	submitButton.textContent = 'Save Emails';
 	form.appendChild(submitButton);
 
@@ -84,4 +144,15 @@ function createEmailCheckboxForm(type, emailInput, display) {
 	});
 
 	return form;
+}
+
+function addTag(email, display) {
+	const outsideSpan = document.createElement('span');
+	outsideSpan.classList.add('tag');
+	outsideSpan.classList.add('valid');
+	outsideSpan.textContent = email;
+	const removeSpan = document.createElement('span');
+	removeSpan.dataset.role = 'remove';
+	outsideSpan.appendChild(removeSpan);
+	display.appendChild(outsideSpan);
 }
