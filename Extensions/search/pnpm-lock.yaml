@@ -14,6 +14,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.2
   react: 18.2.0
   react-dom: 18.2.0
+  react-icons: ^4.8.0
   react-query: ^3.39.3
   romans: ^2.0.8
   tailwindcss: ^3.2.6
@@ -25,6 +26,7 @@ dependencies:
   plasmo: 0.65.0_gjpyg5imi5mt2gbvkmn3a4dr7m
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.8.0_react@18.2.0
   react-query: 3.39.3_biqbaboplfbrettd7655fr4n2y
   romans: 2.0.8
   zustand: 4.3.6_react@18.2.0
@@ -4691,6 +4693,14 @@ packages:
 
   /react-error-overlay/6.0.9:
     resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
+    dev: false
+
+  /react-icons/4.8.0_react@18.2.0:
+    resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-query/3.39.3_biqbaboplfbrettd7655fr4n2y:
