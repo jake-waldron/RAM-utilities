@@ -1,0 +1,16 @@
+{
+	"manifest_version": 3,
+	"name": "Order Email Select",
+	"version": "1.0",
+	"description": "Creates an email selection form on the order page",
+	"content_scripts": [
+		{
+			"js": ["scripts/content.js"],
+			"matches": [
+				"https://amp.reynoldsam.com/Order/Create*",
+				"https://ram-bam-us-web-qa.azurewebsites.net/Order/Create*"
+			]
+		}
+	],
+	"host_permissions": ["https://amp.reynoldsam.com/*", "https://ram-bam-us-web-qa.azurewebsites.net/*"]
+}
