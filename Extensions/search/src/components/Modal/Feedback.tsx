@@ -1,12 +1,19 @@
 import React from "react"
 
+// THIS IS WEIRD AND NEEDS FIXING
+
 export default function Feedback({ apiResponse, hideProducts }) {
   const [showButton, setShowButton] = React.useState(true)
   const [showForm, setShowForm] = React.useState(false)
   const [feedbackSent, setFeedbackSent] = React.useState(false)
 
-  const { products, searchTerm } = apiResponse
+  let { products, searchTerm } = apiResponse
+  React.useEffect(() => {
+    products = apiResponse.products
+    searchTerm = apiResponse.searchTerm
+  }, [apiResponse])
 
+  console.log(products)
   function handleProductRequest() {
     console.log("Request Product")
     console.log(apiResponse)
