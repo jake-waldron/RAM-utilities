@@ -6,8 +6,8 @@ import { createRoot } from "react-dom/client"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import Button from "../components/Button"
-import Modal from "../components/Modal"
 import useStore from "@/store"
+import Modal from "@components/Modal"
 
 export const config: PlasmoCSConfig = {
   matches: [
