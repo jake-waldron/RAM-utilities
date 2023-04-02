@@ -121,7 +121,13 @@ function FeedbackForm({ apiResponse }) {
     refetch()
   }
 
-  if (isLoading) return <p className="text-center">Sending feedback...</p>
+  if (isLoading)
+    return (
+      <div className="flex justify-center">
+        <CgSpinner className="mx-4 animate-spin text-3xl" />
+        <p className="text-center">Sending feedback...</p>
+      </div>
+    )
 
   if (isError)
     return <p className="text-center">Sorry, something went wrong!</p>
