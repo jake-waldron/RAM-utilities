@@ -15,8 +15,8 @@ export default function Results({ queryData }) {
 
   function handleSelect(partNum: string) {
     if (partNum === "") return
-    searchBarRef.current.value = partNum
     searchBarRef.current.focus()
+    searchBarRef.current.value = partNum
     toggleModal()
   }
 
@@ -53,8 +53,9 @@ function ResultsList({ products, handleSelect }) {
       {products.map((result) => (
         <li
           key={result.partNum}
-          className="cursor-pointer p-2 hover:bg-AMP_GREEN hover:text-white">
-          <p onClick={() => handleSelect(result.partNum)}>{result.name}</p>
+          className="cursor-pointer p-2 hover:bg-AMP_GREEN hover:text-white"
+          onClick={() => handleSelect(result.partNum)}>
+          <p>{result.name}</p>
         </li>
       ))}
     </ul>
