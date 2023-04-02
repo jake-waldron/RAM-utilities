@@ -24,7 +24,8 @@ function Button({ searchBar }: { searchBar: HTMLInputElement }) {
 
   return (
     <button
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault()
         toggleModal()
       }}
       className={`h-full w-max bg-AMP_GREEN px-4 text-white `}>
