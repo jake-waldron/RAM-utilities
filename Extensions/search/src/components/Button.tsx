@@ -8,6 +8,22 @@ import { useSetup } from "@hooks/useSetup"
 function Button({ searchBar }: { searchBar: HTMLInputElement }) {
   const { toggleModal } = useSetup(searchBar)
 
+  React.useEffect(() => {
+    fetch(`${process.env.API}/wake-up`)
+  }, [])
+
+  React.useEffect(() => {
+    // add event listener for CTRL + SHIFT + S
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "S") {
+        console.log("shortcut pressed!")
+        toggleModal()
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
   return (
     <button
       onClick={() => {
