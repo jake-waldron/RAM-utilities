@@ -9,6 +9,10 @@ export default function Results({ queryData }) {
   // console.log("results are: ", results)
   const { isLoading, isError, error, data } = queryData
 
+  React.useEffect(() => {
+    setShowProducts(true)
+  }, [data])
+
   function handleSelect(partNum: string) {
     if (partNum === "") return
     searchBarRef.current.value = partNum
@@ -33,12 +37,12 @@ export default function Results({ queryData }) {
 
   return (
     <>
-      {showProducts && (
-        <>
+      <>
+        {showProducts && (
           <ResultsList products={products} handleSelect={handleSelect} />
-          <Feedback apiResponse={data} hideProducts={hideProducts} />
-        </>
-      )}
+        )}
+        <Feedback apiResponse={data} hideProducts={hideProducts} />
+      </>
     </>
   )
 }
