@@ -29,11 +29,13 @@ type AvailableBars = {
   pathname: string
   searchRegex: RegExp
   parent: string
+  buttonHeight: string
 }
 
 type SearchBar = {
   searchBar: HTMLInputElement
   parentElement: HTMLElement
+  buttonHeight: string
 }
 
 const searchBars: AvailableBars[] = [
@@ -41,13 +43,15 @@ const searchBars: AvailableBars[] = [
     selector: '#ProductSearchGrid_TextBox input[type="text"]',
     pathname: "/Product",
     searchRegex: /.*$/,
-    parent: ".dx-texteditor-container:has(.dx-texteditor-input-container)"
+    parent: ".dx-texteditor-container:has(.dx-texteditor-input-container)",
+    buttonHeight: "34px"
   },
   {
     selector: "#OrderNewLineItemSearchBox_I",
     pathname: "/Order/Create",
     searchRegex: /.*$/,
-    parent: "tr:has(#OrderNewLineItemSearchBox_B-100)"
+    parent: "tr:has(#OrderNewLineItemSearchBox_B-100)",
+    buttonHeight: "31px"
   }
 ]
 
@@ -56,13 +60,15 @@ const addItemBars: AvailableBars[] = [
     selector: "#PurchaseOrderNewLineItemSearchBox_I",
     pathname: "/PurchaseOrder/View",
     searchRegex: /\?purchaseOrderPK=([^&]*)&activeTab=lineItems/,
-    parent: "tr:has(#PurchaseOrderNewLineItemSearchBox_I)"
+    parent: "tr:has(#PurchaseOrderNewLineItemSearchBox_I)",
+    buttonHeight: "32px"
   },
   {
     selector: "#OrderNewLineItemSearchBox_I",
     pathname: "/Order/View",
     searchRegex: /\?orderPK=([^&]*)&showInvoice=False&activeTab=lineItems/,
-    parent: "tr:has(#OrderNewLineItemSearchBox_I)"
+    parent: "tr:has(#OrderNewLineItemSearchBox_I)",
+    buttonHeight: "32px"
   }
 ]
 
@@ -103,9 +109,9 @@ function findBarAndAddButton(listOfBars: AvailableBars[]) {
   if (searchBar) {
     // creates dom node to render react button component into
     const domNode = document.createElement("div")
+    domNode.style.height = searchBar.buttonHeight
     searchBar.parentElement.prepend(domNode)
     const root = createRoot(domNode)
-    console.log("adding button!")
     root.render(<Button searchBar={searchBar.searchBar} />)
   }
 }
@@ -118,7 +124,8 @@ function checkForBars(searchBars) {
     ) {
       return {
         searchBar: document.querySelector(searchBar.selector),
-        parentElement: document.querySelector(searchBar.parent)
+        parentElement: document.querySelector(searchBar.parent),
+        buttonHeight: searchBar.buttonHeight
       }
     }
   })
