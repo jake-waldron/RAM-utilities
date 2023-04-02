@@ -22,7 +22,7 @@ export const getStyle = () => {
   return style
 }
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 type AvailableBars = {
   selector: string
