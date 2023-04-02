@@ -108,11 +108,13 @@ function findBarAndAddButton(listOfBars: AvailableBars[]) {
   const searchBar: SearchBar = foundBars.find((bar) => bar?.searchBar)
   if (searchBar) {
     // creates dom node to render react button component into
-    const domNode = document.createElement("div")
-    domNode.style.height = searchBar.buttonHeight
-    searchBar.parentElement.prepend(domNode)
-    const root = createRoot(domNode)
-    root.render(<Button searchBar={searchBar.searchBar} />)
+    if (!document.querySelector("#quick-search-button")) {
+      const domNode = document.createElement("div")
+      domNode.style.height = searchBar.buttonHeight
+      searchBar.parentElement.prepend(domNode)
+      const root = createRoot(domNode)
+      root.render(<Button searchBar={searchBar.searchBar} />)
+    }
   }
 }
 

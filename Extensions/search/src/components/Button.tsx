@@ -28,7 +28,8 @@ function Button({ searchBar }: { searchBar: HTMLInputElement }) {
         e.preventDefault()
         toggleModal()
       }}
-      className={`h-full w-max bg-AMP_GREEN px-4 text-white `}>
+      className={`h-full w-max bg-AMP_GREEN px-4 text-white `}
+      id="quick-search-button">
       Quick Search
     </button>
   )
