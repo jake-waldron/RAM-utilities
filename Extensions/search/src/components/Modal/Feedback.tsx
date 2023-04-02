@@ -82,6 +82,7 @@ function RequestProduct({ apiResponse }) {
 function FeedbackForm({ apiResponse }) {
   const otherRadioRef = React.useRef<HTMLInputElement>(null)
   const otherDescRef = React.useRef<HTMLInputElement>(null)
+  const [formErrorMsg, setFormErrorMsg] = React.useState("")
   let emailData = {}
 
   const { data, isLoading, isError, refetch } = useQuery(
@@ -96,7 +97,19 @@ function FeedbackForm({ apiResponse }) {
     const formData = new FormData(form)
     const formJson = Object.fromEntries(formData.entries())
     const { issue, otherDescription } = formJson
-    console.log(formJson)
+
+    if (!issue) return setFormErrorMsg("Please select an issue")
+
+    if (issue === "Other" && !otherDescription) {
+      setFormErrorMsg("Please add a description")
+      otherRadioRef.current.checked = true
+      otherDescRef.current.focus()
+      return
+    }
+
+    if (formErrorMsg && (issue || (issue === "Other" && otherDescription))) {
+      setFormErrorMsg("")
+    }
 
     emailData = {
       searchTerm: apiResponse.searchTerm,
@@ -176,7 +189,10 @@ function FeedbackForm({ apiResponse }) {
           />
         </div>
       </div>
-      <button className="mt-2 w-max self-center text-center text-[13px] text-red-500">
+      {formErrorMsg && (
+        <p className="text-[13px] text-red-500">{formErrorMsg}</p>
+      )}
+      <button className="mt-2 w-max  rounded-lg bg-AMP_GREEN py-2 px-6 text-[13px] text-white">
         Submit
       </button>
     </form>
@@ -191,8 +207,6 @@ function ReportIssue({ apiResponse, hideProducts }) {
   }, [apiResponse])
 
   function handleClick() {
-    console.log("report issue")
-    console.log(apiResponse)
     hideProducts()
     setShowForm(true)
   }
@@ -205,15 +219,3 @@ function ReportIssue({ apiResponse, hideProducts }) {
     </>
   )
 }
-
-/*
-
-They both:
-- start off showing a button (saying different things)
-- when the button is clicked, they send an email
-- when the email is sent, they show a message saying the email was sent
-
-the difference is that one has a form that shows up after the email is sent to get more info, the other doesn't
-
-
-*/
