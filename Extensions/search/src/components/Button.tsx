@@ -1,4 +1,3 @@
-import useStore from "../store"
 import React from "react"
 
 import "../styles.css"
@@ -16,7 +15,6 @@ function Button({ searchBar }: { searchBar: HTMLInputElement }) {
     // add event listener for CTRL + SHIFT + S
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey && e.shiftKey && e.key === "S") {
-        console.log("shortcut pressed!")
         toggleModal()
       }
     }
@@ -27,11 +25,9 @@ function Button({ searchBar }: { searchBar: HTMLInputElement }) {
   return (
     <button
       onClick={() => {
-        console.log("clicked react button in separate component")
         toggleModal()
       }}
-      className="h-full bg-AMP_GREEN px-4 text-white "
-      id="REACT-TEST">
+      className={`h-full w-max bg-AMP_GREEN px-4 text-white `}>
       Quick Search
     </button>
   )
