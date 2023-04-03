@@ -1,11 +1,9 @@
-import { queryClient } from "@contents/content"
 import React from "react"
-import { CgKey, CgSpinner } from "react-icons/cg"
-import { useQuery } from "react-query"
-
-// THIS IS WEIRD AND NEEDS FIXING
+import { CgSpinner } from "react-icons/cg"
+import { useQuery, useQueryClient } from "react-query"
 
 export default function Feedback({ apiResponse, hideProducts }) {
+  const queryClient = useQueryClient()
   const { products } = apiResponse
 
   React.useEffect(() => {
