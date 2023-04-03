@@ -6,7 +6,6 @@ import React from "react"
 export default function Results({ queryData }) {
   const { searchBarRef, toggleModal } = useStore()
   const [showProducts, setShowProducts] = React.useState(true)
-  // console.log("results are: ", results)
   const { isLoading, isError, error, data } = queryData
 
   React.useEffect(() => {
