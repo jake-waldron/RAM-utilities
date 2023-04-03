@@ -43,6 +43,40 @@ async function sendEmail(emailData) {
   return response.json()
 }
 
+export function ReportError({ error }) {
+  const emailData = {
+    searchTerm: "ERROR",
+    apiResponse: error.stack,
+    feedbackType: "Error",
+    issue: error.message
+  }
+
+  const { data, isLoading, isError, refetch } = useQuery(
+    "email",
+    () => sendEmail(emailData),
+    { enabled: false }
+  )
+
+  async function handleClick() {
+    refetch()
+  }
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center">
+        <CgSpinner className="mx-4 animate-spin text-3xl" />
+        <p className="text-center">Reporting Error...</p>
+      </div>
+    )
+
+  if (isError)
+    return <p className="text-center">Sorry, something went wrong!</p>
+
+  if (data) return <p className="text-center">Error reported!</p>
+
+  return <FeedbackButton onClick={handleClick}>Report Error</FeedbackButton>
+}
+
 function RequestProduct({ apiResponse }) {
   const emailData = {
     searchTerm: apiResponse.searchTerm,

@@ -1,5 +1,5 @@
 import useStore from "@store"
-import Feedback from "./Feedback"
+import Feedback, { ReportError } from "./Feedback"
 import { CgSpinner } from "react-icons/cg"
 import React from "react"
 
@@ -30,7 +30,19 @@ export default function Results({ queryData }) {
         <p className="text-center">Searching...</p>
       </div>
     )
-  if (isError) return <p className="text-center">Error: {error.message}</p>
+
+  if (isError) {
+    return (
+      <>
+        <p className="text-center text-red-500">
+          Sorry, something went wrong. Please try again later.
+        </p>
+        <div className="mt-2 flex justify-center">
+          <ReportError error={error} />
+        </div>
+      </>
+    )
+  }
 
   const { products } = data
 
