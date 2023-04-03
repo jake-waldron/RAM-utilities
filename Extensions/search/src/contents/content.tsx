@@ -1,6 +1,5 @@
 import type { PlasmoCSConfig } from "plasmo"
 import cssText from "data-text:../styles.css"
-import { showModal } from "../utils/modal"
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { QueryClient, QueryClientProvider } from "react-query"
@@ -22,7 +21,7 @@ export const getStyle = () => {
   return style
 }
 
-export const queryClient = new QueryClient()
+const queryClient = new QueryClient()
 
 type AvailableBars = {
   selector: string
@@ -82,7 +81,6 @@ export default function ReactContainer() {
   )
 }
 
-// TESTING REACT
 // Add button to Add Items bars
 // handles differently because we have to wait for the request to be made before the bar is on the page
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -132,83 +130,4 @@ function checkForBars(searchBars) {
     }
   })
   return checkForBars
-}
-
-function createAndAttachButton(searchBar: SearchBar) {
-  const button = document.createElement("button")
-  Object.assign(button.style, {
-    display: "inline-block",
-    height: "34px",
-    width: "max-content",
-    background: "#1ab394",
-    color: "white",
-    border: "0",
-    padding: "4px 8px"
-  })
-  button.id = "jake-search-button"
-  button.innerText = "Quick Search"
-  button.style.display = "inline-block"
-  button.addEventListener("click", async (e) => {
-    e.preventDefault()
-    try {
-      fetch(`${process.env.API}/wake-up`)
-    } catch (error) {
-      console.error(error)
-    }
-    if (
-      !document.querySelector("#jake-modal") &&
-      !document.querySelector("#jake-modal-backdrop")
-    ) {
-      showModal(searchBar.searchBar)
-    }
-  })
-  if (!document.querySelector("#jake-search-button")) {
-    searchBar.parentElement.prepend(button)
-  }
-}
-
-class SearchButton {
-  button: HTMLButtonElement
-  searchBar: HTMLInputElement
-  parentElement: HTMLElement
-
-  constructor(searchBar: SearchBar) {
-    this.searchBar = searchBar.searchBar
-    this.parentElement = searchBar.parentElement
-
-    this.button = document.createElement("button")
-    Object.assign(this.button.style, {
-      display: "inline-block",
-      height: "34px",
-      width: "max-content",
-      background: "#1ab394",
-      color: "white",
-      border: "0",
-      padding: "4px 8px"
-    })
-    this.button.id = "jake-search-button"
-    this.button.innerText = "Quick Search"
-    this.button.style.display = "inline-block"
-    this.button.addEventListener("click", async (e) => {
-      e.preventDefault()
-      try {
-        fetch(`${process.env.API}/wake-up`)
-      } catch (error) {
-        console.error(error)
-      }
-      if (
-        !document.querySelector("#jake-modal") &&
-        !document.querySelector("#jake-modal-backdrop")
-      ) {
-        // showModal(this.searchBar)
-        // setState({ showModal: true })
-      }
-    })
-  }
-
-  attachButtonTo() {
-    if (!document.querySelector("#jake-search-button")) {
-      this.parentElement.prepend(this.button)
-    }
-  }
 }
