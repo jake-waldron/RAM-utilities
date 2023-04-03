@@ -36,12 +36,10 @@ export default function Results({ queryData }) {
 
   return (
     <>
-      <>
-        {showProducts && (
-          <ResultsList products={products} handleSelect={handleSelect} />
-        )}
-        <Feedback apiResponse={data} hideProducts={hideProducts} />
-      </>
+      {showProducts && (
+        <ResultsList products={products} handleSelect={handleSelect} />
+      )}
+      <Feedback apiResponse={data} hideProducts={hideProducts} />
     </>
   )
 }

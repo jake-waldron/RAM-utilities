@@ -134,9 +134,6 @@ function FeedbackForm({ apiResponse }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center">
-      {/* // four radio inputs with labels and values of "Too many results" "Not
-      enough results" "Wrong results" "Other" // text input with label "Please
-      describe your issue" // submit button */}
       <div className="flex flex-col">
         <label htmlFor="tooManyResults">
           <input
@@ -214,12 +211,14 @@ function ReportIssue({ apiResponse, hideProducts }) {
     hideProducts()
     setShowForm(true)
   }
+
   return (
     <>
-      {!showForm && (
+      {showForm ? (
+        <FeedbackForm apiResponse={apiResponse} />
+      ) : (
         <FeedbackButton onClick={handleClick}>Report Issue</FeedbackButton>
       )}
-      {showForm && <FeedbackForm apiResponse={apiResponse} />}
     </>
   )
 }
