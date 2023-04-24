@@ -116,7 +116,7 @@ function handlePrepayment() {
 	const { orderTotal, availableCredit, paymentForm, paymentInput, cashInput } = getInitialElements();
 
 	if (availableCredit && orderTotal > availableCredit && paymentForm) {
-		const paymentNeeded = orderTotal - availableCredit;
+		const paymentNeeded = (orderTotal - availableCredit).toFixed(2);
 
 		// Display current credit and amount due(hidden unless cash payment)
 		const [currentCreditDisplay] = createBalanceDisplay('Current Credit', availableCredit, 'info');
