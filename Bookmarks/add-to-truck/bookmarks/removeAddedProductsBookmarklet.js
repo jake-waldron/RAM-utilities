@@ -1,6 +1,9 @@
 javascript: (function () {
+	const URL = 'http://127.0.0.1:3000/api';
+	/*const URL = 'https://reynolds-advanced-utilities.vercel.app/api';*/
+
 	const links = Array.from(document.querySelectorAll('a'));
-	const products = links.filter((link) => link.title === 'View product').map((link) => link.textContent.split('(')[0]);
+	const products = links.filter((link) => link.title === 'View product').map((link) => link.textContent);
 	const toast = document.createElement('div');
 	let toastMessage = 'Loading...';
 
@@ -29,7 +32,7 @@ javascript: (function () {
 	}
 
 	showToast();
-	fetch(`https://3gbqvz7aa1.execute-api.us-east-2.amazonaws.com/addToTruck/update`, {
+	fetch(`${URL}/truck-list/update-list`, {
 		method: 'post',
 		mode: 'cors',
 		body: JSON.stringify({ products }),

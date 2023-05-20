@@ -1,4 +1,7 @@
 javascript: (function () {
+	const URL = 'http://127.0.0.1:3000/api';
+	/*const URL = 'https://reynolds-advanced-utilities.vercel.app/api';*/
+
 	const overlay = document.createElement('div');
 	const toast = document.createElement('div');
 	const addedBy = document.querySelector('.nav-header .font-bold')?.innerText.split(' ')[0];
@@ -52,11 +55,13 @@ javascript: (function () {
 	}
 
 	async function clickListener(event) {
-		const element = getElement(event);
-		const text = element.textContent;
-		const prodName = text.split('(')[0];
+		let element = getElement(event);
+		if (element.tagName === 'SPAN') {
+			element = element.parentNode;
+		}
+		const prodName = element.textContent;
 		showToast();
-		fetch(`https://3gbqvz7aa1.execute-api.us-east-2.amazonaws.com/addToTruck/add`, {
+		fetch(`${URL}/truck-list/add-to-truck`, {
 			method: 'post',
 			mode: 'cors',
 			body: JSON.stringify({ product: prodName, addedBy }),
